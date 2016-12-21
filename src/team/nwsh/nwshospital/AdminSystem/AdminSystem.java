@@ -66,6 +66,8 @@ public class AdminSystem extends JFrame {
 		JButton btnNewButton = new JButton("\u641C\u7D22");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				AdminSystemShowInfo newframe = new AdminSystemShowInfo();
+				newframe.setVisible(true);
 			}
 		});
 		btnNewButton.setBounds(320, 62, 71, 27);

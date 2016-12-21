@@ -71,7 +71,7 @@ public class AdminSystemAddInfo extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton_1.setBounds(150, 98, 113, 27);
+		btnNewButton_1.setBounds(150, 87, 113, 27);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("\u589E\u8BBE\u836F\u54C1");
@@ -82,7 +82,7 @@ public class AdminSystemAddInfo extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton_2.setBounds(150, 147, 113, 27);
+		btnNewButton_2.setBounds(150, 124, 113, 27);
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("\u589E\u8BBE\u9879\u76EE");
@@ -93,7 +93,18 @@ public class AdminSystemAddInfo extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton_3.setBounds(150, 192, 113, 27);
+		btnNewButton_3.setBounds(150, 161, 113, 27);
 		contentPane.add(btnNewButton_3);
+		
+		JButton btnNewButton_4 = new JButton("\u8FD4\u56DE\u4E0A\u4E00\u7EA7");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AdminSystem newframe = new AdminSystem();
+				newframe.setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton_4.setBounds(150, 197, 113, 27);
+		contentPane.add(btnNewButton_4);
 	}
 }
