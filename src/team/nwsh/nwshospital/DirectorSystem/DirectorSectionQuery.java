@@ -32,12 +32,16 @@ public class DirectorSectionQuery extends JFrame {
 	 */
 	public DirectorSectionQuery() {
 		setTitle("\u79D1\u5BA4\u60C5\u51B5\u67E5\u8BE2");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
+		setBounds(100, 100, 800, 500);
 		DirectorSectionQuery = new JPanel();
 		DirectorSectionQuery.setBorder(new EmptyBorder(5, 5, 5, 5));
 		DirectorSectionQuery.setLayout(new BorderLayout(0, 0));
 		setContentPane(DirectorSectionQuery);
+		
+		JPanel panel = new JPanel();
+		DirectorSectionQuery.add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
 	}
 
 }

@@ -37,7 +37,7 @@ public class DirectorSystem extends JFrame {
 	public DirectorSystem() {
 		setTitle("\u9662\u957F\u67E5\u8BE2\u7CFB\u7EDF");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 810, 459);
+		setBounds(100, 100, 800, 500);
 		DirectorMianMeau = new JPanel();
 		DirectorMianMeau.setBorder(new EmptyBorder(5, 5, 5, 5));
 		DirectorMianMeau.setLayout(new BorderLayout(0, 0));
@@ -47,18 +47,18 @@ public class DirectorSystem extends JFrame {
 		DirectorMianMeau.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JButton PharmacyQuery = new JButton("\u836F\u623F\u67E5\u8BE2");
+		JButton PharmacyQuery = new JButton("\u836F\u623F\u60C5\u51B5\u67E5\u8BE2");
 		PharmacyQuery.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DirectorPharmacyQuery newframe = new DirectorPharmacyQuery();
 				newframe.setVisible(true);
 			}
 		});
-		PharmacyQuery.setBounds(10, 38, 158, 78);
+		PharmacyQuery.setBounds(63, 43, 158, 78);
 		panel.add(PharmacyQuery);
 		
-		JButton SectionQuery = new JButton("\u79D1\u5BA4\u67E5\u8BE2");
-		SectionQuery.setBounds(10, 149, 158, 78);
+		JButton SectionQuery = new JButton("\u79D1\u5BA4\u60C5\u51B5\u67E5\u8BE2");
+		SectionQuery.setBounds(63, 194, 158, 78);
 		SectionQuery.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DirectorSectionQuery newframe = new DirectorSectionQuery();
@@ -67,26 +67,38 @@ public class DirectorSystem extends JFrame {
 		});
 		panel.add(SectionQuery);
 		
-		JButton DoctorQuery = new JButton("\u533B\u751F\u67E5\u8BE2");
+		JButton DoctorQuery = new JButton("\u533B\u751F\u60C5\u51B5\u67E5\u8BE2");
 		DoctorQuery.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				DirectorDoctorQuery newframe = new DirectorDoctorQuery();
 				newframe.setVisible(true);
 			}
 		});
-		DoctorQuery.setBounds(10, 275, 158, 78);
+		DoctorQuery.setBounds(63, 334, 158, 78);
 		panel.add(DoctorQuery);
 		
 		JLabel MedicineAlarm = new JLabel("");
-		MedicineAlarm.setBounds(145, 7, 169, 21);
+		MedicineAlarm.setBounds(284, 43, 443, 78);
 		panel.add(MedicineAlarm);
 		
 		JButton CreatReport = new JButton("\u751F\u6210\u62A5\u544A");
-		CreatReport.setBounds(226, 275, 158, 78);
+		CreatReport.setBounds(319, 194, 158, 78);
 		panel.add(CreatReport);
 		
-		JButton button_1 = new JButton("\u5BFC\u51FA\u62A5\u544A");
-		button_1.setBounds(439, 275, 158, 78);
-		panel.add(button_1);
+		JButton PublishReport = new JButton("\u5BFC\u51FA\u62A5\u544A");
+		PublishReport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		PublishReport.setBounds(319, 334, 158, 78);
+		panel.add(PublishReport);
+		
+		JButton QuitButton = new JButton("\u9000\u51FA");
+		QuitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		QuitButton.setBounds(569, 334, 158, 78);
+		panel.add(QuitButton);
 	}
 }
