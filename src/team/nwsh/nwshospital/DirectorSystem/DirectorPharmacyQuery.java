@@ -1,69 +1,63 @@
 package team.nwsh.nwshospital.DirectorSystem;
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.sql.*;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import team.nwsh.nwshospital.MySQLConnect;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
 
-public class DirectorPharmacyQuery extends JFrame {
+public class DirectorPharmacyQuery extends JFrame{
+	Vector RowData,ColumnNames;
+    JTable jt=null;
+    JScrollPane jsp=null;
+    static String sql = null;  
+    static MySQLConnect db = null;  
+    static ResultSet ret = null; 
+     public static void main(String[] args) throws SQLException
+     {
+    	 DirectorPharmacyQuery DirectorPharmacyQuery=new DirectorPharmacyQuery();
+     }
 
 
-	private JPanel DirectorPharmacyQuery;
+public DirectorPharmacyQuery() throws SQLException
+{
+	setTitle("\u836F\u623F\u60C5\u51B5\u67E5\u8BE2");
+	ColumnNames= new Vector();
+	ColumnNames.add("序号");
+	ColumnNames.add("药品名");
+	ColumnNames.add("单价");
+	ColumnNames.add("库存");
+	//建立表头
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DirectorPharmacyQuery frame = new DirectorPharmacyQuery();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	RowData=new Vector(); 
+	sql = "SELECT * FROM MEDICINE";						// 此处填写要执行的语句
+    db = new MySQLConnect(sql);							// 新建一个数据库连接
+    try {
+		ret = db.pst.executeQuery();					// 执行sql语句，得到结果集
+		while (ret.next()) {
+            Vector hang=new Vector();
+        	hang.add(ret.getInt(1));
+        	hang.add(ret.getString(2));
+        	hang.add(ret.getInt(3));
+        	hang.add(ret.getInt(4));
+        	RowData.add(hang);
+        }
+        ret.close();		// 关闭执行的语句连接
+        db.close();			// 关闭数据库连接
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public DirectorPharmacyQuery() {
-		setTitle("\u836F\u623F\u60C5\u51B5\u67E5\u8BE2");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
-		setBounds(100, 100, 380, 560);
-		DirectorPharmacyQuery = new JPanel();
-		DirectorPharmacyQuery.setBorder(new EmptyBorder(5, 5, 5, 5));
-		DirectorPharmacyQuery.setLayout(new BorderLayout(0, 0));
-		setContentPane(DirectorPharmacyQuery);
-		
-		JPanel panel = new JPanel();
-		DirectorPharmacyQuery.add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
-		
-		JLabel DirectorPharmacyQueryTitle = new JLabel("\u836F\u623F\u60C5\u51B5\u67E5\u8BE2");
-		DirectorPharmacyQueryTitle.setFont(new Font("宋体", Font.BOLD, 30));
-		DirectorPharmacyQueryTitle.setBounds(23, 10, 257, 62);
-		panel.add(DirectorPharmacyQueryTitle);
-		
-		
-		JButton DirectorPharmacyQueryQuitButton = new JButton("\u9000\u51FA");
-		DirectorPharmacyQueryQuitButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-			}
-		});
-		DirectorPharmacyQueryQuitButton.setFont(new Font("宋体", Font.PLAIN, 16));
-		DirectorPharmacyQueryQuitButton.setBounds(130, 459, 93, 30);
-		panel.add(DirectorPharmacyQueryQuitButton);
+	jt=new JTable(RowData,ColumnNames);
+	jsp=new JScrollPane(jt);
+	this.add(jsp);
+	this.setBounds(12, 76, 380, 560);
+	this.setVisible(true);
 	}
 
 }

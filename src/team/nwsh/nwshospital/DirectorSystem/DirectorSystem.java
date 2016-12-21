@@ -52,8 +52,6 @@ public class DirectorSystem extends JFrame {
 		PharmacyQuery.setFont(new Font("ËÎÌå", Font.BOLD, 20));
 		PharmacyQuery.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DirectorPharmacyQuery newframe = new DirectorPharmacyQuery();//Ò³ÃæÌø×ª
-				newframe.setVisible(true);
 			}
 		});
 		PharmacyQuery.setBounds(28, 121, 193, 78);
