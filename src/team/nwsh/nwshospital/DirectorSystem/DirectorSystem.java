@@ -87,7 +87,7 @@ public class DirectorSystem extends JFrame {
 		
 		JButton CreatReport = new JButton("\u751F\u6210\u62A5\u544A");
 		CreatReport.setFont(new Font("宋体", Font.BOLD, 20));
-		CreatReport.setBounds(400, 121, 158, 78);
+		CreatReport.setBounds(455, 121, 158, 78);
 		panel.add(CreatReport);
 		
 		JButton PublishReport = new JButton("\u5BFC\u51FA\u62A5\u544A");
@@ -96,16 +96,18 @@ public class DirectorSystem extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		PublishReport.setBounds(400, 228, 158, 78);
+		PublishReport.setBounds(455, 228, 158, 78);
 		panel.add(PublishReport);
 		
 		JButton MainMeauQuitButton = new JButton("\u9000\u51FA");
 		MainMeauQuitButton.setFont(new Font("宋体", Font.BOLD, 20));
 		MainMeauQuitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				System.exit(0);
 			}
 		});
-		MainMeauQuitButton.setBounds(400, 334, 158, 78);
+		MainMeauQuitButton.setBounds(455, 334, 158, 78);
 		panel.add(MainMeauQuitButton);
 		
 		JLabel MainMeauTitle = new JLabel("\u9662\u957F\u67E5\u8BE2\u7CFB\u7EDF");
@@ -113,14 +115,19 @@ public class DirectorSystem extends JFrame {
 		MainMeauTitle.setBounds(28, 22, 378, 68);
 		panel.add(MainMeauTitle);
 		
-		JLabel label = new JLabel("\u67E5\u8BE2\u836F\u623F\u836F\u54C1\u4F7F\u7528\u60C5\u51B5");
-		label.setFont(new Font("宋体", Font.PLAIN, 16));
-		label.setBounds(231, 141, 172, 41);
+		JLabel label = new JLabel("\u67E5\u8BE2\u7EDF\u8BA1\u836F\u623F\u5404\u4E2A\u836F\u54C1\u7684\u5269\u4F59\u5E93\u5B58\u91CF");
+		label.setFont(new Font("宋体", Font.PLAIN, 12));
+		label.setBounds(231, 142, 214, 41);
 		panel.add(label);
 		
-		JLabel label_1 = new JLabel("\u67E5\u8BE2\u79D1\u5BA4\u6302\u53F7\u60C5\u51B5");
-		label_1.setFont(new Font("宋体", Font.PLAIN, 16));
-		label_1.setBounds(231, 235, 148, 41);
+		JLabel label_1 = new JLabel("\u67E5\u8BE2\u7EDF\u8BA1\u6BCF\u4E2A\u79D1\u5BA4\u7684\u6302\u53F7\u91CF\u548C\u603B\u91D1\u989D");
+		label_1.setFont(new Font("宋体", Font.PLAIN, 12));
+		label_1.setBounds(231, 249, 214, 41);
 		panel.add(label_1);
+		
+		JLabel label_2 = new JLabel("\u67E5\u8BE2\u7EDF\u8BA1\u6BCF\u4E2A\u533B\u751F\u7684\u5C31\u8BCA\u6570\u91CF\u548C\u91D1\u989D");
+		label_2.setFont(new Font("宋体", Font.PLAIN, 12));
+		label_2.setBounds(231, 359, 193, 32);
+		panel.add(label_2);
 	}
 }

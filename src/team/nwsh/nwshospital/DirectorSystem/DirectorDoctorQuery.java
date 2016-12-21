@@ -2,10 +2,13 @@ package team.nwsh.nwshospital.DirectorSystem;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
+import java.sql.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import team.nwsh.nwshospital.MySQLConnect;
+
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -17,7 +20,6 @@ import javax.swing.JComboBox;
 import java.awt.Font;
 
 public class DirectorDoctorQuery extends JFrame {
-
 	private JPanel DirectorDoctorQuery;
 	private JTextField SearchTextField;
 
@@ -43,7 +45,7 @@ public class DirectorDoctorQuery extends JFrame {
 	public DirectorDoctorQuery() {
 		setTitle("\u533B\u751F\u7BA1\u7406\u7CFB\u7EDF");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
-		setBounds(100, 100, 378, 557);
+		setBounds(100, 100, 380, 560);
 		DirectorDoctorQuery = new JPanel();
 		DirectorDoctorQuery.setBorder(new EmptyBorder(5, 5, 5, 5));
 		DirectorDoctorQuery.setLayout(new BorderLayout(0, 0));
@@ -52,21 +54,28 @@ public class DirectorDoctorQuery extends JFrame {
 		JPanel panel = new JPanel();
 		DirectorDoctorQuery.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-		
-		JButton SearchButton = new JButton("\u641C\u7D22");
-		SearchButton.setFont(new Font("宋体", Font.PLAIN, 16));
-		SearchButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		SearchButton.setBounds(228, 107, 104, 23);
-		panel.add(SearchButton);
-		
+	
 		SearchTextField = new JTextField();
 		SearchTextField.setFont(new Font("宋体", Font.PLAIN, 16));
 		SearchTextField.setBounds(45, 107, 139, 23);
 		panel.add(SearchTextField);
 		SearchTextField.setColumns(10);
+		
+		JButton SearchButton = new JButton("\u641C\u7D22");
+		SearchButton.setFont(new Font("宋体", Font.PLAIN, 16));
+		SearchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String String_InputDoctorName = SearchTextField.getText();//获取SearchTextField内容
+				/*If(=String_InputDoctorName)
+				{
+				DirectorDoctorQueryGoal newframe = new DirectorDoctorQueryGoal();
+							
+				newframe.setVisible(true);
+				}*/
+			}
+		});
+		SearchButton.setBounds(228, 107, 104, 23);
+		panel.add(SearchButton);
 		
 		JLabel SearchMarkedWords = new JLabel("\u8BF7\u8F93\u5165\u533B\u751F\u540D\u5B57\uFF1A");
 		SearchMarkedWords.setFont(new Font("宋体", Font.PLAIN, 16));
@@ -129,7 +138,9 @@ public class DirectorDoctorQuery extends JFrame {
 		JButton DirectorDoctorQueryQuitButton = new JButton("\u9000\u51FA");
 		DirectorDoctorQueryQuitButton.setFont(new Font("宋体", Font.PLAIN, 16));
 		DirectorDoctorQueryQuitButton.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
 			}
 		});
 		DirectorDoctorQueryQuitButton.setBounds(184, 427, 135, 40);
