@@ -9,7 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 public class DirectorPharmacyQuery extends JFrame {
 
-	private JPanel contentPane;
+	private JPanel DirectorPharmacyQuery;
 
 	/**
 	 * Launch the application.
@@ -31,12 +31,13 @@ public class DirectorPharmacyQuery extends JFrame {
 	 * Create the frame.
 	 */
 	public DirectorPharmacyQuery() {
+		setTitle("\u836F\u623F\u60C5\u51B5\u67E5\u8BE2");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		DirectorPharmacyQuery = new JPanel();
+		DirectorPharmacyQuery.setBorder(new EmptyBorder(5, 5, 5, 5));
+		DirectorPharmacyQuery.setLayout(new BorderLayout(0, 0));
+		setContentPane(DirectorPharmacyQuery);
 	}
 
 }
