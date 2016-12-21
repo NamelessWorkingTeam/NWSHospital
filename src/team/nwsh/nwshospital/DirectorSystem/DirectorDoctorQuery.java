@@ -43,7 +43,7 @@ public class DirectorDoctorQuery extends JFrame {
 	public DirectorDoctorQuery() {
 		setTitle("\u533B\u751F\u7BA1\u7406\u7CFB\u7EDF");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
-		setBounds(100, 100, 800, 500);
+		setBounds(100, 100, 378, 557);
 		DirectorDoctorQuery = new JPanel();
 		DirectorDoctorQuery.setBorder(new EmptyBorder(5, 5, 5, 5));
 		DirectorDoctorQuery.setLayout(new BorderLayout(0, 0));
@@ -53,50 +53,86 @@ public class DirectorDoctorQuery extends JFrame {
 		DirectorDoctorQuery.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JButton SearchButton = new JButton("Search");
+		JButton SearchButton = new JButton("\u641C\u7D22");
+		SearchButton.setFont(new Font("宋体", Font.PLAIN, 16));
 		SearchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		SearchButton.setBounds(337, 125, 93, 23);
+		SearchButton.setBounds(228, 107, 104, 23);
 		panel.add(SearchButton);
 		
 		SearchTextField = new JTextField();
-		SearchTextField.setBounds(62, 125, 229, 23);
+		SearchTextField.setFont(new Font("宋体", Font.PLAIN, 16));
+		SearchTextField.setBounds(45, 107, 139, 23);
 		panel.add(SearchTextField);
 		SearchTextField.setColumns(10);
 		
-		JLabel SearchMarkedWords = new JLabel("\u8BF7\u8F93\u5165\u67E5\u8BE2\u6240\u533B\u751F\u540D\u5B57\uFF1A");
-		SearchMarkedWords.setBounds(62, 67, 181, 51);
+		JLabel SearchMarkedWords = new JLabel("\u8BF7\u8F93\u5165\u533B\u751F\u540D\u5B57\uFF1A");
+		SearchMarkedWords.setFont(new Font("宋体", Font.PLAIN, 16));
+		SearchMarkedWords.setBounds(35, 65, 181, 40);
 		panel.add(SearchMarkedWords);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(460, 95, 93, 23);
-		panel.add(btnNewButton_1);
+		JComboBox SelectSectionBox = new JComboBox();
+		SelectSectionBox.setFont(new Font("宋体", Font.PLAIN, 16));
+		SelectSectionBox.setBounds(89, 175, 85, 23);
+		panel.add(SelectSectionBox);
 		
-		JButton btnNewButton_2 = new JButton("New button");
-		btnNewButton_2.setBounds(596, 95, 93, 23);
-		panel.add(btnNewButton_2);
+		JComboBox SelectDoctorBox = new JComboBox();
+		SelectDoctorBox.setFont(new Font("宋体", Font.PLAIN, 16));
+		SelectDoctorBox.setBounds(89, 224, 86, 25);
+		panel.add(SelectDoctorBox);
 		
-		JList list = new JList();
-		list.setBounds(470, 128, 219, 313);
-		panel.add(list);
+		JLabel DirectorDoctorQueryTitle = new JLabel("\u533B\u751F\u5DE5\u4F5C\u60C5\u51B5\u67E5\u8BE2");
+		DirectorDoctorQueryTitle.setFont(new Font("宋体", Font.BOLD, 30));
+		DirectorDoctorQueryTitle.setBounds(23, 10, 257, 62);
+		panel.add(DirectorDoctorQueryTitle);
 		
-		JComboBox SectionComboBox = new JComboBox();
-		SectionComboBox.setBounds(62, 205, 85, 23);
-		panel.add(SectionComboBox);
+		JLabel SelectSectionLabel = new JLabel("\u79D1\u5BA4\uFF1A");
+		SelectSectionLabel.setFont(new Font("宋体", Font.PLAIN, 16));
+		SelectSectionLabel.setBounds(35, 175, 64, 25);
+		panel.add(SelectSectionLabel);
 		
-		JComboBox DoctorComboBox_1 = new JComboBox();
-		DoctorComboBox_1.setBounds(173, 205, 86, 22);
-		panel.add(DoctorComboBox_1);
+		JLabel SelectDoctorLabel = new JLabel("\u59D3\u540D\uFF1A");
+		SelectDoctorLabel.setFont(new Font("宋体", Font.PLAIN, 16));
+		SelectDoctorLabel.setBounds(35, 224, 64, 25);
+		panel.add(SelectDoctorLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(62, 252, 85, 23);
-		panel.add(lblNewLabel_1);
+		JButton SelectButton = new JButton("\u9009\u62E9");
+		SelectButton.setFont(new Font("宋体", Font.PLAIN, 16));
+		SelectButton.setBounds(228, 174, 104, 25);
+		panel.add(SelectButton);
 		
-		JLabel Title = new JLabel("\u533B\u751F\u5DE5\u4F5C\u60C5\u51B5\u67E5\u8BE2");
-		Title.setFont(new Font("宋体", Font.BOLD, 22));
-		Title.setBounds(62, 10, 257, 62);
-		panel.add(Title);
+		JButton ComfirmButton = new JButton("\u67E5\u8BE2");
+		ComfirmButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		ComfirmButton.setBounds(184, 346, 135, 40);
+		panel.add(ComfirmButton);
+		ComfirmButton.setFont(new Font("宋体", Font.PLAIN, 16));
+		
+		JList ComfirmList = new JList();
+		ComfirmList.setBounds(35, 307, 104, 182);
+		panel.add(ComfirmList);
+		
+		JLabel SelectMarkedWords = new JLabel("\u8BF7\u8F93\u5165\u67E5\u8BE2\u6761\u4EF6\uFF1A");
+		SelectMarkedWords.setFont(new Font("宋体", Font.PLAIN, 16));
+		SelectMarkedWords.setBounds(33, 140, 159, 25);
+		panel.add(SelectMarkedWords);
+		
+		JLabel ComfirmMarkedWords = new JLabel("\u9009\u62E9\u533B\u751F\u59D3\u540D\uFF1A");
+		ComfirmMarkedWords.setFont(new Font("宋体", Font.PLAIN, 16));
+		ComfirmMarkedWords.setBounds(34, 259, 128, 40);
+		panel.add(ComfirmMarkedWords);
+		
+		JButton DirectorDoctorQueryQuitButton = new JButton("\u9000\u51FA");
+		DirectorDoctorQueryQuitButton.setFont(new Font("宋体", Font.PLAIN, 16));
+		DirectorDoctorQueryQuitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		DirectorDoctorQueryQuitButton.setBounds(184, 427, 135, 40);
+		panel.add(DirectorDoctorQueryQuitButton);
 	}
 }
