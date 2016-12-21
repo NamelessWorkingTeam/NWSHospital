@@ -39,7 +39,22 @@ public class NWSHospital {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+        
+        System.out.println("* * * * * * * * * * 以上为MySQL数据库连接教学部分 * * * * * * * * * *");
+        System.out.println("    * * * * * * * * * * 下面将正式引导开始程序 * * * * * * * * * *");
+        /** 
+         * 
+         * @author Liu Yummy
+         * 
+         * 	下面将正式开始程序！各位已经可以使用此模块登录到各自的模块中去
+         * 	各模块的用户名请各位自行查阅 ACCOUNTS 表
+         * 
+         */
+        
+        GeneralLogin JFrame_Login = new GeneralLogin();		// 新建登录窗口
+        JFrame_Login.setResizable(false);					// 设置登录窗口大小不可修改
+        JFrame_Login.setLocationRelativeTo(null);			// 将窗口放置于屏幕正中心
+        JFrame_Login.setVisible(true);						// 开启窗口
         
 	}
 

@@ -1,4 +1,4 @@
-package team.nwsh.nwshospital.DirectorSystem;
+package team.nwsh.nwshospital.DoctorSystem;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -7,9 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class DirectorDoctorQuery extends JFrame {
+public class DoctorSystem extends JFrame {
 
-	private JPanel DirectorDoctorQuery;
+	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -18,7 +18,7 @@ public class DirectorDoctorQuery extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DirectorDoctorQuery frame = new DirectorDoctorQuery();
+					DoctorSystem frame = new DoctorSystem();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -30,14 +30,13 @@ public class DirectorDoctorQuery extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DirectorDoctorQuery() {
-		setTitle("\u533B\u751F\u7BA1\u7406\u7CFB\u7EDF");
+	public DoctorSystem() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		DirectorDoctorQuery = new JPanel();
-		DirectorDoctorQuery.setBorder(new EmptyBorder(5, 5, 5, 5));
-		DirectorDoctorQuery.setLayout(new BorderLayout(0, 0));
-		setContentPane(DirectorDoctorQuery);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
 	}
 
 }
