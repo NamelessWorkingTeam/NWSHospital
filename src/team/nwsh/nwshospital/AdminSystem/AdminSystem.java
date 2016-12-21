@@ -10,8 +10,13 @@ import java.awt.Label;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JRadioButton;
 
-public class AdminSystemManage extends JFrame {
+public class AdminSystem extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -23,7 +28,7 @@ public class AdminSystemManage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AdminSystemManage frame = new AdminSystemManage();
+					AdminSystem frame = new AdminSystem();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +40,7 @@ public class AdminSystemManage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdminSystemManage() {
+	public AdminSystem() {
 		setTitle("\u7BA1\u7406\u5458\u7BA1\u7406\u7A97\u53E3");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -50,7 +55,7 @@ public class AdminSystemManage extends JFrame {
 		contentPane.add(label);
 		
 		textField = new JTextField();
-		textField.setBounds(75, 63, 231, 24);
+		textField.setBounds(103, 63, 203, 24);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
@@ -59,19 +64,23 @@ public class AdminSystemManage extends JFrame {
 		contentPane.add(label_1);
 		
 		JButton btnNewButton = new JButton("\u641C\u7D22");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton.setBounds(320, 62, 71, 27);
-		contentPane.add(btnNewButton);
+		contentPane.add(btnNewButton)
+		;
 		
 		JButton btnNewButton_1 = new JButton("\u589E\u52A0\u4FE1\u606F");
-		btnNewButton_1.setBounds(24, 118, 113, 27);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AdminSystemAddInfo newframe = new AdminSystemAddInfo();
+				newframe.setVisible(true);
+				
+			}
+		});
+		btnNewButton_1.setBounds(149, 125, 113, 27);
 		contentPane.add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("\u5220\u9664\u4FE1\u606F");
-		btnNewButton_2.setBounds(151, 118, 113, 27);
-		contentPane.add(btnNewButton_2);
-		
-		JButton btnNewButton_3 = new JButton("\u4FEE\u6539\u4FE1\u606F");
-		btnNewButton_3.setBounds(278, 118, 113, 27);
-		contentPane.add(btnNewButton_3);
 	}
 }
