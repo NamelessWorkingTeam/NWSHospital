@@ -6,11 +6,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import team.nwsh.nwshospital.MySQLConnect;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.*;
 import java.awt.event.ActionEvent;
 
 public class RegisterSystem extends JFrame {
@@ -69,6 +73,45 @@ public class RegisterSystem extends JFrame {
 		JButton button_1 = new JButton("\u786E\u5B9A");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String String_SQL_PAT_ID = "SELECT STA_TUS FROM STATE WHERE PAT_ID = '" + textField.getText() + "'";
+				MySQLConnect con = new MySQLConnect(String_SQL_PAT_ID);
+				try {
+					ResultSet result = con.pst.executeQuery();
+						result.next();
+						String state = result.getString("STA_TUS");
+						int i = Integer.parseInt(state);
+						switch(i){
+						case 0:
+							Fee fee = new Fee();
+							fee.setResizable(false);
+							fee.setLocationRelativeTo(null);
+							fee.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+							fee.setVisible(true);
+							dispose();
+							break;
+						case 1:
+							System.out.print("已收费的预约病人");
+						break;
+						case 2:
+							System.out.print("已收费的挂号病人");
+							break;
+						default :
+							Register register = new Register();
+							register.setResizable(false);
+							register.setLocationRelativeTo(null);
+							register.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+							register.setVisible(true);
+							dispose();
+							break;
+						}
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+				
 			}
 		});
 		button_1.setFont(new Font("微软雅黑", Font.PLAIN, 14));
