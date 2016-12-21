@@ -21,7 +21,7 @@ public class DirectorSystem extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
+				try {  
 					DirectorSystem frame = new DirectorSystem();
 					frame.setVisible(true);
 				} catch (Exception e) {
