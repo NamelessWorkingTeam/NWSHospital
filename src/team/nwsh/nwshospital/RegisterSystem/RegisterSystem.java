@@ -62,20 +62,17 @@ public class RegisterSystem extends JFrame {
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
-		textField.setBounds(162, 135, 167, 21);
+		textField.setBounds(162, 135, 180, 21);
 		panel.add(textField);
 		textField.setColumns(10);
 		
-		JButton button = new JButton("\u786E\u5B9A");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Register register = new Register ();
-				register.setVisible(true);
-				register.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		JButton button_1 = new JButton("\u786E\u5B9A");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		button.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
-		button.setBounds(162, 178, 80, 27);
-		panel.add(button);
+		button_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
+		button_1.setBounds(162, 179, 80, 27);
+		panel.add(button_1);
 	}
 }
