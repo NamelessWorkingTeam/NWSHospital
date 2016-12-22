@@ -77,33 +77,36 @@ public class RegisterSystem extends JFrame {
 				MySQLConnect con = new MySQLConnect(String_SQL_PAT_ID);
 				try {
 					ResultSet result = con.pst.executeQuery();
-						result.next();
-						String state = result.getString("STA_TUS");
-						int i = Integer.parseInt(state);
-						switch(i){
-						case 0:
-							Fee fee = new Fee();
-							fee.setResizable(false);
-							fee.setLocationRelativeTo(null);
-							fee.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-							fee.setVisible(true);
-							dispose();
+						// result.next();
+						if(result.next()) {
+							String state = result.getString("STA_TUS");
+							int i = Integer.parseInt(state);
+							switch(i){
+							case 0:
+								Fee fee = new Fee();
+								fee.setResizable(false);
+								fee.setLocationRelativeTo(null);
+								fee.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+								fee.setVisible(true);
+								dispose();
+								break;
+							case 1:
+								System.out.print("已收费的预约病人");
 							break;
-						case 1:
-							System.out.print("已收费的预约病人");
-						break;
-						case 2:
-							System.out.print("已收费的挂号病人");
-							break;
-						default :
+							case 2:
+								System.out.print("已收费的挂号病人");
+								break;
+							}
+						}
+						else {
 							Register register = new Register();
 							register.setResizable(false);
 							register.setLocationRelativeTo(null);
 							register.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 							register.setVisible(true);
 							dispose();
-							break;
 						}
+
 					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block

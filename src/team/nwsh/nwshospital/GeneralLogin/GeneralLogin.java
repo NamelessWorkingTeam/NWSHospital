@@ -1,8 +1,9 @@
-package team.nwsh.nwshospital;
+package team.nwsh.nwshospital.GeneralLogin;
 
 import team.nwsh.nwshospital.DirectorSystem.*;
 import team.nwsh.nwshospital.DoctorSystem.*;
 import team.nwsh.nwshospital.RegisterSystem.*;
+import team.nwsh.nwshospital.MySQLConnect;
 import team.nwsh.nwshospital.AdminSystem.*;
 
 import java.awt.BorderLayout;
@@ -144,16 +145,12 @@ public class GeneralLogin extends JFrame {
 									dispose();
 									break;
 								case 2:
-									/** 这部分@onlyc0302命名有问题，待修改
-										AdminSystem AdminSystem_NewFrame = new AdminSystem();
-										AdminSystem_NewFrame.setResizable(false);
-										AdminSystem_NewFrame.setLocationRelativeTo(null);
-										AdminSystem_NewFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-										AdminSystem_NewFrame.setVisible(true);
-										dispose();
-									*/
-									JOptionPane.showMessageDialog(null,
-											"这里应该弹出的是管理员界面！", "系统信息", JOptionPane.INFORMATION_MESSAGE);
+									AdminSystem AdminSystem_NewFrame = new AdminSystem();
+									AdminSystem_NewFrame.setResizable(false);
+									AdminSystem_NewFrame.setLocationRelativeTo(null);
+									AdminSystem_NewFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+									AdminSystem_NewFrame.setVisible(true);
+									dispose();	
 									break;
 								case 3:
 									RegisterSystem RegisterSystem_NewFrame = new RegisterSystem();
