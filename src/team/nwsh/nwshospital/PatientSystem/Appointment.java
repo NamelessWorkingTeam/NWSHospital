@@ -136,7 +136,7 @@ public class Appointment extends JFrame {
 				else{
 		             String sql = "INSERT INTO STATE(STA_ID,PAT_ID,SEC_ID,STA_DATE,STA_TUS) VALUES(null,null,'"+SessionField.getText()+"','"+DateField.getText()+"',0)";
 						MySQLConnect con = new MySQLConnect(sql);
-						try {
+						try {  
 							con.pst.executeUpdate();
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
