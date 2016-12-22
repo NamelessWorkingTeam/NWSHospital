@@ -54,12 +54,12 @@ public class DirectorSectionQuery extends JFrame {
 		
 		JLabel DirectorSectionQueryTitle = new JLabel("\u79D1\u5BA4\u5DE5\u4F5C\u60C5\u51B5\u67E5\u8BE2");
 		DirectorSectionQueryTitle.setFont(new Font("宋体", Font.BOLD, 30));
-		DirectorSectionQueryTitle.setBounds(23, 10, 257, 62);
+		DirectorSectionQueryTitle.setBounds(48, 10, 257, 62);
 		panel.add(DirectorSectionQueryTitle);
 		
 		JComboBox SectionBox = new JComboBox();
 		SectionBox.setFont(new Font("宋体", Font.PLAIN, 16));
-		SectionBox.setBounds(97, 129, 99, 30);
+		SectionBox.setBounds(87, 108, 91, 16);
 		panel.add(SectionBox);
 		
 		JButton NumberButton = new JButton("\u67E5\u8BE2\u7EDF\u8BA1\u6302\u53F7\u91CF");
@@ -67,28 +67,28 @@ public class DirectorSectionQuery extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		NumberButton.setFont(new Font("宋体", Font.PLAIN, 16));
-		NumberButton.setBounds(100, 304, 153, 30);
+		NumberButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		NumberButton.setBounds(116, 173, 121, 23);
 		panel.add(NumberButton);
 		
 		JLabel NumberLabel = new JLabel("");
 		NumberLabel.setFont(new Font("宋体", Font.PLAIN, 16));
-		NumberLabel.setBounds(201, 198, 54, 23);
+		NumberLabel.setBounds(226, 140, 54, 23);
 		panel.add(NumberLabel);
 		
 		JLabel CashLabel = new JLabel(" ");
 		CashLabel.setFont(new Font("宋体", Font.PLAIN, 16));
-		CashLabel.setBounds(220, 255, 60, 23);
+		CashLabel.setBounds(220, 197, 60, 23);
 		panel.add(CashLabel);
 		
 		JLabel NumberMarkedWords = new JLabel("\u8BE5\u79D1\u5BA4\u603B\u6302\u53F7\u91CF\u4E3A\uFF1A");
-		NumberMarkedWords.setFont(new Font("宋体", Font.PLAIN, 16));
-		NumberMarkedWords.setBounds(23, 197, 155, 25);
+		NumberMarkedWords.setFont(new Font("宋体", Font.PLAIN, 12));
+		NumberMarkedWords.setBounds(23, 140, 155, 25);
 		panel.add(NumberMarkedWords);
 		
 		JLabel CashMarkedWords = new JLabel("\u8BE5\u79D1\u5BA4\u5C31\u8BCA\u603B\u91D1\u989D\u4E3A\uFF1A");
-		CashMarkedWords.setFont(new Font("宋体", Font.PLAIN, 16));
-		CashMarkedWords.setBounds(23, 251, 168,30);
+		CashMarkedWords.setFont(new Font("宋体", Font.PLAIN, 12));
+		CashMarkedWords.setBounds(23, 194, 168,30);
 		panel.add(CashMarkedWords);
 		
 		JButton CashButton = new JButton("\u67E5\u8BE2\u5C31\u8BCA\u603B\u91D1\u989D");
@@ -96,8 +96,8 @@ public class DirectorSectionQuery extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		CashButton.setFont(new Font("宋体", Font.PLAIN, 16));
-		CashButton.setBounds(100, 359, 153, 30);
+		CashButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		CashButton.setBounds(116, 234, 121, 23);
 		panel.add(CashButton);
 		
 		JButton ShapingButton = new JButton("\u751F\u6210\u997C\u72B6\u56FE");
@@ -105,38 +105,39 @@ public class DirectorSectionQuery extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		ShapingButton.setFont(new Font("宋体", Font.PLAIN, 16));
-		ShapingButton.setBounds(116, 412, 121, 30);
+		ShapingButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		ShapingButton.setBounds(124, 329, 106, 23);
 		panel.add(ShapingButton);
 		
 		JButton DirectorSectionQueryQuitButton = new JButton("\u9000\u51FA");
 		DirectorSectionQueryQuitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
+				dispose();
 			}
 		});
-		DirectorSectionQueryQuitButton.setFont(new Font("宋体", Font.PLAIN, 16));
-		DirectorSectionQueryQuitButton.setBounds(130, 459, 93, 30);
+		DirectorSectionQueryQuitButton.setFont(new Font("宋体", Font.PLAIN, 12));
+		DirectorSectionQueryQuitButton.setBounds(135, 461, 83, 23);
 		panel.add(DirectorSectionQueryQuitButton);
 		
 		JLabel SectionMarkedWords = new JLabel("\u79D1\u5BA4\uFF1A");
-		SectionMarkedWords.setFont(new Font("宋体", Font.PLAIN, 16));
-		SectionMarkedWords.setBounds(28, 137, 54, 15);
+		SectionMarkedWords.setFont(new Font("宋体", Font.PLAIN, 12));
+		SectionMarkedWords.setBounds(23, 110, 54, 15);
 		panel.add(SectionMarkedWords);
 		
 		JLabel SectionMarkedWordsLabel = new JLabel("\u8BF7\u9009\u62E9\u79D1\u5BA4\u8FDB\u884C\u67E5\u8BE2");
-		SectionMarkedWordsLabel.setFont(new Font("宋体", Font.PLAIN, 16));
-		SectionMarkedWordsLabel.setBounds(25, 82, 171, 31);
+		SectionMarkedWordsLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+		SectionMarkedWordsLabel.setBounds(25, 69, 171, 31);
 		panel.add(SectionMarkedWordsLabel);
 		
 		JLabel NumberUnit = new JLabel("\u4EBA\u6B21");
-		NumberUnit.setFont(new Font("宋体", Font.PLAIN, 16));
-		NumberUnit.setBounds(290, 198, 54, 23);
+		NumberUnit.setFont(new Font("宋体", Font.PLAIN, 12));
+		NumberUnit.setBounds(290, 140, 54, 23);
 		panel.add(NumberUnit);
 		
 		JLabel CashUnit = new JLabel("\u5143");
-		CashUnit.setFont(new Font("宋体", Font.PLAIN, 16));
-		CashUnit.setBounds(290, 255, 54, 22);
+		CashUnit.setFont(new Font("宋体", Font.PLAIN, 12));
+		CashUnit.setBounds(290, 198, 54, 22);
 		panel.add(CashUnit);
 	}
 

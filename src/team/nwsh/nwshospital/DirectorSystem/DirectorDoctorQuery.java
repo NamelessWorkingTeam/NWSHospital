@@ -43,7 +43,7 @@ public class DirectorDoctorQuery extends JFrame {
 	 * Create the frame.
 	 */
 	public DirectorDoctorQuery() {
-		setTitle("\u533B\u751F\u7BA1\u7406\u7CFB\u7EDF");
+		setTitle("\u533B\u751F\u5DE5\u4F5C\u60C5\u51B5");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
 		setBounds(100, 100, 380, 560);
 		DirectorDoctorQuery = new JPanel();
@@ -141,6 +141,7 @@ public class DirectorDoctorQuery extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
+				dispose();
 			}
 		});
 		DirectorDoctorQueryQuitButton.setBounds(184, 427, 135, 40);

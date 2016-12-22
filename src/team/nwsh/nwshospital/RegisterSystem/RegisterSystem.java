@@ -5,11 +5,14 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
 import team.nwsh.nwshospital.MySQLConnect;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -82,19 +85,33 @@ public class RegisterSystem extends JFrame {
 							String state = result.getString("STA_TUS");
 							int i = Integer.parseInt(state);
 							switch(i){
-							case 0:
+							case 0://需要收费的预约病人
 								Fee fee = new Fee();
 								fee.setResizable(false);
+								
 								fee.setLocationRelativeTo(null);
 								fee.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 								fee.setVisible(true);
 								dispose();
 								break;
 							case 1:
-								System.out.print("已收费的预约病人");
+								JOptionPane.showMessageDialog(null, "已收费的预约病人，请去就诊！", "提示", JOptionPane.ERROR_MESSAGE); 
+								//System.out.print("已收费的预约病人");
 							break;
 							case 2:
-								System.out.print("已收费的挂号病人");
+								JOptionPane.showMessageDialog(null, "已收费的挂号病人，请去就诊！", "提示", JOptionPane.ERROR_MESSAGE); 
+								//System.out.print("已收费的挂号病人");
+								break;
+							case 3:
+								JOptionPane.showMessageDialog(null, "正在就诊！", "提示", JOptionPane.ERROR_MESSAGE);
+								break;
+							case 4:
+								Fee fee2 = new Fee();
+								fee2.setResizable(false);
+								fee2.setLocationRelativeTo(null);
+								fee2.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+								fee2.setVisible(true);
+								dispose();
 								break;
 							}
 						}
