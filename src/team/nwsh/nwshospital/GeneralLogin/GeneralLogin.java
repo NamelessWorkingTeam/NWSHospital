@@ -61,19 +61,20 @@ public class GeneralLogin extends JFrame {
 	public GeneralLogin() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 298);
+		setBounds(100, 100, 577, 316);
+		// setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("NWSHospital \u7EDF\u4E00\u767B\u5F55");
-		lblNewLabel.setBounds(71, 21, 331, 49);
+		lblNewLabel.setBounds(110, 21, 331, 49);
 		lblNewLabel.setFont(new Font("微软雅黑", Font.BOLD, 30));
 		contentPane.add(lblNewLabel);
 		
 		panel = new JPanel();
-		panel.setBounds(122, 74, 229, 73);
+		panel.setBounds(166, 74, 229, 73);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -100,20 +101,26 @@ public class GeneralLogin extends JFrame {
 		passwordField.setFont(new Font("微软雅黑", Font.PLAIN, 26));
 		passwordField.setColumns(10);
 		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(176, 159, 207, 37);
+		contentPane.add(panel_1);
+		panel_1.setLayout(null);
+		
 		JButton button = new JButton("\u767B\u5F55");
+		button.setBounds(0, 0, 96, 37);
+		panel_1.add(button);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String String_SQL_ACC_ID = "SELECT ACC_PASSWORD FROM ACCOUNTS WHERE ACC_ID = '" + textField.getText() + "'";
 				MySQLConnect MySQLConnect_Connection = new MySQLConnect(String_SQL_ACC_ID);
 				
+				// START 判断输入是否为空
 				int Int_IfEmptyField = 0;
 				if(textField.getText().trim().compareTo("") == 0) {
 					Int_IfEmptyField = Int_IfEmptyField + 1;
-					System.out.println(Int_IfEmptyField);
 				}
 				if(String.valueOf(passwordField.getPassword()).compareTo("") == 0) {
 					Int_IfEmptyField = Int_IfEmptyField + 2;
-					System.out.println(Int_IfEmptyField);
 				}
 				
 				String String_EmptyField = "";
@@ -128,7 +135,8 @@ public class GeneralLogin extends JFrame {
 					String_EmptyField = "账号和密码不能为空！";
 					break;
 				}
-
+				// END 判断输入是否为空
+				
 				if(Int_IfEmptyField == 0) {
 					try {
 						ResultSet ResultSet_PASSWORD = MySQLConnect_Connection.pst.executeQuery();
@@ -165,8 +173,7 @@ public class GeneralLogin extends JFrame {
 											"这里应该弹出的是药房界面！", "系统信息", JOptionPane.INFORMATION_MESSAGE);
 									break;
 								case 5:
-									DoctorSystem DoctorSystem_NewFrame = new DoctorSystem();
-									DoctorSystem_NewFrame.setResizable(false);
+									DoctorSystem DoctorSystem_NewFrame = new DoctorSystem(textField.getText());
 									DoctorSystem_NewFrame.setLocationRelativeTo(null);
 									DoctorSystem_NewFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 									DoctorSystem_NewFrame.setVisible(true);
@@ -189,23 +196,22 @@ public class GeneralLogin extends JFrame {
 					}
 				}
 				else {
+					// 提示输入为空
 					JOptionPane.showMessageDialog(null, 
 							String_EmptyField, "系统信息", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
 		button.setFont(new Font("微软雅黑", Font.PLAIN, 24));
-		button.setBounds(132, 157, 96, 37);
-		contentPane.add(button);
 		
 		JButton button_1 = new JButton("\u9000\u51FA");
+		button_1.setBounds(111, 0, 96, 37);
+		panel_1.add(button_1);
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);
 			}
 		});
 		button_1.setFont(new Font("微软雅黑", Font.PLAIN, 24));
-		button_1.setBounds(243, 157, 96, 37);
-		contentPane.add(button_1);
 	}
 }
