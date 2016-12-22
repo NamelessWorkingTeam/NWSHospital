@@ -142,7 +142,8 @@ public class Appointment extends JFrame {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-		             
+		             Success newframe = new Success();
+		             newframe.setVisible(true);
 		             
 				}
 	           
