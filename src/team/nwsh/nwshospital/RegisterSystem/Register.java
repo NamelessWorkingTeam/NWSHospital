@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import team.nwsh.nwshospital.MySQLConnect;
+
 import java.awt.CardLayout;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
@@ -21,6 +24,8 @@ import javax.swing.AbstractListModel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class Register extends JFrame {
@@ -72,7 +77,7 @@ public class Register extends JFrame {
 		
 		JLabel lblNewLabel_2 = new JLabel("\u59D3\u540D");
 		lblNewLabel_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
-		lblNewLabel_2.setBounds(128, 21, 64, 30);
+		lblNewLabel_2.setBounds(128, 63, 64, 30);
 		panel_1.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_4 = new JLabel("\u6027\u522B");
@@ -96,54 +101,75 @@ public class Register extends JFrame {
 		label_1.setBounds(128, 223, 64, 30);
 		panel_1.add(label_1);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
-		textPane.setBounds(202, 21, 136, 30);
-		panel_1.add(textPane);
+		JTextPane textPane_NAME = new JTextPane();
+		textPane_NAME.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
+		textPane_NAME.setBounds(202, 63, 136, 30);
+		panel_1.add(textPane_NAME);
 		
-		JTextPane textPane_1 = new JTextPane();
-		textPane_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
-		textPane_1.setBounds(202, 103, 136, 30);
-		panel_1.add(textPane_1);
+		JTextPane textPane_SEX = new JTextPane();
+		textPane_SEX.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
+		textPane_SEX.setBounds(202, 103, 136, 30);
+		panel_1.add(textPane_SEX);
 		
-		JTextPane textPane_2 = new JTextPane();
-		textPane_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
-		textPane_2.setBounds(202, 143, 136, 30);
-		panel_1.add(textPane_2);
+		JTextPane textPane_AGE = new JTextPane();
+		textPane_AGE.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
+		textPane_AGE.setBounds(202, 143, 136, 30);
+		panel_1.add(textPane_AGE);
 		
-		JTextPane textPane_3 = new JTextPane();
-		textPane_3.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
-		textPane_3.setBounds(202, 183, 136, 30);
-		panel_1.add(textPane_3);
+		JTextPane textPane_PHONE = new JTextPane();
+		textPane_PHONE.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
+		textPane_PHONE.setBounds(202, 183, 136, 30);
+		panel_1.add(textPane_PHONE);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
-		comboBox.setToolTipText("\u9009\u62E9\u79D1\u5BA4");
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"\u666E\u901A\u5916\u79D1", "\u666E\u901A\u5185\u79D1", "\u4E94\u5B98\u79D1", "\u68C0\u9A8C\u79D1"}));
-		comboBox.setBounds(202, 223, 136, 30);
-		panel_1.add(comboBox);
+		JComboBox comboBox_KESHI = new JComboBox();
+		comboBox_KESHI.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
+		comboBox_KESHI.setToolTipText("\u9009\u62E9\u79D1\u5BA4");
+		comboBox_KESHI.setModel(new DefaultComboBoxModel(new String[] {"\u666E\u901A\u5916\u79D1", "\u666E\u901A\u5185\u79D1", "\u4E94\u5B98\u79D1", "\u68C0\u9A8C\u79D1"}));
+		comboBox_KESHI.setBounds(202, 223, 136, 30);
+		panel_1.add(comboBox_KESHI);
 		
 		JLabel label_2 = new JLabel("\u8EAB\u4EFD\u8BC1\u53F7");
-		label_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
-		label_2.setBounds(128, 61, 64, 30);
+		label_2.setBounds(128, 23, 64, 30);
 		panel_1.add(label_2);
+		label_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 		
-		JTextPane textPane_4 = new JTextPane();
-		textPane_4.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
-		textPane_4.setBounds(202, 61, 136, 30);
-		panel_1.add(textPane_4);
+		JTextPane textPane_ID = new JTextPane();
+		textPane_ID.setBounds(202, 23, 136, 30);
+		panel_1.add(textPane_ID);
+		textPane_ID.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		
-		JButton btnNewButton_2 = new JButton("\u786E\u5B9A");
-		btnNewButton_2.setBounds(177, 367, 93, 23);
+		JButton btnNewButton_2 = new JButton("\u6302\u53F7");
+		btnNewButton_2.setBounds(244, 367, 93, 23);
 		contentPane.add(btnNewButton_2);
 		btnNewButton_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		
 		JButton btnNewButton_3 = new JButton("\u53D6\u6D88");
-		btnNewButton_3.setBounds(293, 367, 93, 23);
+		btnNewButton_3.setBounds(347, 367, 93, 23);
 		contentPane.add(btnNewButton_3);
 		btnNewButton_3.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
+		
+		JButton button = new JButton("\u4FEE\u6539");
+		button.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
+		button.setBounds(141, 367, 93, 23);
+		contentPane.add(button);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				String sql = "INSERT INTO PATIENTS VALUES('"+textPane_ID.getText()+"','"+textPane_NAME.getText()+"','"+textPane_AGE.getText()+"','"+textPane_SEX.getText()+"','"+textPane_PHONE.getText()+"',null)";
+				MySQLConnect con = new MySQLConnect(sql);
+				try {
+					con.pst.executeUpdate();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+//				try {
+//					ResultSet result = con.pst.executeQuery();
+//				} catch (SQLException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+				
 			}
 		});
 	}
