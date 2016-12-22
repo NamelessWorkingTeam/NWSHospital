@@ -18,7 +18,6 @@ import team.nwsh.nwshospital.MySQLConnect;
 
 public class MedicineModel extends AbstractTableModel {
 	Vector RowData,ColumnNames;
-
     static String sql = null;  
     static MySQLConnect db = null;  
     static ResultSet ret = null; 

@@ -6,10 +6,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import team.nwsh.nwshospital.MySQLConnect;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 
 public class DirectorSystem extends JFrame {
@@ -128,5 +135,36 @@ public class DirectorSystem extends JFrame {
 		label_2.setFont(new Font("宋体", Font.PLAIN, 12));
 		label_2.setBounds(231, 359, 193, 32);
 		panel.add(label_2);
+		
+		MedicineAlarm();
 	}
+	
+	
+	//构造一个函数通过对数据库检查药品数量进行警告
+	static private void MedicineAlarm(){
+	    String String_CheckStorgesql = null;   
+	    MySQLConnect db = null;  
+	    ResultSet Result_Storge = null;  
+    	String_CheckStorgesql= "SELECT MED_NAME,MED_STORGE FROM MEDICINE";	
+       db = new MySQLConnect(String_CheckStorgesql);							// 新建一个数据库连接
+       try {
+       	Result_Storge = db.pst.executeQuery();					// 执行sql语句，得到结果集
+			while (Result_Storge.next()) {
+               String String_CheckName = Result_Storge.getString("MED_NAME");
+               int Int_CheckStorge = Result_Storge.getInt("MED_STORGE");// 获取执行sql语句后结果集中列名为ACC_NAME的一个值	
+               if (Int_CheckStorge<=20)//判断药品库存不足20时提醒
+               { 
+               System.out.println(String_CheckName);
+               System.out.println(Result_Storge.getInt("MED_STORGE"));//控制台输出
+               JOptionPane.showMessageDialog(null, String_CheckName+"库存不足，余量为"+Int_CheckStorge, "警告", JOptionPane.ERROR_MESSAGE); //弹窗警告
+               	}
+               }
+			Result_Storge.close();		// 关闭执行的语句连接
+	        db.close();			// 关闭数据库连接
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+
 }

@@ -23,6 +23,10 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 public class DirectorPharmacyQuery extends JFrame implements ActionListener  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
     JTable jt=null;
@@ -59,13 +63,12 @@ public class DirectorPharmacyQuery extends JFrame implements ActionListener  {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.NORTH);
 		
-		JLabel lblNewLabel = new JLabel("\u8BF7\u8F93\u5165\u540D\u5B57\uFF1A");
+		JLabel lblNewLabel = new JLabel("\u8BF7\u8F93\u5165\u836F\u54C1\u540D\uFF1A");
 		panel.add(lblNewLabel);
 		
 		textField = new JTextField();
 		panel.add(textField);
 		textField.setColumns(10);
-		
 		
 		BtnNewButton.addActionListener(this);
 		panel.add(BtnNewButton);
@@ -77,8 +80,8 @@ public class DirectorPharmacyQuery extends JFrame implements ActionListener  {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
-				System.exit(0);
-				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				dispose();
+				//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 		});
 		panel_1.add(btnNewButton_2);
@@ -96,18 +99,16 @@ public class DirectorPharmacyQuery extends JFrame implements ActionListener  {
 	
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO 自动生成的方法存根
-		if(arg0.getSource()==BtnNewButton)
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		if(arg0.getSource()==BtnNewButton)//检查
 		{
-			System.out.println("!!!");
-			String name=this.textField.getText().trim();
-			//String sql="select * from MEDICINE where MED_NAME='"+name+"'";
+			String name=this.textField.getText().trim();//获取textfield信息
+			//String sql="select * from MEDICINE where MED_NAME='"+name+"'";//实现模糊查询
 			String sql="select * from MEDICINE where MED_NAME like'%"+name+"%'";
 			MedicineModel mm=new MedicineModel(sql);
 			jt.setModel(mm);
 		}
 	}
-
-	
 }
 
 
