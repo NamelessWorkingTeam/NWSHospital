@@ -2,6 +2,8 @@ package team.nwsh.nwshospital;
 
 import java.sql.*;
 
+import team.nwsh.nwshospital.GeneralLogin.GeneralLogin;
+
 /**
  * 
  * @author Liu Yummy
@@ -24,6 +26,10 @@ public class NWSHospital {
     static ResultSet ret = null;  
 	
 	public static void main(String[] args) {
+		
+		/**
+		 * 首先要将 team.nwsh.nwshospital.GeneralLogin.GeneralLogin 这个包 import 到你的类中去！
+		 */
 		// TODO Auto-generated method stub
 		sql = "SELECT * FROM ACCOUNTS";						// 此处填写要执行的语句
         db = new MySQLConnect(sql);							// 新建一个数据库连接
