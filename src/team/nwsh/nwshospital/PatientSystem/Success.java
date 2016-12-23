@@ -55,6 +55,7 @@ public class Success extends JFrame {
 		textField.setColumns(10);
 		
 		
+		
 	}
 
 }
