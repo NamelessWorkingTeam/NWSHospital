@@ -98,7 +98,7 @@ public class DoctorModel extends AbstractTableModel {
 	//得到共有多少行
 	public int getRowCount() {
 		// TODO 自动生成的方法存根
-		return this.RowData.size();
+		return this.RowData.size();   
 	}
 
 	@Override
