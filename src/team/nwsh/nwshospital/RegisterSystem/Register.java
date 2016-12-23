@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextPane;
 import javax.swing.JMenu;
+import javax.swing.JOptionPane;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
@@ -29,6 +30,7 @@ import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class Register extends JFrame {
+	static String sec;
 
 	private JPanel contentPane;
 
@@ -52,6 +54,7 @@ public class Register extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public Register() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 550, 500);
@@ -121,12 +124,22 @@ public class Register extends JFrame {
 		textPane_PHONE.setBounds(202, 183, 136, 30);
 		panel_1.add(textPane_PHONE);
 		
-		JComboBox comboBox_KESHI = new JComboBox();
-		comboBox_KESHI.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-		comboBox_KESHI.setToolTipText("\u9009\u62E9\u79D1\u5BA4");
-		comboBox_KESHI.setModel(new DefaultComboBoxModel(new String[] {"\u666E\u901A\u5916\u79D1", "\u666E\u901A\u5185\u79D1", "\u4E94\u5B98\u79D1", "\u68C0\u9A8C\u79D1"}));
-		comboBox_KESHI.setBounds(202, 223, 136, 30);
-		panel_1.add(comboBox_KESHI);
+		JComboBox comboBox_SEC = new JComboBox();
+		comboBox_SEC.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		comboBox_SEC.setToolTipText("\u9009\u62E9\u79D1\u5BA4");
+		comboBox_SEC.setModel(new DefaultComboBoxModel(new String[] {"\u666E\u901A\u5916\u79D1", "\u666E\u901A\u5185\u79D1", "\u4E94\u5B98\u79D1", "\u68C0\u9A8C\u79D1"}));
+		
+		
+		//System.out.println(sec);
+		comboBox_SEC.setBounds(202, 223, 136, 30);
+		panel_1.add(comboBox_SEC);
+		
+		
+//		if(comboBox_SEC.getSelectedItem().toString().compareTo("普通外科") == 0) {
+//			// sec="5000";
+//			System.out.println("success!!");
+//		}
+		
 		
 		JLabel label_2 = new JLabel("\u8EAB\u4EFD\u8BC1\u53F7");
 		label_2.setBounds(128, 23, 64, 30);
@@ -138,8 +151,8 @@ public class Register extends JFrame {
 		panel_1.add(textPane_ID);
 		textPane_ID.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		
-		JButton btnNewButton_2 = new JButton("\u6302\u53F7");
-		btnNewButton_2.setBounds(244, 367, 93, 23);
+		JButton btnNewButton_2 = new JButton("\u6536\u8D39\u5E76\u6302\u53F7");
+		btnNewButton_2.setBounds(126, 367, 108, 23);
 		contentPane.add(btnNewButton_2);
 		btnNewButton_2.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		
@@ -150,17 +163,26 @@ public class Register extends JFrame {
 		
 		JButton button = new JButton("\u4FEE\u6539");
 		button.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-		button.setBounds(141, 367, 93, 23);
+		button.setBounds(244, 367, 93, 23);
 		contentPane.add(button);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(comboBox_SEC.getSelectedItem().toString().compareTo("普通外科") == 0) sec="5000";
+				if(comboBox_SEC.getSelectedItem().toString().compareTo("普通内科") == 0) sec="5001";
+				if(comboBox_SEC.getSelectedItem().toString().compareTo("五官科") == 0)	sec="5002";
+				if(comboBox_SEC.getSelectedItem().toString().compareTo("检验科") == 0)	sec="5003";
 				
 				String sql = "INSERT INTO PATIENTS VALUES('"+textPane_ID.getText()+"','"+textPane_NAME.getText()+"','"+textPane_AGE.getText()+"','"+textPane_SEX.getText()+"','"+textPane_PHONE.getText()+"',null)";
+				String sql2= "INSERT INTO STATE VALUES(NULL,'"+textPane_ID.getText()+"','"+sec+"',NULL,2)";
+				MySQLConnect con2= new MySQLConnect(sql2);
 				MySQLConnect con = new MySQLConnect(sql);
 				try {
 					con.pst.executeUpdate();
+					con2.pst.executeUpdate();
+					JOptionPane.showMessageDialog(null, "数据库写入成功！", "提示",JOptionPane.INFORMATION_MESSAGE);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "数据库写入失败！", "提示", JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				}
 //				try {
