@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import team.nwsh.nwshospital.GeneralLogin.GeneralLogin;
+
 import java.awt.Label;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -66,15 +69,15 @@ public class AdminSystem extends JFrame {
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton = new JButton("\u67E5\u8BE2\u8D26\u53F7\u4FE1\u606F");
-		btnNewButton.setBounds(48, 161, 128, 52);
+		btnNewButton.setBounds(244, 68, 128, 52);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_2 = new JButton("\u67E5\u8BE2\u836F\u54C1\u4FE1\u606F");
-		btnNewButton_2.setBounds(48, 254, 128, 52);
+		btnNewButton_2.setBounds(244, 161, 128, 52);
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("\u67E5\u8BE2\u9879\u76EE\u4FE1\u606F");
-		btnNewButton_3.setBounds(244, 254, 128, 52);
+		btnNewButton_3.setBounds(48, 161, 128, 52);
 		contentPane.add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("\u67E5\u8BE2\u836F\u54C1\u4FE1\u606F");
@@ -85,7 +88,19 @@ public class AdminSystem extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton_4.setBounds(244, 161, 128, 52);
+		btnNewButton_4.setBounds(439, 68, 128, 52);
 		contentPane.add(btnNewButton_4);
+		
+		JButton btnNewButton_5 = new JButton("\u767B\u51FA");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GeneralLogin newframe = new GeneralLogin();
+				newframe.setVisible(true);
+				dispose();
+				
+			}
+		});
+		btnNewButton_5.setBounds(48, 255, 128, 52);
+		contentPane.add(btnNewButton_5);
 	}
 }

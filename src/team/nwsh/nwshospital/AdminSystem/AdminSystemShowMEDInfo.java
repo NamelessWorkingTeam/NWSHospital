@@ -99,11 +99,11 @@ public class AdminSystemShowMEDInfo extends JFrame implements ActionListener  {
 		
 		setTitle("\u836F\u623F\u60C5\u51B5\u67E5\u8BE2");
 
-        MedicineModel m1=new MedicineModel();
-		jt=new JTable(m1);
-		jsp=new JScrollPane(jt);
-		jsp.setBounds(5, 42, 352, 353);
-		getContentPane().add(jsp);
+
+
+		
+		
+		 
 		
 		JButton btnNewButton = new JButton("\u4FEE\u6539");
 		btnNewButton.setBounds(15, 438, 113, 27);
