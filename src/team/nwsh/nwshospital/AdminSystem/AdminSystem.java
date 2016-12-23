@@ -19,7 +19,6 @@ import javax.swing.JRadioButton;
 public class AdminSystem extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -43,46 +42,50 @@ public class AdminSystem extends JFrame {
 	public AdminSystem() {
 		setTitle("\u7BA1\u7406\u5458\u7BA1\u7406\u7A97\u53E3");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 631, 373);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		Label label = new Label("\u7BA1\u7406\u5458\u7BA1\u7406\u83DC\u5355");
-		label.setFont(new Font("Dialog", Font.PLAIN, 18));
-		label.setBounds(142, 10, 138, 25);
+		label.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 25));
+		label.setBounds(213, 10, 196, 25);
 		contentPane.add(label);
 		
-		textField = new JTextField();
-		textField.setBounds(103, 63, 203, 24);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
-		Label label_1 = new Label("\u68C0\u7D22\u4FE1\u606F\uFF1A");
-		label_1.setBounds(24, 63, 77, 25);
-		contentPane.add(label_1);
-		
-		JButton btnNewButton = new JButton("\u641C\u7D22");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				AdminSystemShowInfo newframe = new AdminSystemShowInfo();
-				newframe.setVisible(true);
-			}
-		});
-		btnNewButton.setBounds(320, 62, 71, 27);
-		contentPane.add(btnNewButton)
-		;
-		
-		JButton btnNewButton_1 = new JButton("\u589E\u52A0\u4FE1\u606F");
+		JButton btnNewButton_1 = new JButton("\u589E\u52A0\u6240\u6709\u4FE1\u606F");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AdminSystemAddInfo newframe = new AdminSystemAddInfo();
 				newframe.setVisible(true);
+				dispose();
 				
 			}
 		});
-		btnNewButton_1.setBounds(149, 125, 113, 27);
+		btnNewButton_1.setBounds(48, 68, 128, 52);
 		contentPane.add(btnNewButton_1);
+		
+		JButton btnNewButton = new JButton("\u67E5\u8BE2\u8D26\u53F7\u4FE1\u606F");
+		btnNewButton.setBounds(48, 161, 128, 52);
+		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_2 = new JButton("\u67E5\u8BE2\u836F\u54C1\u4FE1\u606F");
+		btnNewButton_2.setBounds(48, 254, 128, 52);
+		contentPane.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("\u67E5\u8BE2\u9879\u76EE\u4FE1\u606F");
+		btnNewButton_3.setBounds(244, 254, 128, 52);
+		contentPane.add(btnNewButton_3);
+		
+		JButton btnNewButton_4 = new JButton("\u67E5\u8BE2\u836F\u54C1\u4FE1\u606F");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AdminSystemShowMEDInfo newframe = new AdminSystemShowMEDInfo();
+				newframe.setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton_4.setBounds(244, 161, 128, 52);
+		contentPane.add(btnNewButton_4);
 	}
 }

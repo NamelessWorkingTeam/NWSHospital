@@ -6,9 +6,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import team.nwsh.nwshospital.MySQLConnect;
+
 import java.awt.Label;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class AdminSystemInfoItems extends JFrame {
 
@@ -46,19 +53,36 @@ public class AdminSystemInfoItems extends JFrame {
 		contentPane.setLayout(null);
 		
 		Label label = new Label("\u6536\u8D39\u9879\u76EE ID\uFF1A");
+		label.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
 		label.setBounds(22, 51, 92, 25);
 		contentPane.add(label);
 		
 		Label label_1 = new Label("\u6536\u8D39\u9879\u76EE\u540D\u79F0\uFF1A");
-		label_1.setBounds(8, 98, 111, 25);
+		label_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
+		label_1.setBounds(8, 88, 111, 25);
 		contentPane.add(label_1);
 		
 		JButton btnNewButton = new JButton("\u4FDD\u5B58");
-		btnNewButton.setBounds(294, 208, 113, 27);
+		btnNewButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 15));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String sql="INSERT INTO ITEMS VALUES ('"+textField.getText()+"','"+textField_1.getText()+"','"+textField_2.getText()+"')";
+				   MySQLConnect con=new MySQLConnect(sql);
+				   try{
+					   con.pst.executeUpdate();
+				   }catch(SQLException e1){
+					   e1.printStackTrace();
+				   }
+			
+
+			}
+		});
+		btnNewButton.setBounds(305, 174, 113, 27);
 		contentPane.add(btnNewButton);
 		
 		Label label_2 = new Label("\u8BF7\u589E\u8BBE\u6536\u8D39\u9879\u76EE");
-		label_2.setBounds(156, 10, 77, 25);
+		label_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 20));
+		label_2.setBounds(147, 10, 150, 25);
 		contentPane.add(label_2);
 		
 		textField = new JTextField();
@@ -67,18 +91,31 @@ public class AdminSystemInfoItems extends JFrame {
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(147, 98, 162, 24);
+		textField_1.setBounds(147, 88, 162, 24);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
 		Label label_3 = new Label("\u9879\u76EE\u8D39\u7528\uFF1A");
-		label_3.setBounds(39, 149, 77, 25);
+		label_3.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
+		label_3.setBounds(39, 125, 77, 25);
 		contentPane.add(label_3);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(147, 149, 162, 24);
+		textField_2.setBounds(147, 125, 162, 24);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
+		
+		JButton btnNewButton_1 = new JButton("\u8FD4\u56DE\u4E0A\u4E00\u7EA7");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AdminSystemAddInfo newframe = new AdminSystemAddInfo();
+				newframe.setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 15));
+		btnNewButton_1.setBounds(305, 213, 113, 27);
+		contentPane.add(btnNewButton_1);
 	}
 
 }

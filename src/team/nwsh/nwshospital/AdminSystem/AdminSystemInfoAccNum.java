@@ -6,12 +6,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import team.nwsh.nwshospital.MySQLConnect;
+
 import java.awt.Label;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class AdminSystemInfoAccNum extends JFrame {
 
@@ -50,11 +55,12 @@ public class AdminSystemInfoAccNum extends JFrame {
 		contentPane.setLayout(null);
 		
 		Label label = new Label("\u7528\u6237\u540D\uFF1A");
-		label.setBounds(28, 103, 77, 25);
+		label.setBounds(26, 84, 77, 25);
 		contentPane.add(label);
 		
 		Label label_1 = new Label("\u8BF7\u8F93\u5165\u8D26\u53F7\u4FE1\u606F");
-		label_1.setBounds(149, 10, 140, 25);
+		label_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 20));
+		label_1.setBounds(129, 10, 161, 25);
 		contentPane.add(label_1);
 		
 		textField = new JTextField();
@@ -63,11 +69,11 @@ public class AdminSystemInfoAccNum extends JFrame {
 		textField.setColumns(10);
 		
 		Label label_2 = new Label("\u5BC6\u7801\uFF1A");
-		label_2.setBounds(42, 153, 44, 25);
+		label_2.setBounds(40, 121, 44, 25);
 		contentPane.add(label_2);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(111, 153, 200, 24);
+		passwordField.setBounds(112, 121, 200, 24);
 		contentPane.add(passwordField);
 		
 		Label label_3 = new Label("\u7528\u6237 ID\uFF1A");
@@ -75,25 +81,48 @@ public class AdminSystemInfoAccNum extends JFrame {
 		contentPane.add(label_3);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(111, 103, 200, 24);
+		textField_1.setBounds(112, 84, 200, 24);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
 		Label label_4 = new Label("\u6240\u5C5E\u79D1\u5BA4\uFF1A");
-		label_4.setBounds(18, 197, 77, 25);
+		label_4.setBounds(10, 152, 77, 25);
 		contentPane.add(label_4);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(111, 197, 201, 24);
+		textField_2.setBounds(111, 154, 201, 24);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
 		JButton btnNewButton = new JButton("\u4FDD\u5B58");
+		btnNewButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String sql="INSERT INTO ACCOUNTS VALUES ('"+textField.getText()+"','"+textField_1.getText()+"','"+passwordField.getText()+"','"+textField_2.getText()+"')";
+				   MySQLConnect con=new MySQLConnect(sql);
+				   try{
+					   con.pst.executeUpdate();
+				   }catch(SQLException e1){
+					   e1.printStackTrace();
+				   }
+					
+		           }
+
+			
+		});
+		btnNewButton.setBounds(305, 190, 113, 27);
+		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("\u8FD4\u56DE\u4E0A\u4E00\u7EA7");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AdminSystemAddInfo newframe = new AdminSystemAddInfo();
+				newframe.setVisible(true);
+				dispose();
 			}
 		});
-		btnNewButton.setBounds(333, 220, 80, 27);
-		contentPane.add(btnNewButton);
+		btnNewButton_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 15));
+		btnNewButton_1.setBounds(305, 225, 113, 27);
+		contentPane.add(btnNewButton_1);
 	}
 }

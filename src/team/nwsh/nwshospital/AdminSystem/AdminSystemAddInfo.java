@@ -48,8 +48,8 @@ public class AdminSystemAddInfo extends JFrame {
 		contentPane.setLayout(null);
 		
 		Label label = new Label("\u8BF7\u589E\u52A0\u5404\u9879\u4FE1\u606F");
-		label.setFont(new Font("Dialog", Font.PLAIN, 17));
-		label.setBounds(146, 10, 136, 25);
+		label.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 20));
+		label.setBounds(129, 10, 168, 25);
 		contentPane.add(label);
 		
 		JButton btnNewButton = new JButton("\u589E\u8BBE\u8D26\u53F7");
