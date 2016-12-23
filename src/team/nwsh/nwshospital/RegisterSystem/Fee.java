@@ -13,6 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class Fee extends JFrame {
@@ -98,6 +99,7 @@ public class Fee extends JFrame {
 		table = new JTable();
 		table.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		table.setToolTipText("");
+		
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null},
@@ -115,11 +117,14 @@ public class Fee extends JFrame {
 			}
 		));
 		table.setBounds(20, 66, 403, 144);
+		DefaultTableCellRenderer r = new DefaultTableCellRenderer();   
+		r.setHorizontalAlignment(JLabel.CENTER);   
+		table.setDefaultRenderer(Object.class,r);
 		panel_2.add(table);
 		
 		JLabel lblNewLabel = new JLabel("\u836F\u54C1\u7F16\u53F7");
 		lblNewLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
-		lblNewLabel.setBounds(31, 39, 70, 30);
+		lblNewLabel.setBounds(41, 39, 70, 30);
 		panel_2.add(lblNewLabel);
 		
 		JLabel label_3 = new JLabel("\u836F\u54C1\u540D\u79F0");
@@ -129,7 +134,7 @@ public class Fee extends JFrame {
 		
 		JLabel label_4 = new JLabel("\u6570\u91CF");
 		label_4.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
-		label_4.setBounds(257, 39, 52, 30);
+		label_4.setBounds(262, 39, 52, 30);
 		panel_2.add(label_4);
 		
 		JLabel label_6 = new JLabel("\u5355\u4EF7");
@@ -171,21 +176,24 @@ public class Fee extends JFrame {
 			}
 		));
 		table_1.setBounds(20, 64, 403, 144);
+		DefaultTableCellRenderer r2 = new DefaultTableCellRenderer();   
+		r2.setHorizontalAlignment(JLabel.CENTER);   
+		table_1.setDefaultRenderer(Object.class,r2);
 		panel_3.add(table_1);
 		
 		JLabel label_7 = new JLabel("\u9879\u76EE\u7F16\u53F7");
 		label_7.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
-		label_7.setBounds(39, 39, 70, 30);
+		label_7.setBounds(61, 39, 70, 30);
 		panel_3.add(label_7);
 		
 		JLabel label_9 = new JLabel("\u9879\u76EE\u540D\u79F0");
 		label_9.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
-		label_9.setBounds(179, 39, 70, 30);
+		label_9.setBounds(197, 39, 70, 30);
 		panel_3.add(label_9);
 		
 		JLabel label_10 = new JLabel("\u4EF7\u683C");
 		label_10.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
-		label_10.setBounds(326, 39, 70, 30);
+		label_10.setBounds(342, 39, 70, 30);
 		panel_3.add(label_10);
 		
 		JButton button_1 = new JButton("\u53D6\u6D88");
