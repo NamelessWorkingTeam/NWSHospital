@@ -29,7 +29,7 @@ public class MedicineAlarm {
     static MySQLConnect db = null;  
     static ResultSet Result_Storge = null;    
     
-   
+    
 public static void main(String[] args) {
 		// TODO Auto-generated method stub
     	String_CheckStorgesql= "SELECT MED_NAME,MED_STORGE FROM MEDICINE";	
@@ -42,8 +42,8 @@ public static void main(String[] args) {
                 int Int_CheckStorge = Result_Storge.getInt("MED_STORGE");// 获取执行sql语句后结果集中列名为ACC_NAME的一个值	
                 if (Int_CheckStorge<=20)//判断药品库存不足20时提醒
                 { 
-                System.out.println(String_CheckName);
-                System.out.println(Result_Storge.getInt("MED_STORGE"));//控制台输出
+                //System.out.println(String_CheckName);
+                //System.out.println(Result_Storge.getInt("MED_STORGE"));//控制台输出
                 JOptionPane.showMessageDialog(null, String_CheckName+"库存不足，余量为"+Int_CheckStorge, "警告", JOptionPane.ERROR_MESSAGE); //弹窗警告
                 	}
                 }

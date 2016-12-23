@@ -1,5 +1,5 @@
 /**
- * 这是我的一个MEDICINE表的模型
+ * 这是我的一个Doctor表的模型
  */
 package team.nwsh.nwshospital.DirectorSystem;
 
@@ -15,31 +15,33 @@ import javax.swing.table.*;
 
 import team.nwsh.nwshospital.MySQLConnect;
 
-public class MedicineModel extends AbstractTableModel {
+public class DoctorModel extends AbstractTableModel {
 	Vector RowData,ColumnNames;
     static String sql = null;  
     static MySQLConnect db = null;  
     static ResultSet ret = null; 
 
     //通过传递的sql语句来获得数据模型
-    public MedicineModel(String sql)
+    public DoctorModel(String sql)
     {
     	//建立表头  
-    	ColumnNames= new Vector();
-		ColumnNames.add("序号");
-		ColumnNames.add("药品名");
-		ColumnNames.add("单价");
-		ColumnNames.add("库存");
+    	ColumnNames= new Vector();	
+		ColumnNames.add("编号");
+		ColumnNames.add("姓名");
+		ColumnNames.add("科室");
+		ColumnNames.add("就诊总金额");
+		ColumnNames.add("就诊总人次");
 		RowData=new Vector(); 						// 此处填写要执行的语句
 	    db = new MySQLConnect(sql);							// 新建一个数据库连接
 	    try {
 			ret = db.pst.executeQuery();					// 执行sql语句，得到结果集
 			while (ret.next()) {
 	            Vector hang=new Vector();
-	        	hang.add(ret.getInt(1));
+	        	hang.add(ret.getString(1));
 	        	hang.add(ret.getString(2));
-	        	hang.add(ret.getInt(3));
-	        	hang.add(ret.getInt(4));
+	        	hang.add(ret.getString(3));
+	        	hang.add(ret.getDouble(4));
+	        	hang.add(ret.getInt(5));
 	        	RowData.add(hang);
 	        }
 	        ret.close();		// 关闭执行的语句连接
@@ -51,28 +53,31 @@ public class MedicineModel extends AbstractTableModel {
     }
     
     //建立构造函数初始化数据模型
-    public MedicineModel()
+    public DoctorModel()
     {
 		ColumnNames= new Vector();
-		ColumnNames.add("序号");
-		ColumnNames.add("药品名");
-		ColumnNames.add("单价");
-		ColumnNames.add("库存");
+		ColumnNames.add("编号");
+		ColumnNames.add("姓名");
+		ColumnNames.add("科室");
+		ColumnNames.add("就诊总金额");
+		ColumnNames.add("就诊总人次");
 		//建立表头
-		
-		
-		
+
 		RowData=new Vector(); 
-		sql = "SELECT * FROM MEDICINE";						// 此处填写要执行的语句
+		sql = "(SELECT ACC_ID,ACC_NAME,(SELECT SEC_NAME FROM SECTIONS WHERE SECTIONS.SEC_ID=ACCOUNTS.SEC_ID),"
+				+ "(SELECT ifnull(sum(ifnull(RES_SUM,0)), 0) FROM RESULTS WHERE RESULTS.ACC_ID=ACCOUNTS.ACC_ID),"
+				+ "(SELECT COUNT(*) FROM RESULTS WHERE RESULTS.ACC_ID=ACCOUNTS.ACC_ID)FROM ACCOUNTS "
+				+ "WHERE cast(ACCOUNTS.ACC_ID as unsigned int)>=500000";						// 此处填写要执行的语句
 	    db = new MySQLConnect(sql);							// 新建一个数据库连接
 	    try {
 			ret = db.pst.executeQuery();					// 执行sql语句，得到结果集
 			while (ret.next()) {
 	            Vector hang=new Vector();
-	        	hang.add(ret.getInt(1));
+	            hang.add(ret.getString(1));
 	        	hang.add(ret.getString(2));
-	        	hang.add(ret.getInt(3));
-	        	hang.add(ret.getInt(4));
+	        	hang.add(ret.getString(3));
+	        	hang.add(ret.getDouble(4));
+	        	hang.add(ret.getInt(5));
 	        	RowData.add(hang);
 	        }
 	        ret.close();		// 关闭执行的语句连接
@@ -82,7 +87,6 @@ public class MedicineModel extends AbstractTableModel {
 			e.printStackTrace();
 		}
     }
-    
 
 	//得到共有多少列
 	public int getColumnCount() {
@@ -110,4 +114,6 @@ public class MedicineModel extends AbstractTableModel {
 		return ((Vector)this.RowData.get(row)).get(column);
 	}
 
+
+ 
 }

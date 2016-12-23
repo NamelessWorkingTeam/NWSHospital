@@ -54,7 +54,7 @@ public class DirectorPharmacyQuery extends JFrame implements ActionListener  {
 	 */
 	public DirectorPharmacyQuery() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 481, 390);
+		setBounds(100, 100, 380, 560);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -63,8 +63,8 @@ public class DirectorPharmacyQuery extends JFrame implements ActionListener  {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.NORTH);
 		
-		JLabel lblNewLabel = new JLabel("\u8BF7\u8F93\u5165\u836F\u54C1\u540D\uFF1A");
-		panel.add(lblNewLabel);
+		JLabel lbNewLabel = new JLabel("\u8BF7\u8F93\u5165\u836F\u54C1\u540D\uFF1A");
+		panel.add(lbNewLabel);
 		
 		textField = new JTextField();
 		panel.add(textField);

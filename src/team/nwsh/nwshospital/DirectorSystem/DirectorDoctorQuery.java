@@ -2,26 +2,35 @@ package team.nwsh.nwshospital.DirectorSystem;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import team.nwsh.nwshospital.MySQLConnect;
-
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JList;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
+import javax.swing.border.EmptyBorder;
 import java.awt.Font;
+import java.sql.*;
+import javax.swing.*;
+import team.nwsh.nwshospital.MySQLConnect;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+import team.nwsh.nwshospital.MySQLConnect;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 
-public class DirectorDoctorQuery extends JFrame {
-	private JPanel DirectorDoctorQuery;
-	private JTextField SearchTextField;
+public class DirectorDoctorQuery extends JFrame implements ActionListener  {
+	/**
+	 * 
+	 */
+	private JPanel contentPane;
+	private JTextField textField;
+    JTable Dmjt=null;
+    JScrollPane Dmjsp=null;
+	JButton BtnNewButton = new JButton("\u67E5\u8BE2");
 
 	/**
 	 * Launch the application.
@@ -43,108 +52,61 @@ public class DirectorDoctorQuery extends JFrame {
 	 * Create the frame.
 	 */
 	public DirectorDoctorQuery() {
-		setTitle("\u533B\u751F\u5DE5\u4F5C\u60C5\u51B5");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 380, 560);
-		DirectorDoctorQuery = new JPanel();
-		DirectorDoctorQuery.setBorder(new EmptyBorder(5, 5, 5, 5));
-		DirectorDoctorQuery.setLayout(new BorderLayout(0, 0));
-		setContentPane(DirectorDoctorQuery);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
-		DirectorDoctorQuery.add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
-	
-		SearchTextField = new JTextField();
-		SearchTextField.setFont(new Font("宋体", Font.PLAIN, 16));
-		SearchTextField.setBounds(45, 107, 139, 23);
-		panel.add(SearchTextField);
-		SearchTextField.setColumns(10);
+		contentPane.add(panel, BorderLayout.NORTH);
 		
-		JButton SearchButton = new JButton("\u641C\u7D22");
-		SearchButton.setFont(new Font("宋体", Font.PLAIN, 16));
-		SearchButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String String_InputDoctorName = SearchTextField.getText();//获取SearchTextField内容
-				/*If(=String_InputDoctorName)
-				{
-				DirectorDoctorQueryGoal newframe = new DirectorDoctorQueryGoal();
-							
-				newframe.setVisible(true);
-				}*/
-			}
-		});
-		SearchButton.setBounds(228, 107, 104, 23);
-		panel.add(SearchButton);
+		JLabel lbNewLabel = new JLabel("\u533B\u751F\u540D\uFF1A");
+		panel.add(lbNewLabel);
 		
-		JLabel SearchMarkedWords = new JLabel("\u8BF7\u8F93\u5165\u533B\u751F\u540D\u5B57\uFF1A");
-		SearchMarkedWords.setFont(new Font("宋体", Font.PLAIN, 16));
-		SearchMarkedWords.setBounds(35, 65, 181, 40);
-		panel.add(SearchMarkedWords);
+		textField = new JTextField();
+		panel.add(textField);
+		textField.setColumns(10);
 		
-		JComboBox SelectSectionBox = new JComboBox();
-		SelectSectionBox.setFont(new Font("宋体", Font.PLAIN, 16));
-		SelectSectionBox.setBounds(89, 175, 85, 23);
-		panel.add(SelectSectionBox);
+		BtnNewButton.addActionListener(this);
+		panel.add(BtnNewButton);
 		
-		JComboBox SelectDoctorBox = new JComboBox();
-		SelectDoctorBox.setFont(new Font("宋体", Font.PLAIN, 16));
-		SelectDoctorBox.setBounds(89, 224, 86, 25);
-		panel.add(SelectDoctorBox);
+		JPanel panel_1 = new JPanel();
+		contentPane.add(panel_1, BorderLayout.SOUTH);
 		
-		JLabel DirectorDoctorQueryTitle = new JLabel("\u533B\u751F\u5DE5\u4F5C\u60C5\u51B5\u67E5\u8BE2");
-		DirectorDoctorQueryTitle.setFont(new Font("宋体", Font.BOLD, 30));
-		DirectorDoctorQueryTitle.setBounds(23, 10, 257, 62);
-		panel.add(DirectorDoctorQueryTitle);
-		
-		JLabel SelectSectionLabel = new JLabel("\u79D1\u5BA4\uFF1A");
-		SelectSectionLabel.setFont(new Font("宋体", Font.PLAIN, 16));
-		SelectSectionLabel.setBounds(35, 175, 64, 25);
-		panel.add(SelectSectionLabel);
-		
-		JLabel SelectDoctorLabel = new JLabel("\u59D3\u540D\uFF1A");
-		SelectDoctorLabel.setFont(new Font("宋体", Font.PLAIN, 16));
-		SelectDoctorLabel.setBounds(35, 224, 64, 25);
-		panel.add(SelectDoctorLabel);
-		
-		JButton SelectButton = new JButton("\u9009\u62E9");
-		SelectButton.setFont(new Font("宋体", Font.PLAIN, 16));
-		SelectButton.setBounds(228, 174, 104, 25);
-		panel.add(SelectButton);
-		
-		JButton ComfirmButton = new JButton("\u67E5\u8BE2");
-		ComfirmButton.addActionListener(new ActionListener() {
+		JButton btnNewButton_2 = new JButton("\u9000\u51FA");
+		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		ComfirmButton.setBounds(184, 346, 135, 40);
-		panel.add(ComfirmButton);
-		ComfirmButton.setFont(new Font("宋体", Font.PLAIN, 16));
-		
-		JList ComfirmList = new JList();
-		ComfirmList.setBounds(35, 307, 104, 182);
-		panel.add(ComfirmList);
-		
-		JLabel SelectMarkedWords = new JLabel("\u8BF7\u8F93\u5165\u67E5\u8BE2\u6761\u4EF6\uFF1A");
-		SelectMarkedWords.setFont(new Font("宋体", Font.PLAIN, 16));
-		SelectMarkedWords.setBounds(33, 140, 159, 25);
-		panel.add(SelectMarkedWords);
-		
-		JLabel ComfirmMarkedWords = new JLabel("\u9009\u62E9\u533B\u751F\u59D3\u540D\uFF1A");
-		ComfirmMarkedWords.setFont(new Font("宋体", Font.PLAIN, 16));
-		ComfirmMarkedWords.setBounds(34, 259, 128, 40);
-		panel.add(ComfirmMarkedWords);
-		
-		JButton DirectorDoctorQueryQuitButton = new JButton("\u9000\u51FA");
-		DirectorDoctorQueryQuitButton.setFont(new Font("宋体", Font.PLAIN, 16));
-		DirectorDoctorQueryQuitButton.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				dispose();
+				//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 		});
-		DirectorDoctorQueryQuitButton.setBounds(184, 427, 135, 40);
-		panel.add(DirectorDoctorQueryQuitButton);
+		panel_1.add(btnNewButton_2);
+		
+		setTitle("\u533B\u751F\u60C5\u51B5\u67E5\u8BE2");
+		
+        DoctorModel Dm=new DoctorModel();
+		Dmjt=new JTable(Dm);
+		Dmjsp=new JScrollPane(Dmjt);
+		getContentPane().add(Dmjsp);
+		this.setBounds(12, 76, 380, 560);
+		this.setVisible(true);
+		}
+	
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO 自动生成的方法存根
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		if(arg0.getSource()==BtnNewButton)//检查
+		{
+			String name=this.textField.getText().trim();//获取textfield信息
+			//String sql="select * from MEDICINE where MED_NAME='"+name+"'";//实现模糊查询
+			//String sql="SELECT ACC_ID,ACC_NAME,(SELECT SEC_NAME FROM SECTIONS WHERE SECTIONS.SEC_ID=ACCOUNTS.SEC_ID),(SELECT ifnull(sum(ifnull(RES_SUM,0)), 0) FROM RESULTS WHERE RESULTS.ACC_ID=ACCOUNTS.ACC_ID),(SELECT COUNT(*) FROM RESULTS WHERE RESULTS.ACC_ID=ACCOUNTS.ACC_ID)FROM ACCOUNTS WHERE ACCOUNTS.ACC_NAME like '%"+name+"%'";
+			//DoctorModel Dm=new DoctorModel(sql);
+			//Dmjt.setModel(Dm);
+		}
 	}
 }
+
+
