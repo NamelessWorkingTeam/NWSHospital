@@ -69,14 +69,38 @@ public class AdminSystem extends JFrame {
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton = new JButton("\u67E5\u8BE2\u8D26\u53F7\u4FE1\u606F");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AdminSystemShowACCInfo newframe = new AdminSystemShowACCInfo();
+				newframe.setVisible(true);
+				dispose();
+				
+			}
+		});
 		btnNewButton.setBounds(244, 68, 128, 52);
 		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_2 = new JButton("\u67E5\u8BE2\u836F\u54C1\u4FE1\u606F");
+		JButton btnNewButton_2 = new JButton("\u67E5\u8BE2\u79D1\u5BA4\u4FE1\u606F");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AdminSystemShowSECTIONInfo newframe = new AdminSystemShowSECTIONInfo();
+				newframe.setVisible(true);
+				dispose();
+				
+			}
+		});
 		btnNewButton_2.setBounds(244, 161, 128, 52);
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("\u67E5\u8BE2\u9879\u76EE\u4FE1\u606F");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AdminSystemShowITEMInfo newframe = new AdminSystemShowITEMInfo();
+				newframe.setVisible(true);
+				dispose();
+				
+			}
+		});
 		btnNewButton_3.setBounds(48, 161, 128, 52);
 		contentPane.add(btnNewButton_3);
 		

@@ -75,7 +75,6 @@ public class DirectorPharmacyQuery extends JFrame implements ActionListener  {
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.SOUTH);
-		
 		JButton btnNewButton_2 = new JButton("\u9000\u51FA");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -85,6 +84,8 @@ public class DirectorPharmacyQuery extends JFrame implements ActionListener  {
 			}
 		});
 		panel_1.add(btnNewButton_2);
+
+		
 		
 		setTitle("\u836F\u623F\u60C5\u51B5\u67E5\u8BE2");
 
