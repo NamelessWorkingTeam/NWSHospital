@@ -48,14 +48,14 @@ public class AdminSystemAddInfo extends JFrame {
 		contentPane.setLayout(null);
 		
 		Label label = new Label("\u8BF7\u589E\u52A0\u5404\u9879\u4FE1\u606F");
-		label.setFont(new Font("Dialog", Font.PLAIN, 17));
-		label.setBounds(146, 10, 136, 25);
+		label.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 20));
+		label.setBounds(129, 10, 168, 25);
 		contentPane.add(label);
 		
 		JButton btnNewButton = new JButton("\u589E\u8BBE\u8D26\u53F7");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminSystemInfoAccNum newframe = new AdminSystemInfoAccNum();
+				AdminSystemInsertAccNum newframe = new AdminSystemInsertAccNum();
 				newframe.setVisible(true);
 				dispose();
 			}
@@ -66,7 +66,7 @@ public class AdminSystemAddInfo extends JFrame {
 		JButton btnNewButton_1 = new JButton("\u589E\u8BBE\u79D1\u5BA4");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminSystemInfoSections newframe = new AdminSystemInfoSections();
+				AdminSystemInsertSections newframe = new AdminSystemInsertSections();
 				newframe.setVisible(true);
 				dispose();
 			}
@@ -77,7 +77,7 @@ public class AdminSystemAddInfo extends JFrame {
 		JButton btnNewButton_2 = new JButton("\u589E\u8BBE\u836F\u54C1");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminSystemInfoMedicines newframe = new AdminSystemInfoMedicines();
+				AdminSystemInsertMedicines newframe = new AdminSystemInsertMedicines();
 				newframe.setVisible(true);
 				dispose();
 			}
@@ -88,7 +88,7 @@ public class AdminSystemAddInfo extends JFrame {
 		JButton btnNewButton_3 = new JButton("\u589E\u8BBE\u9879\u76EE");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminSystemInfoItems newframe = new AdminSystemInfoItems();
+				AdminSystemInsertItems newframe = new AdminSystemInsertItems();
 				newframe.setVisible(true);
 				dispose();
 			}

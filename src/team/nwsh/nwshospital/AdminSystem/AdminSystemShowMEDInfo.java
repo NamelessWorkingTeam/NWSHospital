@@ -1,4 +1,4 @@
-package team.nwsh.nwshospital.DirectorSystem;
+package team.nwsh.nwshospital.AdminSystem;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -14,6 +14,8 @@ import java.awt.Font;
 import java.sql.*;
 import javax.swing.*;
 import team.nwsh.nwshospital.MySQLConnect;
+import team.nwsh.nwshospital.DirectorSystem.MedicineModel;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -22,7 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-public class DirectorPharmacyQuery extends JFrame implements ActionListener  {
+public class AdminSystemShowMEDInfo extends JFrame implements ActionListener  {
 	/**
 	 * 
 	 */
@@ -40,7 +42,7 @@ public class DirectorPharmacyQuery extends JFrame implements ActionListener  {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DirectorPharmacyQuery frame = new DirectorPharmacyQuery();
+					AdminSystemShowMEDInfo frame = new AdminSystemShowMEDInfo();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,9 +54,9 @@ public class DirectorPharmacyQuery extends JFrame implements ActionListener  {
 	/**
 	 * Create the frame.
 	 */
-	public DirectorPharmacyQuery() {
+	public AdminSystemShowMEDInfo() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 380, 560);
+		setBounds(100, 100, 481, 390);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -63,22 +65,38 @@ public class DirectorPharmacyQuery extends JFrame implements ActionListener  {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.NORTH);
 		
-		JLabel lbNewLabel = new JLabel("\u8BF7\u8F93\u5165\u836F\u54C1\u540D\uFF1A");
-		panel.add(lbNewLabel);
+		JLabel lblNewLabel = new JLabel("\u8BF7\u8F93\u5165\u836F\u54C1\u540D\uFF1A");
+		lblNewLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
+		panel.add(lblNewLabel);
 		
 		textField = new JTextField();
 		panel.add(textField);
 		textField.setColumns(10);
+		BtnNewButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
 		
 		BtnNewButton.addActionListener(this);
 		panel.add(BtnNewButton);
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.SOUTH);
-		JButton btnNewButton_2 = new JButton("\u9000\u51FA");
+		
+		JButton btnNewButton_3 = new JButton("ÐÞ¸Ä");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_3.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
+		panel_1.add(btnNewButton_3);
+		JButton btnNewButton_4 = new JButton("É¾³ý");
+		btnNewButton_4.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
+		panel_1.add(btnNewButton_4);
+		JButton btnNewButton_2 = new JButton("\u8FD4\u56DE");
+		btnNewButton_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				setVisible(false);
+				AdminSystem newframe = new AdminSystem();
+				newframe.setVisible(true);
+				
 				dispose();
 				//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
@@ -90,7 +108,7 @@ public class DirectorPharmacyQuery extends JFrame implements ActionListener  {
 		setTitle("\u836F\u623F\u60C5\u51B5\u67E5\u8BE2");
 
         MedicineModel mm=new MedicineModel();
-		jt=new JTable(mm);
+        jt=new JTable(mm);
 		jsp=new JScrollPane(jt);
 		getContentPane().add(jsp);
 		this.setBounds(12, 76, 380, 560);
