@@ -53,6 +53,8 @@ public class Success extends JFrame {
 		textField.setBounds(0, 0, 184, 102);
 		panel.add(textField);
 		textField.setColumns(10);
+		
+		
 	}
 
 }
