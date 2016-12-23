@@ -70,8 +70,8 @@ public class DirectorSystem extends JFrame {
 		SectionQuery.setBounds(10, 181, 115, 25);
 		SectionQuery.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//DirectorSectionQuery newframe = new DirectorSectionQuery();//页面跳转
-			//newframe.setVisible(true);
+			DirectorSectionQuery newframe = new DirectorSectionQuery();//页面跳转
+			newframe.setVisible(true);
 			}
 		});
 		panel.add(SectionQuery);

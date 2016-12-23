@@ -2,14 +2,36 @@ package team.nwsh.nwshospital.DirectorSystem;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import java.awt.Font;
+import java.sql.*;
+import javax.swing.*;
+import team.nwsh.nwshospital.MySQLConnect;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+import team.nwsh.nwshospital.MySQLConnect;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 
-public class DirectorSectionQuery extends JFrame {
-
+public class DirectorSectionQuery extends JFrame implements ActionListener  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JTextField textField;
+    JTable Smjt=null;
+    JScrollPane Smjsp=null;
+	JButton BtnNewButton = new JButton("\u67E5\u8BE2");
 
 	/**
 	 * Launch the application.
@@ -18,7 +40,7 @@ public class DirectorSectionQuery extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DirectorSectionQuery frame = new DirectorSectionQuery();
+					DirectorPharmacyQuery frame = new DirectorPharmacyQuery();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,11 +54,62 @@ public class DirectorSectionQuery extends JFrame {
 	 */
 	public DirectorSectionQuery() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 380, 560);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-	}
+		
+		JPanel panel = new JPanel();
+		contentPane.add(panel, BorderLayout.NORTH);
+		
+		JLabel lbNewLabel = new JLabel("\u8BF7\u8F93\u5165\u79D1\u5BA4\u540D\uFF1A");
+		panel.add(lbNewLabel);
+		
+		textField = new JTextField();
+		panel.add(textField);
+		textField.setColumns(10);
+		
+		BtnNewButton.addActionListener(this);
+		panel.add(BtnNewButton);
+		
+		JPanel panel_1 = new JPanel();
+		contentPane.add(panel_1, BorderLayout.SOUTH);
+		JButton btnNewButton_2 = new JButton("\u9000\u51FA");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
+				dispose();
+				//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			}
+		});
+		panel_1.add(btnNewButton_2);
 
+		
+		
+		setTitle("\u79D1\u5BA4\u60C5\u51B5\u67E5\u8BE2");
+
+		SectionModel sm=new SectionModel();
+		Smjt=new JTable(sm);
+		Smjsp=new JScrollPane(Smjt);
+		getContentPane().add(Smjsp);
+		this.setBounds(12, 76, 380, 560);
+		this.setVisible(true);
+
+		}
+	
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO 自动生成的方法存根
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		if(arg0.getSource()==BtnNewButton)//检查
+		{
+			String name=this.textField.getText().trim();//获取textfield信息
+			//String sql="select * from MEDICINE where MED_NAME='"+name+"'";//实现模糊查询
+			String sql="SELECT SECTIONS.SEC_ID,SECTIONS.SEC_NAME,(SELECT IFNULL(SUM(IFNULL(RESULTS.RES_SUM,0)),0) FROM RESULTS WHERE RESULTS.ACC_ID = (SELECT ACC_ID FROM ACCOUNTS WHERE ACCOUNTS.SEC_ID = (SELECT SEC_ID FROM SECTIONS WHERE SECTIONS.SEC_NAME='"+name+"'))) FROM SECTIONS";
+			SectionModel sm=new SectionModel(sql);
+			Smjt.setModel(sm);
+		}
+	}
 }
+
+
