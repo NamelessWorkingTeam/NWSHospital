@@ -155,7 +155,18 @@ public class Register extends JFrame {
 		contentPane.add(btnNewButton_2);
 		btnNewButton_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		
-		JButton btnNewButton_3 = new JButton("\u53D6\u6D88");
+		JButton btnNewButton_3 = new JButton("\u8FD4\u56DE");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegisterSystem back = new RegisterSystem();
+				back.setResizable(false);
+				back.setLocationRelativeTo(null);
+				back.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+				back.setVisible(true);
+				dispose();
+			
+			}
+		});
 		btnNewButton_3.setBounds(315, 367, 93, 23);
 		contentPane.add(btnNewButton_3);
 		btnNewButton_3.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));

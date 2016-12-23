@@ -9,6 +9,7 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
 import team.nwsh.nwshospital.MySQLConnect;
+import team.nwsh.nwshospital.GeneralLogin.GeneralLogin;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -140,5 +141,21 @@ public class RegisterSystem extends JFrame {
 		button_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 		button_1.setBounds(162, 179, 80, 27);
 		panel.add(button_1);
+		
+		JButton button = new JButton("\u9000\u51FA\u767B\u5F55");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GeneralLogin back = new GeneralLogin();
+				back.setResizable(false);
+				back.setLocationRelativeTo(null);
+				back.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+				back.setVisible(true);
+				dispose();
+				
+			}
+		});
+		button.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
+		button.setBounds(325, 354, 100, 27);
+		panel.add(button);
 	}
 }

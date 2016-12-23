@@ -207,7 +207,18 @@ public class Register_Alter extends JFrame {
 		panel_1.add(textField_ID);
 		textField_ID.setText(P_ID);//上一页面获取的身份证号
 		
-		JButton button_2 = new JButton("\u53D6\u6D88");
+		JButton button_2 = new JButton("\u8FD4\u56DE");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegisterSystem back = new RegisterSystem();
+				back.setResizable(false);
+				back.setLocationRelativeTo(null);
+				back.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+				back.setVisible(true);
+				dispose();
+				
+			}
+		});
 		button_2.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		button_2.setBounds(312, 380, 93, 23);
 		contentPane.add(button_2);
