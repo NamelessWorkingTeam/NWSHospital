@@ -95,11 +95,11 @@ public class RegisterSystem extends JFrame {
 								dispose();
 								break;
 							case 1:
-								JOptionPane.showMessageDialog(null, "已收费的预约病人，请去就诊！", "提示", JOptionPane.ERROR_MESSAGE); 
+								JOptionPane.showMessageDialog(null, "已收费的预约病人，请去就诊！", "提示", JOptionPane.INFORMATION_MESSAGE); 
 								//System.out.print("已收费的预约病人");
 							break;
 							case 2:
-								JOptionPane.showMessageDialog(null, "已收费的挂号病人，请去就诊！", "提示", JOptionPane.ERROR_MESSAGE); 
+								JOptionPane.showMessageDialog(null, "已收费的挂号病人，请去就诊！", "提示", JOptionPane.INFORMATION_MESSAGE); 
 								//System.out.print("已收费的挂号病人");
 								break;
 							case 3:

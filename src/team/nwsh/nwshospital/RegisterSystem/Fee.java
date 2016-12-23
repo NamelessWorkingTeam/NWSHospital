@@ -99,7 +99,6 @@ public class Fee extends JFrame {
 		table = new JTable();
 		table.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		table.setToolTipText("");
-		
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null},
