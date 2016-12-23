@@ -16,7 +16,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JTextPane;
 import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 import javax.swing.JCheckBoxMenuItem;
@@ -28,10 +27,10 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
 public class Register extends JFrame {
 	static String sec;
-
 	private JPanel contentPane;
 
 	/**
@@ -104,25 +103,25 @@ public class Register extends JFrame {
 		label_1.setBounds(128, 223, 64, 30);
 		panel_1.add(label_1);
 		
-		JTextPane textPane_NAME = new JTextPane();
-		textPane_NAME.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
-		textPane_NAME.setBounds(202, 63, 136, 30);
-		panel_1.add(textPane_NAME);
+		JTextField textField_NAME = new JTextField();
+		textField_NAME.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
+		textField_NAME.setBounds(202, 63, 136, 30);
+		panel_1.add(textField_NAME);
 		
-		JTextPane textPane_SEX = new JTextPane();
-		textPane_SEX.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
-		textPane_SEX.setBounds(202, 103, 136, 30);
-		panel_1.add(textPane_SEX);
+		JTextField textField_SEX = new JTextField();
+		textField_SEX.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
+		textField_SEX.setBounds(202, 103, 136, 30);
+		panel_1.add(textField_SEX);
 		
-		JTextPane textPane_AGE = new JTextPane();
-		textPane_AGE.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
-		textPane_AGE.setBounds(202, 143, 136, 30);
-		panel_1.add(textPane_AGE);
+		JTextField textField_AGE = new JTextField();
+		textField_AGE.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
+		textField_AGE.setBounds(202, 143, 136, 30);
+		panel_1.add(textField_AGE);
 		
-		JTextPane textPane_PHONE = new JTextPane();
-		textPane_PHONE.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
-		textPane_PHONE.setBounds(202, 183, 136, 30);
-		panel_1.add(textPane_PHONE);
+		JTextField textField_PHONE = new JTextField();
+		textField_PHONE.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
+		textField_PHONE.setBounds(202, 183, 136, 30);
+		panel_1.add(textField_PHONE);
 		
 		JComboBox comboBox_SEC = new JComboBox();
 		comboBox_SEC.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
@@ -146,25 +145,20 @@ public class Register extends JFrame {
 		panel_1.add(label_2);
 		label_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 		
-		JTextPane textPane_ID = new JTextPane();
-		textPane_ID.setBounds(202, 23, 136, 30);
-		panel_1.add(textPane_ID);
-		textPane_ID.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
+		JTextField textField_ID = new JTextField();
+		textField_ID.setBounds(202, 23, 136, 30);
+		panel_1.add(textField_ID);
+		textField_ID.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		
 		JButton btnNewButton_2 = new JButton("\u6536\u8D39\u5E76\u6302\u53F7");
-		btnNewButton_2.setBounds(126, 367, 108, 23);
+		btnNewButton_2.setBounds(166, 367, 108, 23);
 		contentPane.add(btnNewButton_2);
 		btnNewButton_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		
 		JButton btnNewButton_3 = new JButton("\u53D6\u6D88");
-		btnNewButton_3.setBounds(347, 367, 93, 23);
+		btnNewButton_3.setBounds(315, 367, 93, 23);
 		contentPane.add(btnNewButton_3);
 		btnNewButton_3.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
-		
-		JButton button = new JButton("\u4FEE\u6539");
-		button.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
-		button.setBounds(244, 367, 93, 23);
-		contentPane.add(button);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(comboBox_SEC.getSelectedItem().toString().compareTo("ÆÕÍ¨Íâ¿Æ") == 0) sec="5000";
@@ -172,8 +166,8 @@ public class Register extends JFrame {
 				if(comboBox_SEC.getSelectedItem().toString().compareTo("Îå¹Ù¿Æ") == 0)	sec="5002";
 				if(comboBox_SEC.getSelectedItem().toString().compareTo("¼ìÑé¿Æ") == 0)	sec="5003";
 				
-				String sql = "INSERT INTO PATIENTS VALUES('"+textPane_ID.getText()+"','"+textPane_NAME.getText()+"','"+textPane_AGE.getText()+"','"+textPane_SEX.getText()+"','"+textPane_PHONE.getText()+"',null)";
-				String sql2= "INSERT INTO STATE VALUES(NULL,'"+textPane_ID.getText()+"','"+sec+"',NULL,2)";
+				String sql = "INSERT INTO PATIENTS VALUES('"+textField_ID.getText()+"','"+textField_NAME.getText()+"','"+textField_AGE.getText()+"','"+textField_SEX.getText()+"','"+textField_PHONE.getText()+"',null)";
+				String sql2= "INSERT INTO STATE VALUES(NULL,'"+textField_ID.getText()+"','"+sec+"',NULL,2)";
 				MySQLConnect con2= new MySQLConnect(sql2);
 				MySQLConnect con = new MySQLConnect(sql);
 				try {

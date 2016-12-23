@@ -21,6 +21,8 @@ public class Fee extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private JTable table_1;
+	private JTable table_2;
+	private JTable table_3;
 
 	/**
 	 * Launch the application.
@@ -96,30 +98,7 @@ public class Fee extends JFrame {
 		label_5.setBounds(10, 10, 70, 30);
 		panel_2.add(label_5);
 		
-		table = new JTable();
-		table.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 12));
-		table.setToolTipText("");
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-			},
-			new String[] {
-				"New column", "New column", "New column", "New column"
-			}
-		));
-		table.setBounds(20, 66, 403, 144);
-		DefaultTableCellRenderer r = new DefaultTableCellRenderer();   
-		r.setHorizontalAlignment(JLabel.CENTER);   
-		table.setDefaultRenderer(Object.class,r);
-		panel_2.add(table);
+		
 		
 		JLabel lblNewLabel = new JLabel("\u836F\u54C1\u7F16\u53F7");
 		lblNewLabel.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 12));
@@ -141,6 +120,12 @@ public class Fee extends JFrame {
 		label_6.setBounds(358, 39, 35, 30);
 		panel_2.add(label_6);
 		
+		// ’∑—“©∆∑±Ì
+		table_2 = new JTable();
+		table_2.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 12));
+		table_2.setBounds(30, 68, 363, 133);
+		panel_2.add(table_2);
+		
 		JButton button = new JButton("\u5DF2\u6536\u8D39");
 		button.setBounds(160, 583, 93, 23);
 		contentPane.add(button);
@@ -156,29 +141,12 @@ public class Fee extends JFrame {
 		label_8.setBounds(10, 10, 70, 30);
 		panel_3.add(label_8);
 		
-		table_1 = new JTable();
-		table_1.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 12));
-		table_1.setModel(new DefaultTableModel(
-			new Object[][] {
-				{5, "π“∫≈∑—", 2},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-			},
-			new String[] {
-				"New column", "New column", "New column"
-			}
-		));
-		table_1.setBounds(20, 64, 403, 144);
-		DefaultTableCellRenderer r2 = new DefaultTableCellRenderer();   
-		r2.setHorizontalAlignment(JLabel.CENTER);   
-		table_1.setDefaultRenderer(Object.class,r2);
-		panel_3.add(table_1);
+
+		
+//		DefaultTableCellRenderer r2 = new DefaultTableCellRenderer();   
+//		r2.setHorizontalAlignment(JLabel.CENTER);   
+//		table_1.setDefaultRenderer(Object.class,r2);
+		
 		
 		JLabel label_7 = new JLabel("\u9879\u76EE\u7F16\u53F7");
 		label_7.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 12));
@@ -194,6 +162,12 @@ public class Fee extends JFrame {
 		label_10.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 12));
 		label_10.setBounds(342, 39, 70, 30);
 		panel_3.add(label_10);
+		
+		// ’∑—œÓƒø±Ì
+		table_3 = new JTable();
+		table_3.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 12));
+		table_3.setBounds(10, 68, 413, 133);
+		panel_3.add(table_3);
 		
 		JButton button_1 = new JButton("\u53D6\u6D88");
 		button_1.setBounds(294, 583, 93, 23);

@@ -21,7 +21,8 @@ import java.sql.*;
 import java.awt.event.ActionEvent;
 
 public class RegisterSystem extends JFrame {
-
+	
+	static String PAT_ID;//获取输入的身份证号
 	private JPanel contentPane;
 	private JTextField textField;
 
@@ -73,10 +74,13 @@ public class RegisterSystem extends JFrame {
 		panel.add(textField);
 		textField.setColumns(10);
 		
+		
 		JButton button_1 = new JButton("\u786E\u5B9A");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String String_SQL_PAT_ID = "SELECT STA_TUS FROM STATE WHERE PAT_ID = '" + textField.getText() + "'";
+				PAT_ID=textField.getText();			//把textfield的值存到PAT_ID
+				//String String_SQL_PAT_ID = "SELECT STA_TUS FROM STATE WHERE PAT_ID = '" + textField.getText() + "'";
+				String String_SQL_PAT_ID = "SELECT STA_TUS FROM STATE WHERE PAT_ID = '"+PAT_ID+"'";
 				MySQLConnect con = new MySQLConnect(String_SQL_PAT_ID);
 				try {
 					ResultSet result = con.pst.executeQuery();
@@ -85,13 +89,12 @@ public class RegisterSystem extends JFrame {
 							String state = result.getString("STA_TUS");
 							int i = Integer.parseInt(state);
 							switch(i){
-							case 0://需要收费的预约病人
-								Fee fee = new Fee();
-								fee.setResizable(false);
-								
-								fee.setLocationRelativeTo(null);
-								fee.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-								fee.setVisible(true);
+							case 0://预约病人，需要确认
+								Register_Alter alter = new Register_Alter();
+								alter.setResizable(false);
+								alter.setLocationRelativeTo(null);
+								alter.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+								alter.setVisible(true);
 								dispose();
 								break;
 							case 1:
