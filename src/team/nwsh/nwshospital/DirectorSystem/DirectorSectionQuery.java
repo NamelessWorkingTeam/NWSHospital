@@ -83,6 +83,13 @@ public class DirectorSectionQuery extends JFrame implements ActionListener  {
 				//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			}
 		});
+		
+		JButton button = new JButton("\u751F\u6210\u997C\u72B6\u56FE");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		panel_1.add(button);
 		panel_1.add(btnNewButton_2);
 
 		

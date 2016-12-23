@@ -94,6 +94,7 @@ public class DirectorSystem extends JFrame {
 		JButton CreatReport = new JButton("\u751F\u6210\u62A5\u544A");
 		CreatReport.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+			
 			}
 		});
 		CreatReport.setFont(new Font("ËÎÌו", Font.PLAIN, 12));

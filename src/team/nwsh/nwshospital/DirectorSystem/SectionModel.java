@@ -58,7 +58,7 @@ public class SectionModel extends AbstractTableModel {
 		ColumnNames.add("科室名");
 		ColumnNames.add("就诊总金额");
 		ColumnNames.add("就诊总人数");
-		//建立表头
+		//建立表头 
 		
 		
 		
