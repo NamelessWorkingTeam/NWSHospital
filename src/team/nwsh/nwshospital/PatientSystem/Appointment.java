@@ -36,8 +36,12 @@ public class Appointment extends JFrame {
 	private JTextField textField;
 	private JTextField DateField;
 	private JTextField IDField;
-     int x=2;
-     private JTextField SessionField;
+	private JTextField NameField;
+	private JTextField PhoneField;
+	private JTextField AgeField;
+	
+	static String sec;
+	static String sex;
 	/**
 	 * Launch the application.
 	 */
@@ -59,7 +63,7 @@ public class Appointment extends JFrame {
 	 */
 	public Appointment() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 716, 404);
+		setBounds(100, 100, 716, 498);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -76,39 +80,34 @@ public class Appointment extends JFrame {
 		TextField textField_2 = new TextField();
 		textField_2.setText("   \u8BF7\u586B\u5199\u8EAB\u4EFD\u8BC1");
 		textField_2.setEditable(false);
-		textField_2.setBounds(44, 120, 105, 17);
+		textField_2.setBounds(280, 120, 105, 17);
 		contentPane.add(textField_2);
 		
 		TextField textField_1 = new TextField();
-		textField_1.setText("\u586B\u5199\u9884\u7EA6\u79D1\u5BA4\u53F7\u7801");
+		textField_1.setText("\u9009\u62E9\u9884\u7EA6\u79D1\u5BA4");
 		textField_1.setEditable(false);
-		textField_1.setBounds(241, 120, 114, 17);
+		textField_1.setBounds(401, 248, 114, 17);
 		contentPane.add(textField_1);
 		
 		TextField textField_3 = new TextField();
 		textField_3.setText("\u586B\u5199\u65F6\u95F4\uFF08\u4F8B\uFF1A2016122217\uFF09");
 		textField_3.setEditable(false);
-		textField_3.setBounds(481, 120, 170, 17);
+		textField_3.setBounds(43, 248, 170, 17);
 		contentPane.add(textField_3);
 		
-		JComboBox SessionSelect = new JComboBox();
-		SessionSelect.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
-				
-			}
-		});
-		SessionSelect.setModel(new DefaultComboBoxModel(new String[] {"\u67E5\u770B\u53EF\u9009\u79D1\u5BA4", "5000.\u666E\u901A\u5916\u79D1", "5001.\u666E\u901A\u5185\u79D1", "5002.\u4E94\u5B98\u79D1", "5003.\u68C0\u9A8C\u79D1"}));
-		SessionSelect.setBounds(361, 120, 114, 21);
-		contentPane.add(SessionSelect);
+		JComboBox SectionSelect = new JComboBox();
+		SectionSelect.setModel(new DefaultComboBoxModel(new String[] {"\u666E\u901A\u5916\u79D1", "\u666E\u901A\u5185\u79D1", "\u4E94\u5B98\u79D1", "\u68C0\u9A8C\u79D1"}));
+		SectionSelect.setBounds(401, 287, 114, 21);
+		contentPane.add(SectionSelect);
 		
 		DateField = new JTextField();
-		DateField.setBounds(481, 155, 170, 21);
+		DateField.setBounds(43, 287, 170, 21);
 		contentPane.add(DateField);
 		DateField.setColumns(10);
 		
 		IDField = new JTextField();
 		IDField.setColumns(10);
-		IDField.setBounds(39, 155, 170, 21);
+		IDField.setBounds(249, 158, 170, 21);
 		contentPane.add(IDField);
 		
 		JButton button = new JButton("\u9000\u51FA");
@@ -118,40 +117,92 @@ public class Appointment extends JFrame {
 			}
 		});
 		button.setFont(new Font("宋体", Font.PLAIN, 18));
-		button.setBounds(583, 312, 111, 32);
+		button.setBounds(579, 418, 111, 32);
 		contentPane.add(button);
 		
-		SessionField = new JTextField();
-		SessionField.setColumns(10);
-		SessionField.setBounds(241, 155, 170, 21);
-		contentPane.add(SessionField);
+		
+		
+		
+		TextField Field = new TextField();
+		Field.setText("   \u8BF7\u9009\u62E9\u6027\u522B");
+		Field.setEditable(false);
+		Field.setBounds(539, 248, 105, 17);
+		contentPane.add(Field);
+		
+		TextField Field2 = new TextField();
+		Field2.setText("   \u8BF7\u586B\u5199\u5E74\u9F84");
+		Field2.setEditable(false);
+		Field2.setBounds(249, 248, 105, 17);
+		contentPane.add(Field2);
+		
+		TextField textField_4 = new TextField();
+		textField_4.setText("   \u8BF7\u586B\u5199\u7535\u8BDD\u53F7\u7801");
+		textField_4.setEditable(false);
+		textField_4.setBounds(494, 120, 127, 17);
+		contentPane.add(textField_4);
+		
+		TextField textField_5 = new TextField();
+		textField_5.setText("   \u8BF7\u586B\u5199\u59D3\u540D");
+		textField_5.setEditable(false);
+		textField_5.setBounds(52, 120, 105, 17);
+		contentPane.add(textField_5);
+		
+		NameField = new JTextField();
+		NameField.setColumns(10);
+		NameField.setBounds(52, 158, 101, 21);
+		contentPane.add(NameField);
+		
+		PhoneField = new JTextField();
+		PhoneField.setColumns(10);
+		PhoneField.setBounds(464, 158, 170, 21);
+		contentPane.add(PhoneField);
+		
+		AgeField = new JTextField();
+		AgeField.setColumns(10);
+		AgeField.setBounds(263, 287, 73, 21);
+		contentPane.add(AgeField);
+		
+		JComboBox SexSelect = new JComboBox();
+		SexSelect.setModel(new DefaultComboBoxModel(new String[] {"\u7537", "\u5973"}));
+		SexSelect.setBounds(562, 287, 38, 21);
+		contentPane.add(SexSelect);
+		
+		if(SectionSelect.getSelectedItem().toString().compareTo("普通外科") == 0) sec="5000";
+		if(SectionSelect.getSelectedItem().toString().compareTo("普通内科") == 0) sec="5001";
+		if(SectionSelect.getSelectedItem().toString().compareTo("五官科") == 0)	sec="5002";
+		if(SectionSelect.getSelectedItem().toString().compareTo("检验科") == 0)	sec="5003";
+		if(SexSelect.getSelectedItem().toString().compareTo("男") == 0)	sex="M";
+		if(SexSelect.getSelectedItem().toString().compareTo("女") == 0)	sex="F";
 		
 		JButton Submitting = new JButton("\u63D0\u4EA4");
+		Submitting.setFont(new Font("宋体", Font.PLAIN, 18));
+		Submitting.setBounds(433, 418, 111, 32);
+		contentPane.add(Submitting);
 		Submitting.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(IDField.getText().length()==0||DateField.getText().length()!=10||Integer.parseInt(SessionField.getText())<5000||Integer.parseInt(SessionField.getText())>5003){
+				if(IDField.getText().length()==0||DateField.getText().length()!=10){
 					Warning newframe = new Warning();
 					newframe.setVisible(true);
 				}
 				else{
-		             String sql = "INSERT INTO STATE(STA_ID,PAT_ID,SEC_ID,STA_DATE,STA_TUS) VALUES(null,null,'"+SessionField.getText()+"','"+DateField.getText()+"',0)";
-						MySQLConnect con = new MySQLConnect(sql);
-						try {
-							con.pst.executeUpdate();
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-		             
-		             
+
+					String sql = "INSERT INTO PATIENTS VALUES('"+IDField.getText()+"','"+NameField.getText()+"','"+AgeField.getText()+"','"+sex+"','"+PhoneField.getText()+"',null)";
+					String sql2= "INSERT INTO STATE VALUES(NULL,'"+IDField.getText()+"','"+sec+"','"+DateField.getText()+"',0)";
+					MySQLConnect con2= new MySQLConnect(sql2);
+					MySQLConnect con = new MySQLConnect(sql);
+					try {
+						con.pst.executeUpdate();
+						con2.pst.executeUpdate();
+						JOptionPane.showMessageDialog(null, "已成功预约！", "提示",JOptionPane.INFORMATION_MESSAGE);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(null, "预约失败！", "提示", JOptionPane.ERROR_MESSAGE);
+						e1.printStackTrace();
+					}		             		 
 				}
-	           
+	
 			}
 		});
-		Submitting.setFont(new Font("宋体", Font.PLAIN, 18));
-		Submitting.setBounds(434, 312, 111, 32);
-		contentPane.add(Submitting);
-		
 		}
 		}
 
