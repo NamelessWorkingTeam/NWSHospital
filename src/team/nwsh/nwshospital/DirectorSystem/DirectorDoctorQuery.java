@@ -101,10 +101,9 @@ public class DirectorDoctorQuery extends JFrame implements ActionListener  {
 		if(arg0.getSource()==BtnNewButton)//检查
 		{
 			String name=this.textField.getText().trim();//获取textfield信息
-			//String sql="select * from MEDICINE where MED_NAME='"+name+"'";//实现模糊查询
-			//String sql="SELECT ACC_ID,ACC_NAME,(SELECT SEC_NAME FROM SECTIONS WHERE SECTIONS.SEC_ID=ACCOUNTS.SEC_ID),(SELECT ifnull(sum(ifnull(RES_SUM,0)), 0) FROM RESULTS WHERE RESULTS.ACC_ID=ACCOUNTS.ACC_ID),(SELECT COUNT(*) FROM RESULTS WHERE RESULTS.ACC_ID=ACCOUNTS.ACC_ID)FROM ACCOUNTS WHERE ACCOUNTS.ACC_NAME like '%"+name+"%'";
-			//DoctorModel Dm=new DoctorModel(sql);
-			//Dmjt.setModel(Dm);
+			String sql="SELECT ACC_ID,ACC_NAME,(SELECT SEC_NAME FROM SECTIONS WHERE SECTIONS.SEC_ID=ACCOUNTS.SEC_ID),(SELECT ifnull(sum(ifnull(RES_SUM,0)), 0) FROM RESULTS WHERE RESULTS.ACC_ID=ACCOUNTS.ACC_ID),(SELECT COUNT(*) FROM RESULTS WHERE RESULTS.ACC_ID=ACCOUNTS.ACC_ID)FROM ACCOUNTS WHERE ACCOUNTS.ACC_NAME like '%"+name+"%'";
+			DoctorModel Dm=new DoctorModel(sql);
+			Dmjt.setModel(Dm);
 		}
 	}
 }
