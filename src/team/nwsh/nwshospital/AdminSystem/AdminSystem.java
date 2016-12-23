@@ -61,9 +61,9 @@ public class AdminSystem extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				AdminSystemAddInfo newframe = new AdminSystemAddInfo();
 				newframe.setVisible(true);
-				dispose();
+				 dispose();
 				
-			}
+			  }
 		});
 		btnNewButton_1.setBounds(48, 68, 128, 52);
 		contentPane.add(btnNewButton_1);
