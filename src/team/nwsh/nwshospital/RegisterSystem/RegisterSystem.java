@@ -117,6 +117,9 @@ public class RegisterSystem extends JFrame {
 								fee2.setVisible(true);
 								dispose();
 								break;
+							case 5:
+								JOptionPane.showMessageDialog(null, "请去药房取药！", "提示", JOptionPane.INFORMATION_MESSAGE);
+								break;
 							}
 						}
 						else {
