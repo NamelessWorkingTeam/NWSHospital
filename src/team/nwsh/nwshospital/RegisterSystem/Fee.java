@@ -45,7 +45,7 @@ public class Fee extends JFrame {
 	 * To LiuYeBian:
 	 * 整个MedicineTable()方法有重写！构造函数有修改！需要从RegisterSystem登录！
 	 * 还有170至181行添加了新的搜索方法
-	 * 另外，请在183至212药品和收费项目查询中添加搜索记录为空的判断！防止造成方法中查询错误！
+	 * 另外，请在183至212药品和收费项目查询中添加搜索记录为空的判断！防止造成方法中查询错误！(已完成√)
 	 * From Liu Yummy
 	 */
 	public static void MedicineTable() {
@@ -91,6 +91,7 @@ public class Fee extends JFrame {
 				while (RS_MED_NAME.next()) {
 		            hang_MED=new Vector();
 		            hang_MED.add(RS_MED_NAME.getString("MED_ID"));
+		            hang_MED.add(RS_MED_NAME.getString("MED_NAME"));
 		            hang_MED.add(RS_MED_NAME.getString("MED_PRICE"));
 		        	RowData_MED_NAME.add(hang_MED);
 		        }
@@ -115,8 +116,8 @@ public class Fee extends JFrame {
 		table_MED.setModel(model_table_MED);		// 将表格模板更换为新生成的模板模板
 	
 		table_MED.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table_MED.setFont(new Font("微软雅黑", Font.PLAIN, 24));
-		table_MED.setRowHeight(50);
+		table_MED.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+		table_MED.setRowHeight(20);
 		
 		if(INT_Found_MED_NAME) {
 			// START 设置 table_MED 内容居中
@@ -185,32 +186,40 @@ public class Fee extends JFrame {
 				MySQLConnect con_med= new MySQLConnect(sql_med);
 				try {
 					ResultSet ResultSet_MED = con_med.pst.executeQuery();
-					ResultSet_MED.next();
-					F_MED=ResultSet_MED.getString("RES_MED");//将药品查询结果赋值给了F_MED
+						ResultSet_MED.next();
+						if(ResultSet_MED.getString("RES_MED").compareTo("NULL")==0){
+							JOptionPane.showMessageDialog(null, "药品收费查询结果为空", "提示", JOptionPane.ERROR_MESSAGE);
+						}
+						else{ 
+							F_MED=ResultSet_MED.getString("RES_MED");//将药品查询结果赋值给了F_MED
+							F_MED_SPLIT=F_MED.split(",");				//split方法
+						}
+							
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					//JOptionPane.showMessageDialog(null, "药品收费查询结果为空", "提示", JOptionPane.ERROR_MESSAGE);
+					e.printStackTrace();
+				}
+				
+		   //查询项目收费
+				String sql_items= "SELECT RES_ITEMS FROM RESULTS WHERE RES_ID="+RES_ID;
+				MySQLConnect con_items= new MySQLConnect(sql_items);
+				try {
+					ResultSet ResultSet_ITEMS = con_items.pst.executeQuery();
+					ResultSet_ITEMS.next();
+					if(ResultSet_ITEMS.getString("RES_ITEMS").compareTo("NULL")==0){
+						JOptionPane.showMessageDialog(null, "项目收费查询结果为空", "提示", JOptionPane.ERROR_MESSAGE);
+					}
+					else {
+						F_ITEMS=ResultSet_ITEMS.getString("RES_ITEMS");//将收费项目查询结果赋值给了F_ITEMS
+						F_ITEMS_SPLIT=F_ITEMS.split(",");				//split方法
+					}
 						
-					F_MED_SPLIT=F_MED.split(",");				//split方法
-
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
-//		//查询项目收费
-//				String sql_items= "SELECT RES_ITEMS FROM RESULTS WHERE PAT_ID='"+F_ID+"'";
-//				MySQLConnect con_items= new MySQLConnect(sql_items);
-//				try {
-//					ResultSet ResultSet_ITEMS = con_items.pst.executeQuery();
-//					while(ResultSet_ITEMS.next()){
-//						F_ITEMS=ResultSet_ITEMS.getString("RES_ITEMS");//将收费项目查询结果赋值给了F_ITEMS
-//						
-//						F_ITEMS_SPLIT=F_ITEMS.split(",");				//split方法
-//					}
-
-//				} catch (SQLException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//				
 				
 				
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -300,7 +309,7 @@ public class Fee extends JFrame {
 //					System.out.println("长度为："+F_MED_SPLIT.length);
 //				}
 				
-				System.out.println(F_MED_SPLIT[0]);					//测试传值用例
+				//System.out.println(F_MED_SPLIT[0]);					//测试传值用例
 				
 				String state = "UPDATE STATE SET STA_TUS = 5 WHERE PAT_ID='" + F_ID + "'";
 				MySQLConnect STATE = new MySQLConnect(state);
@@ -351,7 +360,18 @@ public class Fee extends JFrame {
 		label_10.setBounds(342, 39, 70, 30);
 		panel_3.add(label_10);
 		
-		JButton button_1 = new JButton("\u53D6\u6D88");
+		JButton button_1 = new JButton("\u8FD4\u56DE");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				RegisterSystem back = new RegisterSystem();
+				back.setResizable(false);
+				back.setLocationRelativeTo(null);
+				back.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+				back.setVisible(true);
+				dispose();
+				
+			}
+		});
 		button_1.setBounds(294, 583, 93, 23);
 		contentPane.add(button_1);
 		button_1.setFont(new Font("微软雅黑", Font.PLAIN, 12));
