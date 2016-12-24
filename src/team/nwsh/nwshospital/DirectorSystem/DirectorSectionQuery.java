@@ -105,7 +105,7 @@ public class DirectorSectionQuery extends JFrame implements ActionListener  {
 
 		}
 	
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent arg0) { 
 		// TODO 自动生成的方法存根
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		if(arg0.getSource()==BtnNewButton)//检查

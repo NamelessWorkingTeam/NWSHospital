@@ -24,7 +24,7 @@ import javax.swing.JLabel;
 
 public class DirectorDoctorQuery extends JFrame implements ActionListener  {
 	/**
-	 * 
+	 *  
 	 */
 	private JPanel contentPane;
 	private JTextField textField;

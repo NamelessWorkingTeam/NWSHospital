@@ -25,7 +25,7 @@ import javax.swing.JLabel;
 public class DirectorPharmacyQuery extends JFrame implements ActionListener  {
 	/**
 	 * 
-	 */
+	 */ 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;

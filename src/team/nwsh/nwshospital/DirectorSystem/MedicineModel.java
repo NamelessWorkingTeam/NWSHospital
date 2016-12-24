@@ -20,7 +20,7 @@ public class MedicineModel extends AbstractTableModel {
     static String sql = null;  
     static MySQLConnect db = null;  
     static ResultSet ret = null; 
-
+ 
     //通过传递的sql语句来获得数据模型
     public MedicineModel(String sql)
     {

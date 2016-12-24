@@ -28,7 +28,7 @@ public class MedicineAlarm {
     static String String_CheckStorgesql = null;   
     static MySQLConnect db = null;  
     static ResultSet Result_Storge = null;    
-    
+     
     
 public static void main(String[] args) {
 		// TODO Auto-generated method stub

@@ -23,7 +23,7 @@ public class DirectorSystem extends JFrame {
 
 	private JPanel DirectorMianMeau;
 
-	/**
+	/** 
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
