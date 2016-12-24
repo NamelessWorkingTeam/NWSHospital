@@ -137,7 +137,7 @@ public class Register_Alter extends JFrame {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
-		panel_1.setBounds(48, 76, 433, 281);
+		panel_1.setBounds(48, 76, 433, 312);
 		contentPane.add(panel_1);
 		
 		JLabel label_1 = new JLabel("\u59D3\u540D");
@@ -207,6 +207,11 @@ public class Register_Alter extends JFrame {
 		panel_1.add(textField_ID);
 		textField_ID.setText(P_ID);//上一页面获取的身份证号
 		
+		JLabel label_7 = new JLabel("\u9700\u8981\u6536\u53D6\u6302\u53F7\u8D39\uFF1A2 \u5143");
+		label_7.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+		label_7.setBounds(128, 263, 210, 30);
+		panel_1.add(label_7);
+		
 		JButton button_2 = new JButton("\u8FD4\u56DE");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -220,7 +225,7 @@ public class Register_Alter extends JFrame {
 			}
 		});
 		button_2.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-		button_2.setBounds(312, 380, 93, 23);
+		button_2.setBounds(314, 398, 93, 23);
 		contentPane.add(button_2);
 		//按钮“确认修改并收费”
 		JButton button_1 = new JButton("\u786E\u8BA4\u9884\u7EA6\u5E76\u6536\u8D39");
@@ -230,7 +235,7 @@ public class Register_Alter extends JFrame {
 				if(comboBox_KESHI.getSelectedItem().toString().compareTo("普通内科") == 0) sec="5001";
 				if(comboBox_KESHI.getSelectedItem().toString().compareTo("五官科") == 0)	sec="5002";
 				if(comboBox_KESHI.getSelectedItem().toString().compareTo("检验科") == 0)	sec="5003";
-				
+				if(comboBox_KESHI.getSelectedItem().toString().compareTo("神经科") == 0)	sec="5004";
 //修改科室信息，并把状态STA_TUS置为1				
 				String sql = " UPDATE STATE SET SEC_ID='"+sec+"',STA_TUS=1 WHERE PAT_ID='"+P_ID+"' ";
 
@@ -252,7 +257,7 @@ public class Register_Alter extends JFrame {
 			}
 		});
 		button_1.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-		button_1.setBounds(155, 380, 147, 23);
+		button_1.setBounds(154, 398, 147, 23);
 		contentPane.add(button_1);
 	}
 }

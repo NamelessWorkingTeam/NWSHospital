@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.swing.JTextPane;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -16,8 +19,15 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-public class Fee extends JFrame {
+import team.nwsh.nwshospital.MySQLConnect;
 
+public class Fee extends JFrame {
+	
+	static String F_ID;           //身份证号
+	static String F_NAME;			//姓名
+	static String F_MED;			//储存RESULTS表查询到的RES_MED 药品收费
+	static String F_ITEMS;			//储存RESULTS表查询到的RES_ITEMS 项目收费
+	
 	private JPanel contentPane;
 	private JTable table;
 	private JTable table_1;
@@ -44,6 +54,22 @@ public class Fee extends JFrame {
 	 * Create the frame.
 	 */
 	public Fee() {
+		F_ID=RegisterSystem.PAT_ID;					//把输入身份证号页面的身份证号传给了F_ID
+		
+		//查询姓名
+				String sql_name= "SELECT PAT_NAME FROM PATIENTS WHERE PAT_ID='"+F_ID+"'";
+				MySQLConnect con_name= new MySQLConnect(sql_name);
+				try {
+					ResultSet ResultSet_NAME = con_name.pst.executeQuery();
+					while(ResultSet_NAME.next()){
+						F_NAME=ResultSet_NAME.getString("PAT_NAME");//将名字查询结果赋值给了P_NAME
+					}
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 550, 673);
 		contentPane = new JPanel();
@@ -76,17 +102,19 @@ public class Fee extends JFrame {
 		label_2.setBounds(189, 10, 70, 30);
 		panel_1.add(label_2);
 		
-		JLabel lblLabel = new JLabel("label3");
-		lblLabel.setForeground(Color.BLACK);
-		lblLabel.setFont(new Font("微软雅黑", Font.PLAIN, 14));
-		lblLabel.setBounds(109, 10, 70, 30);
-		panel_1.add(lblLabel);
+		JLabel Label_NAME = new JLabel("");
+		Label_NAME.setForeground(Color.BLACK);
+		Label_NAME.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+		Label_NAME.setBounds(109, 10, 70, 30);
+		panel_1.add(Label_NAME);
+		Label_NAME.setText(F_NAME);
 		
-		JLabel lblLabel_1 = new JLabel("label4");
-		lblLabel_1.setForeground(Color.BLACK);
-		lblLabel_1.setFont(new Font("微软雅黑", Font.PLAIN, 14));
-		lblLabel_1.setBounds(269, 10, 154, 30);
-		panel_1.add(lblLabel_1);
+		JLabel Label_ID = new JLabel("");
+		Label_ID.setForeground(Color.BLACK);
+		Label_ID.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+		Label_ID.setBounds(269, 10, 154, 30);
+		panel_1.add(Label_ID);
+		Label_ID.setText(F_ID);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(50, 126, 433, 211);
