@@ -73,7 +73,7 @@ public class Register extends JFrame {
 		panel.add(lblNewLabel);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(50, 76, 433, 281);
+		panel_1.setBounds(50, 76, 433, 306);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -150,8 +150,13 @@ public class Register extends JFrame {
 		panel_1.add(textField_ID);
 		textField_ID.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		
+		JLabel label_3 = new JLabel("\u9700\u8981\u6536\u53D6\u6302\u53F7\u8D39\uFF1A2 \u5143");
+		label_3.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
+		label_3.setBounds(128, 263, 210, 30);
+		panel_1.add(label_3);
+		
 		JButton btnNewButton_2 = new JButton("\u6536\u8D39\u5E76\u6302\u53F7");
-		btnNewButton_2.setBounds(166, 367, 108, 23);
+		btnNewButton_2.setBounds(165, 392, 108, 23);
 		contentPane.add(btnNewButton_2);
 		btnNewButton_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		
@@ -167,7 +172,7 @@ public class Register extends JFrame {
 			
 			}
 		});
-		btnNewButton_3.setBounds(315, 367, 93, 23);
+		btnNewButton_3.setBounds(314, 392, 93, 23);
 		contentPane.add(btnNewButton_3);
 		btnNewButton_3.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		btnNewButton_2.addActionListener(new ActionListener() {
@@ -176,7 +181,7 @@ public class Register extends JFrame {
 				if(comboBox_SEC.getSelectedItem().toString().compareTo("ÆÕÍ¨ÄÚ¿Æ") == 0) sec="5001";
 				if(comboBox_SEC.getSelectedItem().toString().compareTo("Îå¹Ù¿Æ") == 0)	sec="5002";
 				if(comboBox_SEC.getSelectedItem().toString().compareTo("¼ìÑé¿Æ") == 0)	sec="5003";
-				
+				if(comboBox_SEC.getSelectedItem().toString().compareTo("Éñ¾­¿Æ") == 0)	sec="5004";
 				String sql = "INSERT INTO PATIENTS VALUES('"+textField_ID.getText()+"','"+textField_NAME.getText()+"','"+textField_AGE.getText()+"','"+textField_SEX.getText()+"','"+textField_PHONE.getText()+"',null)";
 				String sql2= "INSERT INTO STATE VALUES(NULL,'"+textField_ID.getText()+"','"+sec+"',NULL,2)";
 				MySQLConnect con2= new MySQLConnect(sql2);

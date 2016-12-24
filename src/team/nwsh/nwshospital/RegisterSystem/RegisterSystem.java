@@ -62,7 +62,7 @@ public class RegisterSystem extends JFrame {
 		JLabel label = new JLabel("\u6302\u53F7\u5904");
 		label.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.BOLD, 16));
 		label.setBounds(199, 10, 50, 35);
-		panel.add(label);
+		panel.add(label); 
 		
 		JLabel label_2 = new JLabel("\u8BF7\u8F93\u5165\u8EAB\u4EFD\u8BC1\u53F7\uFF1A");
 		label_2.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 14));
@@ -116,6 +116,9 @@ public class RegisterSystem extends JFrame {
 								fee2.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 								fee2.setVisible(true);
 								dispose();
+								break;
+							case 5:
+								JOptionPane.showMessageDialog(null, "«Î»•“©∑ø»°“©£°", "Ã· æ", JOptionPane.INFORMATION_MESSAGE);
 								break;
 							}
 						}
