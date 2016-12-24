@@ -110,7 +110,7 @@ public class RegisterSystem extends JFrame {
 								JOptionPane.showMessageDialog(null, "正在就诊！", "提示", JOptionPane.ERROR_MESSAGE);
 								break;
 							case 4:
-								Fee fee2 = new Fee();
+								Fee fee2 = new Fee(textField.getText());		// *修改*新构造函数
 								fee2.setResizable(false);
 								fee2.setLocationRelativeTo(null);
 								fee2.setDefaultCloseOperation(DISPOSE_ON_CLOSE);

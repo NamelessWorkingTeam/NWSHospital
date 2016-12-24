@@ -41,6 +41,94 @@ public class Fee extends JFrame {
 	private JTable table;
 	private static JTable table_MED;
 	
+	/**
+	 * To LiuYeBian:
+	 * 整个MedicineTable()方法有重写！构造函数有修改！需要从RegisterSystem登录！
+	 * 还有170至181行添加了新的搜索方法
+	 * 另外，请在183至212药品和收费项目查询中添加搜索记录为空的判断！防止造成方法中查询错误！
+	 * From Liu Yummy
+	 */
+	public static void MedicineTable() {
+		// 药品列表
+		
+		// 根据SPLIT获取的数组制作要查询的WHERE部分的SQL语句
+		int i = 0;
+		String String_SQL_MED_ID_GROUP = "";
+		while(i < F_MED_SPLIT.length) {
+			
+			String_SQL_MED_ID_GROUP = String_SQL_MED_ID_GROUP + F_MED_SPLIT[i];
+			i = i + 1;
+			if(i != F_MED_SPLIT.length) {
+				String_SQL_MED_ID_GROUP = String_SQL_MED_ID_GROUP + " OR MED_ID = ";
+			}
+			
+		}
+		
+	    String String_SQL_MED_NAME = "SELECT MED_ID, MED_NAME, MED_PRICE " +
+									 	  "FROM MEDICINE " + 
+									 	  "WHERE MED_ID = " + String_SQL_MED_ID_GROUP;
+									 	  
+		MySQLConnect MySQLConnect_MED_NAME = new MySQLConnect(String_SQL_MED_NAME);
+		ResultSet RS_MED_NAME;
+		Vector RowData_MED_NAME, ColumnNames_MED_NAME;
+		ColumnNames_MED_NAME= new Vector();
+		ColumnNames_MED_NAME.add("");
+		ColumnNames_MED_NAME.add("");
+		ColumnNames_MED_NAME.add("");
+		// 建立表头
+		
+		RowData_MED_NAME=new Vector(); 
+		boolean INT_Found_MED_NAME = false;
+	    try {
+	    	RS_MED_NAME = MySQLConnect_MED_NAME.pst.executeQuery();
+	    	if(RS_MED_NAME.next()) {
+	    		INT_Found_MED_NAME = true;
+	    		Vector hang_MED=new Vector();
+	    		hang_MED.add(RS_MED_NAME.getString("MED_ID"));
+	    		hang_MED.add(RS_MED_NAME.getString("MED_NAME"));
+	        	hang_MED.add(RS_MED_NAME.getString("MED_PRICE"));
+	        	RowData_MED_NAME.add(hang_MED);
+				while (RS_MED_NAME.next()) {
+		            hang_MED=new Vector();
+		            hang_MED.add(RS_MED_NAME.getString("MED_ID"));
+		            hang_MED.add(RS_MED_NAME.getString("MED_PRICE"));
+		        	RowData_MED_NAME.add(hang_MED);
+		        }
+				RS_MED_NAME.close();
+		        MySQLConnect_MED_NAME.close();
+	    	}
+	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		table_MED=new JTable() {
+			// 设置表内数据不可修改
+			public boolean isCellEditable(int row, int column) { 
+			    return false;
+			}
+		};
+		
+	    // 用以上生成的“列数据集合”和“行数据集合”作为参数声明一个新的 表格模板
+		DefaultTableModel model_table_MED = new DefaultTableModel(RowData_MED_NAME, ColumnNames_MED_NAME);
+		table_MED.setModel(model_table_MED);		// 将表格模板更换为新生成的模板模板
+	
+		table_MED.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table_MED.setFont(new Font("微软雅黑", Font.PLAIN, 24));
+		table_MED.setRowHeight(50);
+		
+		if(INT_Found_MED_NAME) {
+			// START 设置 table_MED 内容居中
+			DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+			tcr.setHorizontalAlignment(SwingConstants.CENTER);// 这句和上句作用一样
+			table_MED.setDefaultRenderer(Object.class, tcr);
+			// END 设置 table_MED 内容居中
+		}
+		// END 候诊病人列表展示		
+	}
+	
+	
 
 	/**
 	 * Launch the application.
@@ -49,7 +137,7 @@ public class Fee extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Fee frame = new Fee();
+					Fee frame = new Fee(null);	// *修改*新构造函数
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -60,10 +148,10 @@ public class Fee extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param PAT_ID 
 	 */
-	public Fee() {
-		F_ID=RegisterSystem.PAT_ID;					//把输入身份证号页面的身份证号传给了F_ID
-		
+	public Fee(String PAT_ID) {         // *修改*新构造函数
+		F_ID=PAT_ID;					// *修改*新构造函数，把输入身份证号页面的身份证号传给了F_ID
 		//查询姓名
 				String sql_name= "SELECT PAT_NAME FROM PATIENTS WHERE PAT_ID='"+F_ID+"'";
 				MySQLConnect con_name= new MySQLConnect(sql_name);
@@ -72,46 +160,57 @@ public class Fee extends JFrame {
 					while(ResultSet_NAME.next()){
 						F_NAME=ResultSet_NAME.getString("PAT_NAME");//将名字查询结果赋值给了F_NAME
 					}
+					ResultSet_NAME.close();
+					con_name.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
-		//查询药品收费
-				String sql_med= "SELECT RES_MED FROM RESULTS WHERE PAT_ID='"+F_ID+"'";
+		//*修改*查询最新的RES_ID，因为要获取最新一条Result进行下方查询
+		String SQL_RES_ID= "SELECT RESULTS_ID FROM PATIENTS WHERE PAT_ID = '" + F_ID + "' LIMIT 1" ;
+		String RES_ID = null;
+		MySQLConnect con_RES_ID= new MySQLConnect(SQL_RES_ID);
+		try {
+			ResultSet ResultSet_RES_ID = con_RES_ID.pst.executeQuery();
+			ResultSet_RES_ID.next();
+			RES_ID= String.valueOf(ResultSet_RES_ID.getInt("RESULTS_ID"));//将最新的RES_ID查询结果赋值给了RES_ID
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		//查询药品收费   			*修改*用RES_ID进行查询
+				String sql_med= "SELECT RES_MED FROM RESULTS WHERE RES_ID="+RES_ID;
 				MySQLConnect con_med= new MySQLConnect(sql_med);
 				try {
 					ResultSet ResultSet_MED = con_med.pst.executeQuery();
-					while(ResultSet_MED.next()){
-						F_MED=ResultSet_MED.getString("RES_MED");//将药品查询结果赋值给了F_MED
+					ResultSet_MED.next();
+					F_MED=ResultSet_MED.getString("RES_MED");//将药品查询结果赋值给了F_MED
 						
-						F_MED_SPLIT=F_MED.split(",");				//split方法
-					}
+					F_MED_SPLIT=F_MED.split(",");				//split方法
+
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
-		//查询项目收费
-				String sql_items= "SELECT RES_ITEMS FROM RESULTS WHERE PAT_ID='"+F_ID+"'";
-				MySQLConnect con_items= new MySQLConnect(sql_items);
-				try {
-					ResultSet ResultSet_ITEMS = con_items.pst.executeQuery();
-					while(ResultSet_ITEMS.next()){
-						F_ITEMS=ResultSet_ITEMS.getString("RES_ITEMS");//将收费项目查询结果赋值给了F_ITEMS
-						
-						F_ITEMS_SPLIT=F_ITEMS.split(",");				//split方法
-					}
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				
-				
-				
-				
-				
+//		//查询项目收费
+//				String sql_items= "SELECT RES_ITEMS FROM RESULTS WHERE PAT_ID='"+F_ID+"'";
+//				MySQLConnect con_items= new MySQLConnect(sql_items);
+//				try {
+//					ResultSet ResultSet_ITEMS = con_items.pst.executeQuery();
+//					while(ResultSet_ITEMS.next()){
+//						F_ITEMS=ResultSet_ITEMS.getString("RES_ITEMS");//将收费项目查询结果赋值给了F_ITEMS
+//						
+//						F_ITEMS_SPLIT=F_ITEMS.split(",");				//split方法
+//					}
+
+//				} catch (SQLException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				
 				
 				
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -187,8 +286,8 @@ public class Fee extends JFrame {
 		label_6.setBounds(331, 39, 35, 30);
 		panel_2.add(label_6);
 		
-		//MedicineTable();
-		table_MED = new JTable();
+		MedicineTable();
+		// table_MED = new JTable();
 		table_MED.setBounds(10, 68, 413, 133);
 		panel_2.add(table_MED);
 		
@@ -203,7 +302,7 @@ public class Fee extends JFrame {
 				
 				System.out.println(F_MED_SPLIT[0]);					//测试传值用例
 				
-				String state = "UPDATE STATE SET STA_TUS =5 WHERE PAT_ID='"+F_ID+"'";
+				String state = "UPDATE STATE SET STA_TUS = 5 WHERE PAT_ID='" + F_ID + "'";
 				MySQLConnect STATE = new MySQLConnect(state);
 				try {
 					STATE.pst.executeUpdate();
