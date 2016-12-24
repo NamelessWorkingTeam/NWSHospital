@@ -181,7 +181,7 @@ public class Fee extends JFrame {
 			e.printStackTrace();
 		}
 				
-		//查询药品收费   			*修改*用RES_ID进行查询
+		//查询药品收费并对非空进行判断   			*修改*用RES_ID进行查询
 				String sql_med= "SELECT RES_MED FROM RESULTS WHERE RES_ID="+RES_ID;
 				MySQLConnect con_med= new MySQLConnect(sql_med);
 				try {
@@ -201,7 +201,7 @@ public class Fee extends JFrame {
 					e.printStackTrace();
 				}
 				
-		   //查询项目收费
+		   //查询项目收费并对非空进行判断
 				String sql_items= "SELECT RES_ITEMS FROM RESULTS WHERE RES_ID="+RES_ID;
 				MySQLConnect con_items= new MySQLConnect(sql_items);
 				try {
