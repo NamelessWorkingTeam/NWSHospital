@@ -62,9 +62,34 @@ public class Fee extends JFrame {
 				try {
 					ResultSet ResultSet_NAME = con_name.pst.executeQuery();
 					while(ResultSet_NAME.next()){
-						F_NAME=ResultSet_NAME.getString("PAT_NAME");//将名字查询结果赋值给了P_NAME
+						F_NAME=ResultSet_NAME.getString("PAT_NAME");//将名字查询结果赋值给了F_NAME
 					}
-					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				//查询药品收费
+				String sql_med= "SELECT RES_MED FROM RESULTS WHERE PAT_ID='"+F_ID+"'";
+				MySQLConnect con_med= new MySQLConnect(sql_med);
+				try {
+					ResultSet ResultSet_MED = con_med.pst.executeQuery();
+					while(ResultSet_MED.next()){
+						F_MED=ResultSet_MED.getString("RES_MED");//将名字查询结果赋值给了F_MED
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				//查询项目收费
+				String sql_items= "SELECT RES_ITEMS FROM RESULTS WHERE PAT_ID='"+F_ID+"'";
+				MySQLConnect con_items= new MySQLConnect(sql_items);
+				try {
+					ResultSet ResultSet_ITEMS = con_items.pst.executeQuery();
+					while(ResultSet_ITEMS.next()){
+						F_ITEMS=ResultSet_ITEMS.getString("RES_ITEMS");//将名字查询结果赋值给了F_ITEMS
+					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

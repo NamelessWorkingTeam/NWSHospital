@@ -62,7 +62,7 @@ public class RegisterSystem extends JFrame {
 		JLabel label = new JLabel("\u6302\u53F7\u5904");
 		label.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 16));
 		label.setBounds(199, 10, 50, 35);
-		panel.add(label);
+		panel.add(label); 
 		
 		JLabel label_2 = new JLabel("\u8BF7\u8F93\u5165\u8EAB\u4EFD\u8BC1\u53F7\uFF1A");
 		label_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
