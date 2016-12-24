@@ -50,6 +50,14 @@ import java.awt.Panel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.DefaultComboBoxModel;
 
+/**
+ * 
+ * @author liu
+ * 请参考107至171行学习使用表格信息的插入！
+ * 请在仔细查看后再进行修改！
+ * 祝一次成功！
+ * 
+ */
 
 
 public class DoctorSystem extends JFrame {
@@ -70,7 +78,13 @@ public class DoctorSystem extends JFrame {
     private JTable table_5;
     
     private String PAT_ID = null;
-	/**
+    private Vector vData_table_4 = null;
+    private Vector vName_table_4 = null;
+    private Vector vRow_table_4 = null;
+    private Vector vData_table_5 = null;
+    private Vector vName_table_5 = null;
+    private Vector vRow_table_5 = null;
+    /**
 	 * @wbp.nonvisual location=969,148
 	 */
 
@@ -99,22 +113,21 @@ public class DoctorSystem extends JFrame {
 		MySQLConnect MySQLConnect_Connection_WAIT = new MySQLConnect(String_SQL_PAT_NAME_WAIT);
 		ResultSet RS_PAT_NAME_WAIT;
 		Vector RowData_WAIT, ColumnNames_WAIT;
-		ColumnNames_WAIT= new Vector();
-		ColumnNames_WAIT.add("");
-		ColumnNames_WAIT.add("");
-		// 建立表头
+		ColumnNames_WAIT= new Vector();			// 建立列集合
+		ColumnNames_WAIT.add("");				// 添加列头
+		ColumnNames_WAIT.add("");				// 添加列头
 		
-		RowData_WAIT=new Vector(); 
+		RowData_WAIT=new Vector(); 				// 建立行数据集合
 		boolean INT_Found_PAT_NAME_WAIT = false;
 	    try {
 	    	RS_PAT_NAME_WAIT = MySQLConnect_Connection_WAIT.pst.executeQuery();
 	    	if(RS_PAT_NAME_WAIT.next()) {
 	    		INT_Found_PAT_NAME_WAIT = true;
-	    		Vector hang_WAIT=new Vector();
-	    		hang_WAIT.add(RS_PAT_NAME_WAIT.getString("STA_ID"));
-	        	hang_WAIT.add(RS_PAT_NAME_WAIT.getString("PAT_NAME"));
-	        	RowData_WAIT.add(hang_WAIT);
-				while (RS_PAT_NAME_WAIT.next()) {
+	    		Vector hang_WAIT=new Vector();								// 建立行内数据集合
+	    		hang_WAIT.add(RS_PAT_NAME_WAIT.getString("STA_ID"));		// 添加行内第一列数据
+	        	hang_WAIT.add(RS_PAT_NAME_WAIT.getString("PAT_NAME"));		// 添加行内第二列数据
+	        	RowData_WAIT.add(hang_WAIT);								// 将添加完数据的 行内数据集 添加到 行数据集合 中去
+				while (RS_PAT_NAME_WAIT.next()) {							// 循环创建 行内数据集 并添加到 行数据集合
 		            hang_WAIT=new Vector();
 		            hang_WAIT.add(RS_PAT_NAME_WAIT.getString("STA_ID"));
 		            hang_WAIT.add(RS_PAT_NAME_WAIT.getString("PAT_NAME"));
@@ -129,16 +142,20 @@ public class DoctorSystem extends JFrame {
 			e.printStackTrace();
 		}
 	    
+	    /**
+	     * 
+	     * 注意！此处我们使用模板来向表中添加数据！
+	     * 这样可以避免重复声明表格的步骤！方便多次修改！
+	     * 多次修改的用法请参考本文件第947行上下文使用方式！
+	     * 本文件还涉及到另一种动态添加的方式，请参考本文件562行至601行内容！
+	     * 
+	     */
 	    
-		table_1=new JTable(RowData_WAIT, ColumnNames_WAIT) {
-			// 设置表内数据不可修改
-			public boolean isCellEditable(int row, int column) { 
-			    return false;
-			}
-		};
+	    // 用以上生成的“列数据集合”和“行数据集合”作为参数声明一个新的 表格模板
+		DefaultTableModel model_table_1 = new DefaultTableModel(RowData_WAIT, ColumnNames_WAIT);
+		table_1.setModel(model_table_1);		// 将表格模板更换为新生成的模板模板
+		
 		table_1.setEnabled(false);
-
-
 		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_1.setFont(new Font("微软雅黑", Font.PLAIN, 24));
 		table_1.setRowHeight(50);
@@ -153,7 +170,7 @@ public class DoctorSystem extends JFrame {
 		// END 候诊病人列表展示		
 	}
 	
-	public static void PatientDoneList() {
+	public static void PatientDoneTable() {
 		// START 已就诊病人列表展示
 		
 		String String_SQL_PAT_NAME_DONE = "SELECT STATE.STA_ID, PATIENTS.PAT_NAME " +
@@ -193,12 +210,9 @@ public class DoctorSystem extends JFrame {
 		
 
 
+		DefaultTableModel model_table_2 = new DefaultTableModel(RowData_DONE, ColumnNames_DONE);
+		table_2.setModel(model_table_2);
 		
-		table_2 = new JTable(RowData_DONE, ColumnNames_DONE) {
-			public boolean isCellEditable(int row, int column) {
-				return false;
-			}
-		};
 		table_2.setEnabled(false);
 		table_2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_2.setRowHeight(50);
@@ -261,6 +275,12 @@ public class DoctorSystem extends JFrame {
 		
 				
 		// 列出等候病人列表
+		table_1=new JTable() {
+		// 设置表内数据不可修改
+			public boolean isCellEditable(int row, int column) { 
+				return false;
+			}
+		};
 		PatientWaitTable();
 
 				
@@ -275,8 +295,20 @@ public class DoctorSystem extends JFrame {
 		JLabel label_1 = new JLabel("\u5DF2\u5C31\u8BCA\u75C5\u4EBA");
 		label_1.setFont(new Font("微软雅黑", Font.BOLD, 28));
 		
+		
+		
+		
 		// 列出已诊断病人列表
-		PatientDoneList();
+		table_2 = new JTable() {
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		PatientDoneTable();
+		
+		
+		
+		
 		JLabel label_2 = new JLabel("\u5965\u65AF\u7279\u6D1B\u592B");
 		label_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_2.setFont(new Font("微软雅黑", Font.BOLD, 50));
@@ -536,16 +568,16 @@ public class DoctorSystem extends JFrame {
 		panel_3.setLayout(gl_panel_3);
 		
 		table = new JTable();
-		Vector vData_table_4 = new Vector();
-		Vector vName_table_4 = new Vector();
+		vData_table_4 = new Vector();
+		vName_table_4 = new Vector();
 		vName_table_4.add("column1");
 		vName_table_4.add("column2");
 		vName_table_4.add("column3");
 		table_4.setRowHeight(50);
 		table_4.setFont(new Font("微软雅黑", Font.PLAIN, 24));
 		
-		Vector vData_table_5 = new Vector();
-		Vector vName_table_5 = new Vector();
+		vData_table_5 = new Vector();
+		vName_table_5 = new Vector();
 		vName_table_5.add("column1");
 		vName_table_5.add("column2");
 		vName_table_5.add("column3");
@@ -556,7 +588,7 @@ public class DoctorSystem extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if(comboBox.getSelectedIndex() == 0) {
-					Vector vRow_table_4 = new Vector();
+					vRow_table_4 = new Vector();
 					vRow_table_4.add(table.getValueAt(table.getSelectedRow(), table.getColumnCount() - 3).toString());
 					vRow_table_4.add(table.getValueAt(table.getSelectedRow(), table.getColumnCount() - 2).toString());
 					vRow_table_4.add(table.getValueAt(table.getSelectedRow(), table.getColumnCount() - 1).toString());
@@ -565,7 +597,7 @@ public class DoctorSystem extends JFrame {
 					table_4.setModel(model_table_4);
 				}
 				if(comboBox.getSelectedIndex() == 1) {
-					Vector vRow_table_5 = new Vector();
+					vRow_table_5 = new Vector();
 					vRow_table_5.add(table.getValueAt(table.getSelectedRow(), table.getColumnCount() - 3).toString());
 					vRow_table_5.add(table.getValueAt(table.getSelectedRow(), table.getColumnCount() - 2).toString());
 					vRow_table_5.add(table.getValueAt(table.getSelectedRow(), table.getColumnCount() - 1).toString());
@@ -791,6 +823,18 @@ public class DoctorSystem extends JFrame {
 				comboBox.setEnabled(true);
 				textField_4.setEnabled(true);
 				button.setEnabled(true);
+				// 将状态码修改为就诊状态 STA_TUS = 3
+		        String String_SQL_UPDATE_STATE = "UPDATE STATE SET STA_TUS = 3 "
+						+ "WHERE PAT_ID = '" + PAT_ID + "';";
+				MySQLConnect MySQLConnect_Connection_UPDATE_STATE = new MySQLConnect(String_SQL_UPDATE_STATE);
+				try {
+				MySQLConnect_Connection_UPDATE_STATE.pst.executeUpdate();
+				MySQLConnect_Connection_UPDATE_STATE.pst.close();
+				MySQLConnect_Connection_UPDATE_STATE.close();
+				} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				}
 			}
 		});
 		button2.addActionListener(new ActionListener() {
@@ -837,7 +881,8 @@ public class DoctorSystem extends JFrame {
 				// 将RES_NUM四舍五入保留两位小数
 		        DecimalFormat df = new DecimalFormat("#.00");
 		        Double_RES_SUM = Double.parseDouble(df.format(Double.parseDouble(Double_RES_SUM.toString())));
-
+		        
+		        // 插入结果记录到RESULTS表
 		        String String_SQL_INSERT_RESULT = "INSERT INTO RESULTS VALUES(NULL, "
 		        																	+ "'" + DOC_ID + "', "
 		        																	+ "'" + PAT_ID + "', "
@@ -854,7 +899,37 @@ public class DoctorSystem extends JFrame {
 					e1.printStackTrace();
 				}
 				
-		        String String_SQL_UPDATE_STATE = "UPDATE STATE SET STA_TUS = 3 "
+				// 获取病人最新的结果编号
+				int int_RES_ID = 0;
+		        String String_SQL_RES_ID = "SELECT RES_ID " +
+						 "FROM RESULTS WHERE PAT_ID = '" + PAT_ID + "' ORDER BY RES_ID DESC LIMIT 1;";
+				MySQLConnect Connection_RES_ID = new MySQLConnect(String_SQL_RES_ID);
+				try {
+					ResultSet RS_RES_ID = Connection_RES_ID.pst.executeQuery();
+					RS_RES_ID.next();
+					int_RES_ID = RS_RES_ID.getInt("RES_ID");
+					RS_RES_ID.close();
+					Connection_RES_ID.close();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				// 将病人与最后一次就诊记录连接
+		        String String_SQL_UPDATE_PATIENT = "UPDATE PATIENTS SET RESULTS_ID = " + int_RES_ID
+						+ " WHERE PAT_ID = '" + PAT_ID + "';";
+				MySQLConnect MySQLConnect_Connection_UPDATE_PATIENT = new MySQLConnect(String_SQL_UPDATE_PATIENT);
+				try {
+				MySQLConnect_Connection_UPDATE_PATIENT.pst.executeUpdate();
+				MySQLConnect_Connection_UPDATE_PATIENT.pst.close();
+				MySQLConnect_Connection_UPDATE_PATIENT.close();
+				} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				}
+				
+				// 将状态码修改为已结诊待收取医药费状态 STA_TUS = 4
+		        String String_SQL_UPDATE_STATE = "UPDATE STATE SET STA_TUS = 4 "
 						+ "WHERE PAT_ID = '" + PAT_ID + "';";
 				MySQLConnect MySQLConnect_Connection_UPDATE_STATE = new MySQLConnect(String_SQL_UPDATE_STATE);
 				try {
@@ -865,6 +940,32 @@ public class DoctorSystem extends JFrame {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 				}
+				
+				vData_table_4 = new Vector();
+				vName_table_4 = new Vector();
+				vName_table_4.add("column1");
+				vName_table_4.add("column2");
+				vName_table_4.add("column3");
+				vRow_table_4 = new Vector();
+				DefaultTableModel model_table_4 = new DefaultTableModel(vData_table_4, vName_table_4);
+				table_4.setModel(model_table_4);
+				
+				vData_table_5 = new Vector();
+				vName_table_5 = new Vector();
+				vName_table_5.add("column1");
+				vName_table_5.add("column2");
+				vName_table_5.add("column3");
+				vRow_table_5 = new Vector();
+				DefaultTableModel model_table_5 = new DefaultTableModel(vData_table_5, vName_table_5);
+				table_5.setModel(model_table_5);
+				
+				textField.setText(null);
+				textField_1.setText(null);
+				textField_2.setText(null);
+				textField_3.setText(null);
+				
+				PatientWaitTable();
+				PatientDoneTable();
 				
 			}
 		});
