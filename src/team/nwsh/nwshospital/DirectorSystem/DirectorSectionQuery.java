@@ -10,6 +10,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.chart.title.TextTitle;
+import org.jfree.data.general.DefaultPieDataset;
+
 import java.awt.Font;
 import java.sql.*;
 import javax.swing.*;
@@ -116,6 +122,9 @@ public class DirectorSectionQuery extends JFrame implements ActionListener  {
 			SectionModel sm=new SectionModel(sql);
 			Smjt.setModel(sm);
 		}
+		
+		//test start
+		
 	}
 }
 

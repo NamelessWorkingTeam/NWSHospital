@@ -5,5 +5,10 @@
 	<classpathentry kind="lib" path="mysql-connector-java-5.1.40-bin.jar"/>
 	<classpathentry kind="lib" path="jgoodies-forms-1.8.0.jar" sourcepath="jgoodies-forms-1.8.0-sources.jar"/>
 	<classpathentry kind="lib" path="miglayout15-swing.jar" sourcepath="miglayout-src.zip"/>
+	<classpathentry kind="lib" path="javax.servlet.jar"/>
+	<classpathentry kind="lib" path="javax.servlet.jsp.jar"/>
+	<classpathentry kind="lib" path="jfreechart-1.0.10.jar"/>
+	<classpathentry kind="lib" path="log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="jcommon-1.0.15.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
