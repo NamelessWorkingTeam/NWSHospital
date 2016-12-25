@@ -34,12 +34,13 @@ public class Fee extends JFrame {
 	static String F_NAME;			//姓名
 	static String F_MED;			//储存RESULTS表查询到的RES_MED 药品收费
 	static String [] F_MED_SPLIT;	//将F_MED分割开
-	static String F_ITEMS;			//储存RESULTS表查询到的RES_ITEMS 项目收费
-	static String [] F_ITEMS_SPLIT;	//将F_ITEMS分隔开
+	static String F_ITEM;			//储存RESULTS表查询到的RES_ITEM 项目收费
+	static String [] F_ITEM_SPLIT;	//将F_ITEM分隔开
 	
 	private JPanel contentPane;
 	private JTable table;
 	private static JTable table_MED;
+	private static JTable table_ITEM;
 	
 	/**
 	 * To LiuYeBian:
@@ -126,9 +127,90 @@ public class Fee extends JFrame {
 			table_MED.setDefaultRenderer(Object.class, tcr);
 			// END 设置 table_MED 内容居中
 		}
-		// END 候诊病人列表展示		
+		// END 第一个表格 药品收费表格		
 	}
 	
+	
+	public static void ItemTable() {
+		// 收费项目列表
+		
+		// 根据SPLIT获取的数组制作要查询的WHERE部分的SQL语句
+		int i = 0;
+		String String_SQL_ITEM_ID_GROUP = "";
+		while(i < F_ITEM_SPLIT.length) {
+			
+			String_SQL_ITEM_ID_GROUP = String_SQL_ITEM_ID_GROUP + F_ITEM_SPLIT[i];
+			i = i + 1;
+			if(i != F_ITEM_SPLIT.length) {
+				String_SQL_ITEM_ID_GROUP = String_SQL_ITEM_ID_GROUP + " OR ITEM_ID = ";
+			}
+			
+		}
+		
+	    String String_SQL_ITEM_NAME = "SELECT ITEM_ID, ITEM_NAME, ITEM_PRICE " +
+									 	  "FROM ITEMS " + 
+									 	  "WHERE ITEM_ID = " + String_SQL_ITEM_ID_GROUP;
+									 	  
+		MySQLConnect MySQLConnect_ITEM_NAME = new MySQLConnect(String_SQL_ITEM_NAME);
+		ResultSet RS_ITEM_NAME;
+		Vector RowData_ITEM_NAME, ColumnNames_ITEM_NAME;
+		ColumnNames_ITEM_NAME= new Vector();
+		ColumnNames_ITEM_NAME.add("");
+		ColumnNames_ITEM_NAME.add("");
+		ColumnNames_ITEM_NAME.add("");
+		// 建立表头
+		
+		RowData_ITEM_NAME=new Vector(); 
+		boolean INT_Found_ITEM_NAME = false;
+	    try {
+	    	RS_ITEM_NAME = MySQLConnect_ITEM_NAME.pst.executeQuery();
+	    	if(RS_ITEM_NAME.next()) {
+	    		INT_Found_ITEM_NAME = true;
+	    		Vector hang_ITEM=new Vector();
+	    		hang_ITEM.add(RS_ITEM_NAME.getString("ITEM_ID"));
+	    		hang_ITEM.add(RS_ITEM_NAME.getString("ITEM_NAME"));
+	        	hang_ITEM.add(RS_ITEM_NAME.getString("ITEM_PRICE"));
+	        	RowData_ITEM_NAME.add(hang_ITEM);
+				while (RS_ITEM_NAME.next()) {
+		            hang_ITEM=new Vector();
+		            hang_ITEM.add(RS_ITEM_NAME.getString("ITEM_ID"));
+		            hang_ITEM.add(RS_ITEM_NAME.getString("ITEM_NAME"));
+		            hang_ITEM.add(RS_ITEM_NAME.getString("ITEM_PRICE"));
+		        	RowData_ITEM_NAME.add(hang_ITEM);
+		        }
+				RS_ITEM_NAME.close();
+		        MySQLConnect_ITEM_NAME.close();
+	    	}
+	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		table_ITEM=new JTable() {
+			// 设置表内数据不可修改
+			public boolean isCellEditable(int row, int column) { 
+			    return false;
+			}
+		};
+		
+	    // 用以上生成的“列数据集合”和“行数据集合”作为参数声明一个新的 表格模板
+		DefaultTableModel model_table_ITEM = new DefaultTableModel(RowData_ITEM_NAME, ColumnNames_ITEM_NAME);
+		table_ITEM.setModel(model_table_ITEM);		// 将表格模板更换为新生成的模板模板
+	
+		table_ITEM.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table_ITEM.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+		table_ITEM.setRowHeight(20);
+		
+		if(INT_Found_ITEM_NAME) {
+			// START 设置 table_ITEM 内容居中
+			DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+			tcr.setHorizontalAlignment(SwingConstants.CENTER);// 这句和上句作用一样
+			table_ITEM.setDefaultRenderer(Object.class, tcr);
+			// END 设置 table_ITEMITEM 内容居中
+		}
+		// END 第一个表格 药品收费表格		
+	}
 	
 
 	/**
@@ -202,17 +284,17 @@ public class Fee extends JFrame {
 				}
 				
 		   //查询项目收费并对非空进行判断
-				String sql_items= "SELECT RES_ITEMS FROM RESULTS WHERE RES_ID="+RES_ID;
-				MySQLConnect con_items= new MySQLConnect(sql_items);
+				String sql_ITEM= "SELECT RES_ITEMS FROM RESULTS WHERE RES_ID="+RES_ID;
+				MySQLConnect con_ITEM= new MySQLConnect(sql_ITEM);
 				try {
-					ResultSet ResultSet_ITEMS = con_items.pst.executeQuery();
-					ResultSet_ITEMS.next();
-					if(ResultSet_ITEMS.getString("RES_ITEMS").compareTo("NULL")==0){
+					ResultSet ResultSet_ITEM = con_ITEM.pst.executeQuery();
+					ResultSet_ITEM.next();
+					if(ResultSet_ITEM.getString("RES_ITEMS").compareTo("NULL")==0){
 						JOptionPane.showMessageDialog(null, "项目收费查询结果为空", "提示", JOptionPane.ERROR_MESSAGE);
 					}
 					else {
-						F_ITEMS=ResultSet_ITEMS.getString("RES_ITEMS");//将收费项目查询结果赋值给了F_ITEMS
-						F_ITEMS_SPLIT=F_ITEMS.split(",");				//split方法
+						F_ITEM=ResultSet_ITEM.getString("RES_ITEMS");//将收费项目查询结果赋值给了F_ITEM
+						F_ITEM_SPLIT=F_ITEM.split(",");				//split方法
 					}
 						
 				} catch (SQLException e) {
@@ -360,6 +442,11 @@ public class Fee extends JFrame {
 		label_10.setBounds(342, 39, 70, 30);
 		panel_3.add(label_10);
 		
+		ItemTable();
+		//table_ITEM = new JTable();
+		table_ITEM.setBounds(10, 68, 413, 133);
+		panel_3.add(table_ITEM);
+		
 		JButton button_1 = new JButton("\u8FD4\u56DE");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -376,90 +463,4 @@ public class Fee extends JFrame {
 		contentPane.add(button_1);
 		button_1.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 	}
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-	
-//	public static void MedicineTable() {
-//		// 药品列表
-////		int i = 0;
-//        String String_SQL_MED_NAME = "SELECT MED_NAME, MED_PRICE " +
-//									 	  "FROM MEDICINE " + 
-//									 	  "WHERE MED_ID = '"+F_MED_SPLIT[0]+"' " ;
-//									 	  
-//		MySQLConnect MySQLConnect_MED_NAME = new MySQLConnect(String_SQL_MED_NAME);
-//		ResultSet RS_MED_NAME;
-//		Vector RowData_MED_NAME, ColumnNames_MED_NAME;
-//		ColumnNames_MED_NAME= new Vector();
-//		ColumnNames_MED_NAME.add("");
-//		ColumnNames_MED_NAME.add("");
-//		// 建立表头
-//		
-//		RowData_MED_NAME=new Vector(); 
-//		boolean INT_Found_MED_NAME = false;
-//	    try {
-//	    	RS_MED_NAME = MySQLConnect_MED_NAME.pst.executeQuery();
-//	    	if(RS_MED_NAME.next()) {
-//	    		INT_Found_MED_NAME = true;
-//	    		Vector hang_MED=new Vector();
-//	    		hang_MED.add(RS_MED_NAME.getString("MED_NAME"));
-//	        	hang_MED.add(RS_MED_NAME.getString("MED_PRICE"));
-//	        	RowData_MED_NAME.add(hang_MED);
-//				while (RS_MED_NAME.next()) {
-//		            hang_MED=new Vector();
-//		            hang_MED.add(RS_MED_NAME.getString("MED_NAME"));
-//		            hang_MED.add(RS_MED_NAME.getString("MED_PRICE"));
-//		        	RowData_MED_NAME.add(hang_MED);
-//		        }
-//				RS_MED_NAME.close();
-//		        MySQLConnect_MED_NAME.close();
-//	    	}
-//
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	    
-//	    
-//		table_MED=new JTable(RowData_MED_NAME, ColumnNames_MED_NAME) {
-//			// 设置表内数据不可修改
-//			public boolean isCellEditable(int row, int column) { 
-//			    return false;
-//			}
-//		};
-//		table_MED.setEnabled(false);
-//
-//
-//		table_MED.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//		table_MED.setFont(new Font("微软雅黑", Font.PLAIN, 24));
-//		table_MED.setRowHeight(50);
-//		
-//		if(INT_Found_MED_NAME) {
-//			// START 设置 table_MED 内容居中
-//			DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-//			tcr.setHorizontalAlignment(SwingConstants.CENTER);// 这句和上句作用一样
-//			table_MED.setDefaultRenderer(Object.class, tcr);
-//			// END 设置 table_MED 内容居中
-//		}
-//		// END 候诊病人列表展示		
-//	}
-//	
-//	第二次commit（这句话没有用为了commit）
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-	
-
 }
