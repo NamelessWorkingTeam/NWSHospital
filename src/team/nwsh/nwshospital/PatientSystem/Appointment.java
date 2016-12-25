@@ -96,7 +96,7 @@ public class Appointment extends JFrame {
 		contentPane.add(textField_3);
 		
 		JComboBox SectionSelect = new JComboBox();
-		SectionSelect.setModel(new DefaultComboBoxModel(new String[] {"\u666E\u901A\u5916\u79D1", "\u666E\u901A\u5185\u79D1", "\u4E94\u5B98\u79D1", "\u68C0\u9A8C\u79D1"}));
+		SectionSelect.setModel(new DefaultComboBoxModel(new String[] {"\u666E\u901A\u5916\u79D1", "\u666E\u901A\u5185\u79D1", "\u4E94\u5B98\u79D1", "\u68C0\u9A8C\u79D1", "\u795E\u7ECF\u79D1"}));
 		SectionSelect.setBounds(401, 287, 114, 21);
 		contentPane.add(SectionSelect);
 		
@@ -171,6 +171,7 @@ public class Appointment extends JFrame {
 		if(SectionSelect.getSelectedItem().toString().compareTo("普通内科") == 0) sec="5001";
 		if(SectionSelect.getSelectedItem().toString().compareTo("五官科") == 0)	sec="5002";
 		if(SectionSelect.getSelectedItem().toString().compareTo("检验科") == 0)	sec="5003";
+		if(SectionSelect.getSelectedItem().toString().compareTo("神经科") == 0)	sec="5004";
 		if(SexSelect.getSelectedItem().toString().compareTo("男") == 0)	sex="M";
 		if(SexSelect.getSelectedItem().toString().compareTo("女") == 0)	sex="F";
 		
