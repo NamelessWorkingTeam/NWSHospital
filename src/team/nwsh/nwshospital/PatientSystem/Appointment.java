@@ -175,6 +175,7 @@ public class Appointment extends JFrame {
 		if(SexSelect.getSelectedItem().toString().compareTo("ÄÐ") == 0)	sex="M";
 		if(SexSelect.getSelectedItem().toString().compareTo("Å®") == 0)	sex="F";
 		
+		
 		JButton Submitting = new JButton("\u63D0\u4EA4");
 		Submitting.setFont(new Font("ËÎÌו", Font.PLAIN, 18));
 		Submitting.setBounds(433, 418, 111, 32);
