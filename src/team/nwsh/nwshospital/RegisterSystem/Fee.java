@@ -30,6 +30,8 @@ import java.awt.event.ActionEvent;
 
 public class Fee extends JFrame {
 	
+	static double F_SUM;
+	static String F_SUM_STRING;   //转换为string类型的F_SUM
 	static String F_ID;           //身份证号
 	static String F_NAME;			//姓名
 	static String F_MED;			//储存RESULTS表查询到的RES_MED 药品收费
@@ -302,6 +304,21 @@ public class Fee extends JFrame {
 					e.printStackTrace();
 				}
 				
+			//查询收费总价并对非空进行判断
+				String sql_SUM= "SELECT RES_SUM FROM RESULTS WHERE RES_ID="+RES_ID;
+				MySQLConnect con_SUM= new MySQLConnect(sql_SUM);
+				try {
+					ResultSet ResultSet_SUM = con_SUM.pst.executeQuery();
+					ResultSet_SUM.next();
+					//ResultSet_SUM.getDouble("RES_SUM");
+					F_SUM=ResultSet_SUM.getDouble("RES_SUM");		//将收费总价查询结果赋值给了F_SUM
+					F_SUM_STRING=Double.toString(F_SUM);			//结果转string为F_SUM_STRING
+					//JOptionPane.showMessageDialog(null, "项目收费查询结果为空", "提示", JOptionPane.ERROR_MESSAGE);
+		
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 				
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -364,7 +381,7 @@ public class Fee extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("\u836F\u54C1\u7F16\u53F7");
 		lblNewLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-		lblNewLabel.setBounds(41, 39, 70, 30);
+		lblNewLabel.setBounds(55, 39, 70, 30);
 		panel_2.add(lblNewLabel);
 		
 		JLabel label_3 = new JLabel("\u836F\u54C1\u540D\u79F0");
@@ -374,7 +391,7 @@ public class Fee extends JFrame {
 		
 		JLabel label_6 = new JLabel("\u5355\u4EF7");
 		label_6.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-		label_6.setBounds(331, 39, 35, 30);
+		label_6.setBounds(342, 39, 35, 30);
 		panel_2.add(label_6);
 		
 		MedicineTable();
@@ -397,7 +414,7 @@ public class Fee extends JFrame {
 				MySQLConnect STATE = new MySQLConnect(state);
 				try {
 					STATE.pst.executeUpdate();
-					JOptionPane.showMessageDialog(null, "收费成功！", "提示",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "收费成功！请去药房取药！", "提示",JOptionPane.INFORMATION_MESSAGE);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(null, "收费失败！", "提示", JOptionPane.ERROR_MESSAGE);
@@ -406,13 +423,13 @@ public class Fee extends JFrame {
 				
 			}
 		});
-		button.setBounds(160, 583, 93, 23);
+		button.setBounds(159, 601, 93, 23);
 		contentPane.add(button);
 		button.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setLayout(null);
-		panel_3.setBounds(50, 347, 433, 211);
+		panel_3.setBounds(50, 347, 433, 244);
 		contentPane.add(panel_3);
 		
 		JLabel label_8 = new JLabel("\u9879\u76EE\u6536\u8D39\uFF1A");
@@ -429,12 +446,12 @@ public class Fee extends JFrame {
 		
 		JLabel label_7 = new JLabel("\u9879\u76EE\u7F16\u53F7");
 		label_7.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-		label_7.setBounds(61, 39, 70, 30);
+		label_7.setBounds(55, 39, 70, 30);
 		panel_3.add(label_7);
 		
 		JLabel label_9 = new JLabel("\u9879\u76EE\u540D\u79F0");
 		label_9.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-		label_9.setBounds(197, 39, 70, 30);
+		label_9.setBounds(195, 39, 70, 30);
 		panel_3.add(label_9);
 		
 		JLabel label_10 = new JLabel("\u5355\u4EF7");
@@ -446,6 +463,17 @@ public class Fee extends JFrame {
 		//table_ITEM = new JTable();
 		table_ITEM.setBounds(10, 68, 413, 133);
 		panel_3.add(table_ITEM);
+		
+		JLabel label_4 = new JLabel("\u603B\u4EF7\uFF1A");
+		label_4.setBounds(10, 211, 70, 30);
+		panel_3.add(label_4);
+		label_4.setFont(new Font("微软雅黑", Font.BOLD, 14));
+		
+		JLabel lblSum = new JLabel("<sum>");
+		lblSum.setBounds(55, 211, 85, 30);
+		panel_3.add(lblSum);
+		lblSum.setFont(new Font("微软雅黑", Font.BOLD, 14));
+		lblSum.setText(F_SUM_STRING);
 		
 		JButton button_1 = new JButton("\u8FD4\u56DE");
 		button_1.addActionListener(new ActionListener() {
@@ -459,7 +487,7 @@ public class Fee extends JFrame {
 				
 			}
 		});
-		button_1.setBounds(294, 583, 93, 23);
+		button_1.setBounds(293, 601, 93, 23);
 		contentPane.add(button_1);
 		button_1.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 	}
