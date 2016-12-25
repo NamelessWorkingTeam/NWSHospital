@@ -106,7 +106,8 @@ public class AdminSystemInsertAccNum extends JFrame {
 				String sql="INSERT INTO ACCOUNTS VALUES ('"+textField.getText()+"','"+textField_1.getText()+"','"+passwordField.getText()+"','"+textField_2.getText()+"')";
 				   MySQLConnect con=new MySQLConnect(sql);
 				   int key=1;//定义一个中间变量，来判断输入信息的窗口，如果成功 则 保存成功
-				   try{if(textField.getText().equals("")||textField_1.getText().equals("")||passwordField.getText().equals("")||textField_2.getText().equals("")) 
+				   try{
+					if(textField.getText().equals("")||textField_1.getText().equals("")||passwordField.getText().equals("")||textField_2.getText().equals("")) 
 				   {JOptionPane.showMessageDialog(null, "内容不能为空"); key=0;}	
 				   if(key==1) { con.pst.executeUpdate();   JOptionPane.showMessageDialog(null, "保存成功");}
 				   }catch(SQLException e1){

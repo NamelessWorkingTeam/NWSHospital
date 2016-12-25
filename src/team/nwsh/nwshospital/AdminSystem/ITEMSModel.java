@@ -93,21 +93,16 @@ public class ITEMSModel extends AbstractTableModel {
 	}
 
 	@Override
-	public Object getValueAt(int rowIndex, int columnIndex) {
-		// TODO Auto-generated method stub
-		return ((Vector) this.RowData.get(rowIndex)).get(columnIndex);
+	public Object getValueAt(int row, int column) {
+		// TODO 自动生成的方法存根
+		return ((Vector)this.RowData.get(row)).get(column);
 	}
 
-	@Override
-	public String getColumnName(int column) {
-		// TODO Auto-generated method stub
-		return super.getColumnName(column);
-	}
 
 	@Override
-	public Class<?> getColumnClass(int columnIndex) {
-		// TODO Auto-generated method stub
-		return super.getColumnClass(columnIndex);
+	public String getColumnName(int arg0) {
+		// TODO 自动生成的方法存根
+		return (String)this.ColumnNames.get(arg0);
 	}
     
 

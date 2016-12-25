@@ -5,10 +5,7 @@ import java.awt.EventQueue;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+
 import javax.swing.border.EmptyBorder;
 import java.awt.Font;
 import java.sql.*;
@@ -18,9 +15,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import team.nwsh.nwshospital.MySQLConnect;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JLabel;
+
 import javax.swing.table.DefaultTableModel;
 
 public class AdminSystemShowSECTIONInfo extends JFrame implements ActionListener  {
@@ -86,6 +81,21 @@ public class AdminSystemShowSECTIONInfo extends JFrame implements ActionListener
 		btnNewButton_3.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		panel_1.add(btnNewButton_3);
 		JButton btnNewButton_4 = new JButton("删除");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String sql="DELETE FROM SECTIONS WHERE SEC_NAME = ('"+textField.getText()+"')";
+				MySQLConnect con=new MySQLConnect(sql);	
+				int key=1;//定义一个中间变量，来判断输入信息的窗口，如果成功 则 保存成功
+				try{
+					if(textField.getText().equals("")){
+						JOptionPane.showMessageDialog(null, "内容不能为空"); key=0;}
+					if(key==1){ con.pst.executeUpdate();   JOptionPane.showMessageDialog(null, "保存成功");}
+					con.pst.executeUpdate();
+				}catch(SQLException e1){
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnNewButton_4.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		panel_1.add(btnNewButton_4);
 		JButton btnNewButton_2 = new JButton("\u8FD4\u56DE");

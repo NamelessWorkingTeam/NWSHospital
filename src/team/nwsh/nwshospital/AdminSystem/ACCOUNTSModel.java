@@ -25,7 +25,7 @@ public class ACCOUNTSModel extends AbstractTableModel {
     {
     	//建立表头
     	ColumnNames= new Vector();
-		ColumnNames.add("序号");
+		ColumnNames.add("账户ID");
 		ColumnNames.add("用户名");
 		ColumnNames.add("密码");
 		ColumnNames.add("所属科室");
@@ -95,21 +95,15 @@ public class ACCOUNTSModel extends AbstractTableModel {
 	}
 
 	@Override
-	public Object getValueAt(int rowIndex, int columnIndex) {
-		// TODO Auto-generated method stub
-		return ((Vector) this.RowData.get(rowIndex)).get(columnIndex);
+	public Object getValueAt(int row, int column) {
+		// TODO 自动生成的方法存根
+		return ((Vector)this.RowData.get(row)).get(column);
 	}
 
 	@Override
-	public String getColumnName(int column) {
-		// TODO Auto-generated method stub
-		return super.getColumnName(column);
-	}
-
-	@Override
-	public Class<?> getColumnClass(int columnIndex) {
-		// TODO Auto-generated method stub
-		return super.getColumnClass(columnIndex);
+	public String getColumnName(int arg0) {
+		// TODO 自动生成的方法存根
+		return (String)this.ColumnNames.get(arg0);
 	}
     
 
