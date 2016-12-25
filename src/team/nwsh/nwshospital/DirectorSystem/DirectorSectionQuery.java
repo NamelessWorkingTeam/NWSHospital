@@ -63,7 +63,7 @@ public class DirectorSectionQuery extends JFrame implements ActionListener  {
 	 * Create the frame.
 	 */
 	public DirectorSectionQuery() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 380, 560);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -105,7 +105,9 @@ public class DirectorSectionQuery extends JFrame implements ActionListener  {
 			    JFrame frame=new JFrame("Java数据统计图");  
 			    frame.setLayout(new GridLayout(2,2,10,10));  
 			    frame.add(new BarChart().getChartPanel());           //添加柱形图  
-			    frame.add(new PieChart().getChartPanel());           //添加饼状图    
+			    frame.add(new HistogramChart().getChartPanel());           //添加柱形图  
+			    frame.add(new PieChart().getChartPanel());           //添加饼状图
+			    frame.add(new SectorChart().getChartPanel());           //添加饼状图    
 			    frame.setBounds(50, 50, 800, 600);  
 			    frame.setVisible(true);  
 				dispose();

@@ -1,3 +1,22 @@
+/*
+这是一个院长管理系统
+在DirectorSystem中拥有五个图标
+分别连接三个功能窗体 一个输出按钮  一个退出按钮
+在系统打开时会自动启动医院库房警报，对于库存少于20的药进行警告。
+这一部分功能通过MedicineAlarm实现弹窗报警功能。
+其中三个窗体为DirectorPharmacyQuery、DirectorSectionQuery、DirectorDoctorQuery。
+DirectorPharmacyQuery实现了模糊查询药房库存，
+这个模块通过MedicineModel完成数据库数据的读取与查询，实现与数据库动态同步。
+DirectorSectionQuery实现了模糊查询各个科室的就诊总金额和就诊总人次，
+这个模块通过SectionModel完成数据库数据的读取与查询，实现与数据库动态同步。
+此外还加有一个数据可视化按钮，
+可以一键将各科室数据可视化为两种类型四张图表，
+清晰地反应各个科室的就诊总金额和就诊总人次的比例。
+在生成图表部分利用BarChart,HistogramChart,PieChart以及SectorChart四个部分分别完成。
+DirectorDoctorQuer实现了模糊查询各个医生的就诊总金额和就诊总人次，
+这个模块通过DoctorModel完成数据库数据的读取与查询，实现与数据库动态同步。
+
+*/
 package team.nwsh.nwshospital.DirectorSystem;
 
 import java.awt.BorderLayout;
@@ -44,7 +63,7 @@ public class DirectorSystem extends JFrame {
 	 */
 	public DirectorSystem() {
 		setTitle("\u9662\u957F\u67E5\u8BE2\u7CFB\u7EDF");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 380, 560);
 		DirectorMianMeau = new JPanel();
 		DirectorMianMeau.setBorder(new EmptyBorder(5, 5, 5, 5));

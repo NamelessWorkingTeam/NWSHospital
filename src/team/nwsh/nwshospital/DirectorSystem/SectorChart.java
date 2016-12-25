@@ -17,15 +17,15 @@ import org.jfree.data.general.DefaultPieDataset;
 
 import team.nwsh.nwshospital.MySQLConnect;  
   
-public class PieChart {  
+public class SectorChart {  
     ChartPanel frame1;  
     static String sql = null;  
     static MySQLConnect db = null;  
     static ResultSet ret = null; 
     
-    public PieChart(){  
+    public SectorChart(){  
           DefaultPieDataset data = getDataSet();  
-          JFreeChart chart = ChartFactory.createPieChart3D("医院业绩",data,true,false,false);  
+          JFreeChart chart = ChartFactory.createPieChart3D("医院业务量",data,true,false,false);  
         //设置百分比  
           PiePlot pieplot = (PiePlot) chart.getPlot();  
           DecimalFormat df = new DecimalFormat("0.00%");//获得一个DecimalFormat对象，主要是设置小数问题  
@@ -54,8 +54,11 @@ public class PieChart {
 //        dataset.setValue("葡萄",300);  
 //        dataset.setValue("香蕉",400);  
 //        dataset.setValue("荔枝",500); 
-        sql = "SELECT   (SELECT IFNULL(SUM(IFNULL(RESULTS.RES_SUM,0)),0) FROM RESULTS WHERE RESULTS.ACC_ID =  (SELECT ACC_ID FROM ACCOUNTS WHERE ACCOUNTS.SEC_ID = SECTIONS.SEC_ID )),SECTIONS.SEC_NAME FROM SECTIONS WHERE CAST(SECTIONS.SEC_ID AS UNSIGNED INT)>=5000"	;					// 此处填写要执行的语句
-    	  	    db = new MySQLConnect(sql);							// 新建一个数据库连接
+        
+        sql = "SELECT (SELECT COUNT(*) AS SEC_NUMBER FROM RESULTS WHERE RESULTS.ACC_ID = "
+   				+ "(SELECT ACC_ID FROM ACCOUNTS WHERE ACCOUNTS.SEC_ID = SECTIONS.SEC_ID )) ,"
+   				+ "SECTIONS.SEC_NAME FROM SECTIONS WHERE CAST(SECTIONS.SEC_ID AS UNSIGNED INT)>=5000"	;					// 此处填写要执行的语句
+   	    db = new MySQLConnect(sql);							// 新建一个数据库连接
    	    try {
    			ret = db.pst.executeQuery();					// 执行sql语句，得到结果集
    			while (ret.next()) {
