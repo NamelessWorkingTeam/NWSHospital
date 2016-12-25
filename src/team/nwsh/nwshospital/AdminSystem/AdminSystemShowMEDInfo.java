@@ -77,6 +77,9 @@ public class AdminSystemShowMEDInfo extends JFrame implements ActionListener  {
 		JButton btnNewButton_3 = new JButton("ÐÞ¸Ä");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				AdminSystemMEDChange newframe = new AdminSystemMEDChange();
+				newframe.setVisible(true);
 			}
 		});
 		btnNewButton_3.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
