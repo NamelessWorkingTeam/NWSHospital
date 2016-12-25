@@ -42,6 +42,7 @@ public class PatientsSystem extends JFrame {
 	
 	static String sec;
 	static String sex;
+	
 	/**
 	 * Launch the application.
 	 */
