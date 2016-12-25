@@ -1,7 +1,5 @@
 package team.nwsh.nwshospital.DirectorSystem;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
@@ -10,16 +8,22 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import team.nwsh.nwshospital.MySQLConnect;
+
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.data.general.DefaultPieDataset;
 
-import java.awt.Font;
 import java.sql.*;
 import javax.swing.*;
-import team.nwsh.nwshospital.MySQLConnect;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -93,6 +97,18 @@ public class DirectorSectionQuery extends JFrame implements ActionListener  {
 		JButton button = new JButton("\u751F\u6210\u997C\u72B6\u56FE");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+//				DataVisualization newframe = new DataVisualization();//页面跳转
+//				newframe.setResizable(true);
+//				newframe.setLocationRelativeTo(null);
+//				newframe.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+//				newframe.setVisible(true);
+			    JFrame frame=new JFrame("Java数据统计图");  
+			    frame.setLayout(new GridLayout(2,2,10,10));  
+			    frame.add(new BarChart().getChartPanel());           //添加柱形图  
+			    frame.add(new PieChart().getChartPanel());           //添加饼状图    
+			    frame.setBounds(50, 50, 800, 600);  
+			    frame.setVisible(true);  
+				dispose();
 			}
 		});
 		panel_1.add(button);
