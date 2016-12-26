@@ -33,7 +33,6 @@ import java.awt.event.ItemEvent;
 public class PatientsSystem extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 	private JTextField DateField;
 	private JTextField IDField;
 	private JTextField NameField;
@@ -64,20 +63,13 @@ public class PatientsSystem extends JFrame {
 	 * Create the frame.
 	 */
 	public PatientsSystem() {
+		setTitle("\u9884\u7EA6\u6302\u53F7");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 716, 498);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setText("                      \u9884\u7EA6\u6302\u53F7");
-		textField.setFont(new Font("ËÎÌו", Font.PLAIN, 25));
-		textField.setBounds(0, 0, 700, 69);
-		contentPane.add(textField);
-		textField.setColumns(10);
 		
 		TextField textField_2 = new TextField();
 		textField_2.setText("   \u8BF7\u586B\u5199\u8EAB\u4EFD\u8BC1");
