@@ -57,6 +57,8 @@ public class Fee extends JFrame {
 		// 根据SPLIT获取的数组制作要查询的WHERE部分的SQL语句
 		int i = 0;
 		String String_SQL_MED_ID_GROUP = "";
+		
+			
 		while(i < F_MED_SPLIT.length) {
 			
 			String_SQL_MED_ID_GROUP = String_SQL_MED_ID_GROUP + F_MED_SPLIT[i];
@@ -66,6 +68,10 @@ public class Fee extends JFrame {
 			}
 			
 		}
+//		测试用例
+//		System.out.println("55555555");
+//		System.out.println(String_SQL_MED_ID_GROUP);
+		
 		
 	    String String_SQL_MED_NAME = "SELECT MED_ID, MED_NAME, MED_PRICE " +
 									 	  "FROM MEDICINE " + 
@@ -238,6 +244,7 @@ public class Fee extends JFrame {
 	public Fee(String PAT_ID) {         // *修改*新构造函数
 		F_ID=PAT_ID;					// *修改*新构造函数，把输入身份证号页面的身份证号传给了F_ID
 		//查询姓名
+		
 				String sql_name= "SELECT PAT_NAME FROM PATIENTS WHERE PAT_ID='"+F_ID+"'";
 				MySQLConnect con_name= new MySQLConnect(sql_name);
 				try {
@@ -262,6 +269,7 @@ public class Fee extends JFrame {
 			RES_ID= String.valueOf(ResultSet_RES_ID.getInt("RESULTS_ID"));//将最新的RES_ID查询结果赋值给了RES_ID
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, "RES_ID不对应，请检查数据库", "提示", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 				
@@ -269,9 +277,9 @@ public class Fee extends JFrame {
 				String sql_med= "SELECT RES_MED FROM RESULTS WHERE RES_ID="+RES_ID;
 				MySQLConnect con_med= new MySQLConnect(sql_med);
 				try {
-					ResultSet ResultSet_MED = con_med.pst.executeQuery();
+						ResultSet ResultSet_MED = con_med.pst.executeQuery();
 						ResultSet_MED.next();
-						if(ResultSet_MED.getString("RES_MED").compareTo("NULL")==0){
+						if(ResultSet_MED.getString("RES_MED").compareTo("NULL") == 0){
 							JOptionPane.showMessageDialog(null, "药品收费查询结果为空", "提示", JOptionPane.ERROR_MESSAGE);
 						}
 						else{ 
@@ -284,6 +292,9 @@ public class Fee extends JFrame {
 					//JOptionPane.showMessageDialog(null, "药品收费查询结果为空", "提示", JOptionPane.ERROR_MESSAGE);
 					e.printStackTrace();
 				}
+//测试用例				
+//				System.out.println(PAT_ID);
+				
 				
 		   //查询项目收费并对非空进行判断
 				String sql_ITEM= "SELECT RES_ITEMS FROM RESULTS WHERE RES_ID="+RES_ID;
@@ -301,10 +312,13 @@ public class Fee extends JFrame {
 						
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
+					//JOptionPane.showMessageDialog(null, "项目收费查询结果为空", "提示", JOptionPane.ERROR_MESSAGE);
 					e.printStackTrace();
 				}
 				
-			//查询收费总价并对非空进行判断
+//测试用例				System.out.println("sahdasdjakdh"+PAT_ID);
+				
+			//查询收费总价
 				String sql_SUM= "SELECT RES_SUM FROM RESULTS WHERE RES_ID="+RES_ID;
 				MySQLConnect con_SUM= new MySQLConnect(sql_SUM);
 				try {
@@ -320,7 +334,7 @@ public class Fee extends JFrame {
 					e.printStackTrace();
 				}
 				
-				
+//测试用例				System.out.println("33333333333333"+PAT_ID);	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 550, 673);
 		contentPane = new JPanel();
@@ -394,10 +408,15 @@ public class Fee extends JFrame {
 		label_6.setBounds(342, 39, 35, 30);
 		panel_2.add(label_6);
 		
-		MedicineTable();
-		// table_MED = new JTable();
-		table_MED.setBounds(10, 68, 413, 133);
-		panel_2.add(table_MED);
+		
+//medicine表格
+		if(F_MED_SPLIT != null) {
+			MedicineTable();
+			// table_MED = new JTable();
+			table_MED.setBounds(10, 68, 413, 133);
+			panel_2.add(table_MED);
+		}
+		
 		
 		JButton button = new JButton("\u5DF2\u6536\u8D39");
 		button.addActionListener(new ActionListener() {
@@ -407,8 +426,8 @@ public class Fee extends JFrame {
 //					System.out.println(F_MED_SPLIT[i]);
 //					System.out.println("长度为："+F_MED_SPLIT.length);
 //				}
-				
-				//System.out.println(F_MED_SPLIT[0]);					//测试传值用例
+//				
+//				System.out.println(F_MED_SPLIT[0]);					//测试传值用例
 				
 				String state = "UPDATE STATE SET STA_TUS = 5 WHERE PAT_ID='" + F_ID + "'";
 				MySQLConnect STATE = new MySQLConnect(state);
@@ -458,11 +477,14 @@ public class Fee extends JFrame {
 		label_10.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		label_10.setBounds(342, 39, 70, 30);
 		panel_3.add(label_10);
-		
+
+	//items表格
+		if(F_ITEM_SPLIT != null){
 		ItemTable();
 		//table_ITEM = new JTable();
 		table_ITEM.setBounds(10, 68, 413, 133);
 		panel_3.add(table_ITEM);
+		}
 		
 		JLabel label_4 = new JLabel("\u603B\u4EF7\uFF1A");
 		label_4.setBounds(10, 211, 70, 30);
