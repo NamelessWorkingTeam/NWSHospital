@@ -131,8 +131,6 @@ public class DoctorSystem extends JFrame {
 		 */
 		public void startUp()
 		{
-	        outgoing = "new";
-
 	        setupNetwork();
 	        
 	        // 处理接收到的信息
@@ -162,6 +160,7 @@ public class DoctorSystem extends JFrame {
 		public void SendMessage() {
 			try {
 				// 向socket中写入消息
+				outgoing = "next";
 				writer.println(outgoing);
 				writer.flush();
 			} catch (Exception ex) {
@@ -180,8 +179,7 @@ public class DoctorSystem extends JFrame {
 					// 从socket中读取消息
 					while((message = reader.readLine()) != null) {
 						incoming = message;
-						if(incoming.compareTo("new") == 0) {
-							textArea.append(incoming + "\n");
+						if(incoming.compareTo("newpatient") == 0) {
 							PatientWaitTable();
 							PatientDoneTable();
 						}
@@ -245,7 +243,6 @@ public class DoctorSystem extends JFrame {
 		DefaultTableModel model_table_1 = new DefaultTableModel(RowData_WAIT, ColumnNames_WAIT);
 		table_1.setModel(model_table_1);		// 将表格模板更换为新生成的模板模板
 		
-		table_1.setEnabled(false);
 		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_1.setFont(new Font("微软雅黑", Font.PLAIN, 24));
 		table_1.setRowHeight(50);
@@ -302,8 +299,7 @@ public class DoctorSystem extends JFrame {
 
 		DefaultTableModel model_table_2 = new DefaultTableModel(RowData_DONE, ColumnNames_DONE);
 		table_2.setModel(model_table_2);
-		
-		table_2.setEnabled(false);
+
 		table_2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_2.setRowHeight(50);
 		table_2.setFont(new Font("微软雅黑", Font.PLAIN, 24));
@@ -372,7 +368,7 @@ public class DoctorSystem extends JFrame {
 			}
 		};
 		PatientWaitTable();
-
+		table_1.setEnabled(false);
 				
 
 		
@@ -380,12 +376,10 @@ public class DoctorSystem extends JFrame {
 		label.setFont(new Font("微软雅黑", Font.BOLD, 28));
 
 		
-
 		
 		JLabel label_1 = new JLabel("\u5DF2\u5C31\u8BCA\u75C5\u4EBA");
 		label_1.setFont(new Font("微软雅黑", Font.BOLD, 28));
-		
-		
+
 		
 		
 		// 列出已诊断病人列表
@@ -395,12 +389,15 @@ public class DoctorSystem extends JFrame {
 			}
 		};
 		PatientDoneTable();
+		table_2.setEnabled(false);
 		
 		
-		NwshClient UpdatePatientInfoClient = new NwshClient();
-		UpdatePatientInfoClient.startUp();
 		
-		System.out.println(UpdatePatientInfoClient.incoming);
+		// 新建网络客户端
+		NwshClient DoctorClient = new NwshClient();
+		DoctorClient.startUp();
+		
+		// System.out.println(DoctorClient.incoming);
 		
 		
 		JLabel label_2 = new JLabel("\u5965\u65AF\u7279\u6D1B\u592B");
@@ -1061,6 +1058,7 @@ public class DoctorSystem extends JFrame {
 				PatientWaitTable();
 				PatientDoneTable();
 				
+				DoctorClient.SendMessage();
 			}
 		});
 		

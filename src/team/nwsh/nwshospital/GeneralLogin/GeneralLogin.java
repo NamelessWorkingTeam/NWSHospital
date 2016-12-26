@@ -2,9 +2,11 @@ package team.nwsh.nwshospital.GeneralLogin;
 
 import team.nwsh.nwshospital.DirectorSystem.*;
 import team.nwsh.nwshospital.DoctorSystem.*;
+import team.nwsh.nwshospital.PatientSystem.PatientSystem;
 import team.nwsh.nwshospital.RegisterSystem.*;
 import team.nwsh.nwshospital.MySQLConnect;
 import team.nwsh.nwshospital.AdminSystem.*;
+import team.nwsh.nwshospital.ChemicalSystem.ChemicalSystem;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -169,8 +171,11 @@ public class GeneralLogin extends JFrame {
 									dispose();
 									break;
 								case 4:
-									JOptionPane.showMessageDialog(null,
-											"这里应该弹出的是药房界面！", "系统信息", JOptionPane.INFORMATION_MESSAGE);
+									ChemicalSystem ChemicalSystem_NewFrame = new ChemicalSystem();
+									ChemicalSystem_NewFrame.setResizable(false);
+									ChemicalSystem_NewFrame.setLocationRelativeTo(null);
+									ChemicalSystem_NewFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+									ChemicalSystem_NewFrame.setVisible(true);
 									break;
 								case 5:
 									DoctorSystem DoctorSystem_NewFrame = new DoctorSystem(textField.getText());

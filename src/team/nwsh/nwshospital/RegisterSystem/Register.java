@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import team.nwsh.nwshospital.MySQLConnect;
+import team.nwsh.nwshospital.DoctorSystem.DoctorSystem.NwshClient.IncomingReader;
 
 import java.awt.CardLayout;
 import java.awt.GridLayout;
@@ -24,6 +25,12 @@ import javax.swing.AbstractListModel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
@@ -35,6 +42,64 @@ public class Register extends JFrame {
 	static String R_ID=RegisterSystem.PAT_ID;
 	private JPanel contentPane;
 
+	
+	public class NwshClient {
+		
+		public String incoming = null;
+		
+		public String outgoing;
+
+		private PrintWriter writer;
+
+		private Socket socket;
+
+		/**
+		 * @author Liu Yummy
+		 * @create 2016/12/26 11:14
+		 * 负责客户端的启动,包括的功能:
+		 * 1. 初始化网络;
+		 * 2. 从服务端读取消息,动态刷新本地内容;
+		 * 另外，原本想将本类写成模块独立开来，
+		 * 但是发现IncomingReader在调用的时候无法独立调用，
+		 * 所以暂且用此方法进行使用！
+		 */
+		public void startUp() {
+	        setupNetwork();
+		}
+
+		private void setupNetwork() {
+			try {
+				// 进行网络初始化: 创建socket连接,获取socket的输入输出流
+				socket = new Socket("127.0.0.1", 5000);
+				
+				InputStreamReader stream = new InputStreamReader(socket.getInputStream());
+				
+				writer = new PrintWriter(socket.getOutputStream());
+				
+				System.out.println("网络初始化已经完成,服务端已连接!");
+			} catch (UnknownHostException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		public void SendMessage() {
+			try {
+				// 向socket中写入消息
+				outgoing = "newpatient";
+				writer.println(outgoing);
+				writer.flush();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			} finally {
+				// 发生数据流，刷新
+				writer.flush();
+			}
+		}
+	}
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -130,6 +195,8 @@ public class Register extends JFrame {
 		comboBox_SEC.setBounds(202, 223, 136, 30);
 		panel_1.add(comboBox_SEC);
 		
+		NwshClient RegisterClient = new NwshClient();
+		RegisterClient.startUp();
 		
 //		if(comboBox_SEC.getSelectedItem().toString().compareTo("普通外科") == 0) {
 //			// sec="5000";
@@ -197,11 +264,13 @@ public class Register extends JFrame {
 				MySQLConnect con = new MySQLConnect(sql);
 				
 				
+				
 				try {
 					if(textField_ID.getText().length()==18){
 						con.pst.executeUpdate();
 						con2.pst.executeUpdate();
 						JOptionPane.showMessageDialog(null, "挂号成功！", "提示",JOptionPane.INFORMATION_MESSAGE);
+						RegisterClient.SendMessage();
 					}
 					else JOptionPane.showMessageDialog(null, "身份证必须18位！", "提示",JOptionPane.INFORMATION_MESSAGE);
 					
