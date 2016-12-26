@@ -1,43 +1,42 @@
 package team.nwsh.nwshospital.DoctorSystem;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import team.nwsh.nwshospital.MySQLConnect;
-import team.nwsh.nwshospital.DirectorSystem.MedicineModel;
 import team.nwsh.nwshospital.GeneralLogin.GeneralLogin;
 
 import javax.swing.JComboBox;
 import javax.swing.JTable;
-import java.awt.FlowLayout;
 import javax.swing.JMenu;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
 import java.awt.Font;
+import java.awt.TextArea;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.Vector;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ListSelectionModel;
@@ -46,7 +45,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.BevelBorder;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
-import java.awt.Panel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.DefaultComboBoxModel;
 
@@ -70,6 +68,7 @@ public class DoctorSystem extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
+	private JTextArea textArea;
 	
 
     private JTable table;
@@ -104,6 +103,97 @@ public class DoctorSystem extends JFrame {
 		});
 	}
 
+	public class NwshClient {
+		
+		// private JTextArea incoming;
+		
+		public String incoming = null;
+
+		// private JTextField outgoing;
+		
+		public String outgoing;
+
+		private BufferedReader reader;
+
+		private PrintWriter writer;
+
+		private Socket socket;
+
+		/**
+		 * @author Liu Yummy
+		 * @create 2016/12/26 11:14
+		 * 负责客户端的启动,包括的功能:
+		 * 1. 初始化网络;
+		 * 2. 从服务端读取消息,动态刷新本地内容;
+		 * 另外，原本想将本类写成模块独立开来，
+		 * 但是发现IncomingReader在调用的时候无法独立调用，
+		 * 所以暂且用此方法进行使用！
+		 */
+		public void startUp()
+		{
+	        outgoing = "new";
+
+	        setupNetwork();
+	        
+	        // 处理接收到的信息
+	        Thread readerThread = new Thread(new IncomingReader());
+	        readerThread.start();
+
+		}
+
+		private void setupNetwork() {
+			try {
+				// 进行网络初始化: 创建socket连接,获取socket的输入输出流
+				socket = new Socket("127.0.0.1", 5000);
+				
+				InputStreamReader stream = new InputStreamReader(socket.getInputStream());
+				reader = new BufferedReader(stream);
+				
+				writer = new PrintWriter(socket.getOutputStream());
+				
+				System.out.println("网络初始化已经完成,服务端已连接!");
+			} catch (UnknownHostException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		public void SendMessage() {
+			try {
+				// 向socket中写入消息
+				writer.println(outgoing);
+				writer.flush();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			} finally {
+				// 发生数据流，刷新
+				writer.flush();
+				// System.out.println("writer closed");
+			}
+		}
+		
+		public class IncomingReader implements Runnable {
+			public void run() {
+				String message;
+				try {
+					// 从socket中读取消息
+					while((message = reader.readLine()) != null) {
+						incoming = message;
+						if(incoming.compareTo("new") == 0) {
+							textArea.append(incoming + "\n");
+							PatientWaitTable();
+							PatientDoneTable();
+						}
+
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
 	public static void PatientWaitTable() {
 		// START候诊病人列表展示
         String String_SQL_PAT_NAME_WAIT = "SELECT STATE.STA_ID, PATIENTS.PAT_NAME " +
@@ -175,7 +265,7 @@ public class DoctorSystem extends JFrame {
 		
 		String String_SQL_PAT_NAME_DONE = "SELECT STATE.STA_ID, PATIENTS.PAT_NAME " +
 				 "FROM PATIENTS JOIN STATE ON PATIENTS.PAT_ID = STATE.PAT_ID " + 
-				 "WHERE STATE.STA_TUS = 3;";
+				 "WHERE STATE.STA_TUS = 4;";
 		MySQLConnect MySQLConnect_Connection_DONE = new MySQLConnect(String_SQL_PAT_NAME_DONE);
 		ResultSet RS_PAT_NAME_DONE;
 		Vector RowData_DONE, ColumnNames_DONE;
@@ -307,6 +397,10 @@ public class DoctorSystem extends JFrame {
 		PatientDoneTable();
 		
 		
+		NwshClient UpdatePatientInfoClient = new NwshClient();
+		UpdatePatientInfoClient.startUp();
+		
+		System.out.println(UpdatePatientInfoClient.incoming);
 		
 		
 		JLabel label_2 = new JLabel("\u5965\u65AF\u7279\u6D1B\u592B");
@@ -370,7 +464,7 @@ public class DoctorSystem extends JFrame {
 		label_13.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_13.setFont(new Font("微软雅黑", Font.BOLD, 50));
 		
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setFont(new Font("微软雅黑", Font.PLAIN, 24));
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);

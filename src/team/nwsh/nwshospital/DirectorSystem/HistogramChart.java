@@ -16,18 +16,18 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 import team.nwsh.nwshospital.MySQLConnect;  
   
-public class BarChart {  
+public class HistogramChart {  
     ChartPanel frame1;  
     static String sql = null;  
     static MySQLConnect db = null;  
     static ResultSet ret = null; 
  
-    public  BarChart(){  
+    public  HistogramChart(){  
         CategoryDataset dataset = getDataSet();  
         JFreeChart chart = ChartFactory.createBarChart3D(  
-                             "医院各科室业绩", // 图表标题  
+                             "医院各科室业务量", // 图表标题  
                             "科室名", // 目录轴的显示标签  
-                            "就诊总金额", // 数值轴的显示标签  
+                            "就诊总人次", // 数值轴的显示标签  
                             dataset, // 数据集  
                             PlotOrientation.VERTICAL, // 图表方向：水平、垂直  
                             true,           // 是否显示图例(对于简单的柱状图必须是false)  
@@ -67,7 +67,9 @@ public class BarChart {
 //           dataset.addValue(500, "北京", "荔枝");  
 //           dataset.addValue(500, "上海", "荔枝");  
 //           dataset.addValue(500, "广州", "荔枝");  
-   		sql = "SELECT   (SELECT IFNULL(SUM(IFNULL(RESULTS.RES_SUM,0)),0) FROM RESULTS WHERE RESULTS.ACC_ID =  (SELECT ACC_ID FROM ACCOUNTS WHERE ACCOUNTS.SEC_ID = SECTIONS.SEC_ID )),SECTIONS.SEC_NAME FROM SECTIONS WHERE CAST(SECTIONS.SEC_ID AS UNSIGNED INT)>=5000"	;					// 此处填写要执行的语句
+   		sql = "SELECT (SELECT COUNT(*) AS SEC_NUMBER FROM RESULTS WHERE RESULTS.ACC_ID = "
+   				+ "(SELECT ACC_ID FROM ACCOUNTS WHERE ACCOUNTS.SEC_ID = SECTIONS.SEC_ID )) ,"
+   				+ "SECTIONS.SEC_NAME FROM SECTIONS WHERE CAST(SECTIONS.SEC_ID AS UNSIGNED INT)>=5000"	;					// 此处填写要执行的语句
    	    db = new MySQLConnect(sql);							// 新建一个数据库连接
    	    try {
    			ret = db.pst.executeQuery();					// 执行sql语句，得到结果集
