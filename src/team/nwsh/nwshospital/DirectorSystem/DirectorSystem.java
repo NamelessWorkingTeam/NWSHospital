@@ -120,6 +120,7 @@ public class DirectorSystem extends JFrame {
 		CreatReport.setFont(new Font("宋体", Font.PLAIN, 12));
 		CreatReport.setBounds(113, 417, 115,25);
 		panel.add(CreatReport);
+		
 		/*
 		 * 因为生成PDF前提需要有各个科室的业绩业务量的数据库
 		 * 而此功能是在DirectorSystem中转到DirectorSectionSystem中是生成图表动作中
