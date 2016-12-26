@@ -1,4 +1,6 @@
+//  客户端管理端
 package team.nwsh.nwshospital.AdminSystem;
+
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;

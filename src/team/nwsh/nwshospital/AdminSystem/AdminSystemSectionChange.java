@@ -55,31 +55,31 @@ public class AdminSystemSectionChange extends JFrame {
 		
 		Label label = new Label("\u79D1\u5BA4\u540D\u79F0\uFF1A");
 		label.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
-		label.setBounds(31, 92, 77, 25);
+		label.setBounds(86, 92, 77, 25);
 		contentPane.add(label);
 		
 		Label label_1 = new Label("\u79D1\u5BA4\u4EBA\u6570\uFF1A");
 		label_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
-		label_1.setBounds(31, 144, 77, 25);
+		label_1.setBounds(86, 144, 77, 25);
 		contentPane.add(label_1);
 		
-		Label label_2 = new Label("\u79D1\u5BA4ID\uFF1A");
+		Label label_2 = new Label("\u79D1\u5BA4ID(\u9ED8\u8BA4\u4E0D\u53D8)\uFF1A");
 		label_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
-		label_2.setBounds(31, 40, 77, 25);
+		label_2.setBounds(31, 39, 132, 25);
 		contentPane.add(label_2);
 		
 		textField = new JTextField();
-		textField.setBounds(145, 40, 86, 24);
+		textField.setBounds(219, 40, 86, 24);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(146, 93, 86, 24);
+		textField_1.setBounds(219, 93, 86, 24);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(145, 145, 86, 24);
+		textField_2.setBounds(219, 145, 86, 24);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
