@@ -31,6 +31,8 @@ import javax.swing.JTextField;
 
 public class Register extends JFrame {
 	static String sec;
+	static String sex;
+	static String R_ID=RegisterSystem.PAT_ID;
 	private JPanel contentPane;
 
 	/**
@@ -108,11 +110,6 @@ public class Register extends JFrame {
 		textField_NAME.setBounds(202, 63, 136, 30);
 		panel_1.add(textField_NAME);
 		
-		JTextField textField_SEX = new JTextField();
-		textField_SEX.setFont(new Font("微软雅黑", Font.PLAIN, 12));
-		textField_SEX.setBounds(202, 103, 136, 30);
-		panel_1.add(textField_SEX);
-		
 		JTextField textField_AGE = new JTextField();
 		textField_AGE.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		textField_AGE.setBounds(202, 143, 136, 30);
@@ -149,11 +146,19 @@ public class Register extends JFrame {
 		textField_ID.setBounds(202, 23, 136, 30);
 		panel_1.add(textField_ID);
 		textField_ID.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		textField_ID.setText(R_ID);
 		
 		JLabel label_3 = new JLabel("\u9700\u8981\u6536\u53D6\u6302\u53F7\u8D39\uFF1A2 \u5143");
 		label_3.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 		label_3.setBounds(128, 263, 210, 30);
 		panel_1.add(label_3);
+		
+		JComboBox comboBox_SEX = new JComboBox();
+		comboBox_SEX.setModel(new DefaultComboBoxModel(new String[] {"\u7537", "\u5973"}));
+		comboBox_SEX.setToolTipText("\u9009\u62E9\u79D1\u5BA4");
+		comboBox_SEX.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		comboBox_SEX.setBounds(202, 103, 136, 30);
+		panel_1.add(comboBox_SEX);
 		
 		JButton btnNewButton_2 = new JButton("\u6536\u8D39\u5E76\u6302\u53F7");
 		btnNewButton_2.setBounds(165, 392, 108, 23);
@@ -175,6 +180,7 @@ public class Register extends JFrame {
 		btnNewButton_3.setBounds(314, 392, 93, 23);
 		contentPane.add(btnNewButton_3);
 		btnNewButton_3.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(comboBox_SEC.getSelectedItem().toString().compareTo("普通外科") == 0) sec="5000";
@@ -182,17 +188,26 @@ public class Register extends JFrame {
 				if(comboBox_SEC.getSelectedItem().toString().compareTo("五官科") == 0)	sec="5002";
 				if(comboBox_SEC.getSelectedItem().toString().compareTo("检验科") == 0)	sec="5003";
 				if(comboBox_SEC.getSelectedItem().toString().compareTo("神经科") == 0)	sec="5004";
-				String sql = "INSERT INTO PATIENTS VALUES('"+textField_ID.getText()+"','"+textField_NAME.getText()+"','"+textField_AGE.getText()+"','"+textField_SEX.getText()+"','"+textField_PHONE.getText()+"',null)";
+				
+				if(comboBox_SEX.getSelectedItem().toString().compareTo("男") == 0) sex="M";
+				if(comboBox_SEX.getSelectedItem().toString().compareTo("女") == 0) sex="F";
+				String sql = "INSERT INTO PATIENTS VALUES('"+textField_ID.getText()+"','"+textField_NAME.getText()+"','"+textField_AGE.getText()+"','"+sex+"','"+textField_PHONE.getText()+"',null)";
 				String sql2= "INSERT INTO STATE VALUES(NULL,'"+textField_ID.getText()+"','"+sec+"',NULL,2)";
 				MySQLConnect con2= new MySQLConnect(sql2);
 				MySQLConnect con = new MySQLConnect(sql);
+				
+				
 				try {
-					con.pst.executeUpdate();
-					con2.pst.executeUpdate();
-					JOptionPane.showMessageDialog(null, "数据库写入成功！", "提示",JOptionPane.INFORMATION_MESSAGE);
+					if(textField_ID.getText().length()==18){
+						con.pst.executeUpdate();
+						con2.pst.executeUpdate();
+						JOptionPane.showMessageDialog(null, "挂号成功！", "提示",JOptionPane.INFORMATION_MESSAGE);
+					}
+					else JOptionPane.showMessageDialog(null, "身份证必须18位！", "提示",JOptionPane.INFORMATION_MESSAGE);
+					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null, "数据库写入失败！", "提示", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "挂号失败！", "提示", JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				}
 //				try {

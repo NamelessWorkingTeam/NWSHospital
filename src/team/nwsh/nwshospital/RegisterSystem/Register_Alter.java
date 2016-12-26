@@ -166,24 +166,28 @@ public class Register_Alter extends JFrame {
 		panel_1.add(label_5);
 		
 		JTextField textField_NAME = new JTextField();
+		textField_NAME.setEditable(false);
 		textField_NAME.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		textField_NAME.setBounds(202, 63, 136, 30);
 		panel_1.add(textField_NAME);
 		textField_NAME.setText(P_NAME);//±í¸ñÌî³äÃû×Ö
 		
 		JTextField textField_SEX = new JTextField();
+		textField_SEX.setEditable(false);
 		textField_SEX.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		textField_SEX.setBounds(202, 103, 136, 30);
 		panel_1.add(textField_SEX);
 		textField_SEX.setText(P_SEX);//±í¸ñÌî³äÐÔ±ð
 		
 		JTextField textField_AGE = new JTextField();
+		textField_AGE.setEditable(false);
 		textField_AGE.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		textField_AGE.setBounds(202, 143, 136, 30);
 		panel_1.add(textField_AGE);
 		textField_AGE.setText(P_AGE);//±í¸ñÌî³äÄêÁä
 		
 		JTextField textField_TEL = new JTextField();
+		textField_TEL.setEditable(false);
 		textField_TEL.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		textField_TEL.setBounds(202, 183, 136, 30);
 		panel_1.add(textField_TEL);
@@ -202,6 +206,7 @@ public class Register_Alter extends JFrame {
 		panel_1.add(label_6);
 		
 		JTextField textField_ID = new JTextField();
+		textField_ID.setEditable(false);
 		textField_ID.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		textField_ID.setBounds(202, 23, 136, 30);
 		panel_1.add(textField_ID);
