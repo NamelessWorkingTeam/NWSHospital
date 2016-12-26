@@ -18,10 +18,8 @@ public class AsianTest {
     static MySQLConnect db = null;  
     static ResultSet ret = null; 
     
-    
   public static void AT(String[] args) {  
       // 创建一个Document对象  
-	  
       Document document = new Document();  
       try {  
           // 生成名为 AsianTest.pdf 的文档  
@@ -53,13 +51,15 @@ public class AsianTest {
           //document.add(new Paragraph(" ", italic_fontChinese));  
           //  
           // Chapter  
-          Paragraph title11 = new Paragraph("医院近期工作情况如下", italic_fontChinese);  
+          Paragraph title11 = new Paragraph("医院近期工作情况", italic_fontChinese);  
           Chapter chapter11 = new Chapter(title11, 1);  
           title11.setAlignment(Element.ALIGN_CENTER);
           chapter11.setNumberDepth(0); 
-          Paragraph title1 = new Paragraph("警告！药品库存不足！情况如下：", bold_fontChinese);  
-          Chapter chapter1 = new Chapter(title1, 1);  
-          chapter1.setNumberDepth(0);  
+//          Paragraph title1 = new Paragraph("警告！药品库存不足！情况如下：", bold_fontChinese);  
+//          Chapter chapter1 = new Chapter(title1, 1);  
+//          chapter1.setNumberDepth(0);  
+ 
+          
         //test创建一个四列的表格
           Table TM=new Table(2);
           //设置边框
@@ -111,10 +111,16 @@ public class AsianTest {
   			// TODO Auto-generated catch block
   			e.printStackTrace();
   		}    
+  	    
   	  document.add(chapter11); 
-  	  document.add(chapter1);    
+//  	  document.add(chapter1);   
+      String[] WoZuiShuai = { "警告！药品库存不足！情况如下：" };  
+      for (String s : WoZuiShuai) {  
+      document.add(new Paragraph(" ", bold_fontChinese));
+      document.add(new Paragraph(" ", bold_fontChinese));
+      document.add(new Paragraph(s,bold_fontChinese)); 
+      document.add(new Paragraph(" ", bold_fontChinese));}
       document.add(TM);
-
           //构建一段落
           Paragraph par3=new Paragraph("科室工作情况",bold_fontChinese);
           //设置局中对齐
@@ -159,7 +165,7 @@ public class AsianTest {
           //添加此代码后每页都会显示表头
           table.endHeaders();
           //以下代码的作用是创建行数据,其中每行有四列,列依次为 编号 科室名 就诊总金额 就诊总人次
-          sql = "SELECT SECTIONS.SEC_ID, SECTIONS.SEC_NAME, (SELECT round(IFNULL(SUM(IFNULL(RESULTS.RES_SUM,0)),0),2) FROM RESULTS WHERE RESULTS.ACC_ID =  (SELECT ACC_ID FROM ACCOUNTS WHERE ACCOUNTS.SEC_ID = SECTIONS.SEC_ID )),(SELECT COUNT(*) AS SEC_NUMBER FROM RESULTS WHERE RESULTS.ACC_ID = (SELECT ACC_ID FROM ACCOUNTS WHERE ACCOUNTS.SEC_ID = SECTIONS.SEC_ID )) FROM SECTIONS WHERE CAST(SECTIONS.SEC_ID AS UNSIGNED INT)>=5000"	;// 此处填写要执行的语句
+          sql = "SELECT SECTIONS.SEC_ID, SECTIONS.SEC_NAME, (SELECT round(IFNULL(SUM(IFNULL(RESULTS.RES_SUM,0)),0),2) FROM RESULTS WHERE RESULTS.ACC_ID =  (SELECT ACC_ID FROM ACCOUNTS WHERE ACCOUNTS.SEC_ID = SECTIONS.SEC_ID )),(SELECT COUNT(*) AS SEC_NUMBER FROM RESULTS WHERE RESULTS.ACC_ID = (SELECT ACC_ID FROM ACCOUNTS WHERE ACCOUNTS.SEC_ID = SECTIONS.SEC_ID )) FROM SECTIONS WHERE CAST(SECTIONS.SEC_ID AS UNSIGNED INT)>=5000 AND CAST(SECTIONS.SEC_ID AS UNSIGNED INT)<6000"	;// 此处填写要执行的语句
   	    db = new MySQLConnect(sql);							// 新建一个数据库连接
   	    try {
   			ret = db.pst.executeQuery();					// 执行sql语句，得到结果集
