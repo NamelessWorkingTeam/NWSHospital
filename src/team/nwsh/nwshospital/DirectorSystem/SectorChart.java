@@ -50,7 +50,7 @@ public class SectorChart {
           
           FileOutputStream fos_jpg=null;  
           try {  
-              fos_jpg=new FileOutputStream("D:\\SectorChart.jpg");  
+              fos_jpg=new FileOutputStream("C:\\REPORT\\SectorChart.jpg");  
               //下面的参数分别是输出流、质量、图表数据、宽度、高度、备注信息  
               ChartUtilities.writeChartAsJPEG(fos_jpg, 1.0f, chart,400, 300,null);  
           }catch (Exception e) {  
@@ -72,7 +72,7 @@ public class SectorChart {
         
         sql = "SELECT (SELECT COUNT(*) AS SEC_NUMBER FROM RESULTS WHERE RESULTS.ACC_ID = "
    				+ "(SELECT ACC_ID FROM ACCOUNTS WHERE ACCOUNTS.SEC_ID = SECTIONS.SEC_ID )) ,"
-   				+ "SECTIONS.SEC_NAME FROM SECTIONS WHERE CAST(SECTIONS.SEC_ID AS UNSIGNED INT)>=5000"	;					// 此处填写要执行的语句
+   				+ "SECTIONS.SEC_NAME FROM SECTIONS WHERE CAST(SECTIONS.SEC_ID AS UNSIGNED INT)>=5000 AND CAST(SECTIONS.SEC_ID AS UNSIGNED INT)<6000"	;					// 此处填写要执行的语句
    	    db = new MySQLConnect(sql);							// 新建一个数据库连接
    	    try {
    			ret = db.pst.executeQuery();					// 执行sql语句，得到结果集

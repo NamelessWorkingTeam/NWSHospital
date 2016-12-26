@@ -26,7 +26,7 @@ public class AsianTest {
       try {  
           // 生成名为 AsianTest.pdf 的文档  
           PdfWriter.getInstance(document, new FileOutputStream(  
-                  "D://HospitalReport.pdf"));  
+                  "C:\\REPORT\\HospitalReport.pdf"));  
           /** 
            * 新建一个字体,iText的方法 STSongStd-Light 是字体，在iTextAsian.jar 中以property为后缀 
            * UniGB-UCS2-H 是编码，在iTextAsian.jar 中以cmap为后缀 H 代表文字版式是 横版， 相应的 V 
@@ -204,10 +204,10 @@ public class AsianTest {
 
           //test end
           document.add(table);
-          Image jpeg1 = Image.getInstance("D:/BarChart.jpg");  
-          Image jpeg2 = Image.getInstance("D:/HistogramChart.jpg");  
-          Image jpeg3 = Image.getInstance("D:/PieChart.jpg");  
-          Image jpeg4 = Image.getInstance("D:/SectorChart.jpg");  
+          Image jpeg1 = Image.getInstance("C:\\REPORT\\BarChart.jpg");  
+          Image jpeg2 = Image.getInstance("C:\\REPORT\\HistogramChart.jpg");  
+          Image jpeg3 = Image.getInstance("C:\\REPORT\\PieChart.jpg");  
+          Image jpeg4 = Image.getInstance("C:\\REPORT\\SectorChart.jpg");  
 
           
           // 图片居中  
