@@ -79,6 +79,7 @@ public class ChemicalSystemShowResults extends JFrame implements ActionListener 
 		
 		
 		setTitle("\u5C31\u8BCA\u7ED3\u679C\u67E5\u8BE2");
+		
 
         ResultsModel rm=new ResultsModel();
 		jt=new JTable(rm);

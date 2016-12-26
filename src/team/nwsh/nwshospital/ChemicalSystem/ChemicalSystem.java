@@ -56,6 +56,7 @@ public class ChemicalSystem extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * 
 	 */
 	public ChemicalSystem() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

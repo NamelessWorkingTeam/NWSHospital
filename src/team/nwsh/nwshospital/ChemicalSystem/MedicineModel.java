@@ -19,6 +19,7 @@ public class MedicineModel extends AbstractTableModel {
     static ResultSet ret = null; 
  
     //通过传递的sql语句来获得数据模型
+    
     public MedicineModel(String sql)
     {
     	//建立表头  
