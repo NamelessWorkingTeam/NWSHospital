@@ -30,7 +30,7 @@ import java.sql.SQLException;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 
-public class PatientsSystem extends JFrame {
+public class PatientSystem extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField DateField;
@@ -50,7 +50,7 @@ public class PatientsSystem extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PatientsSystem frame = new PatientsSystem();
+					PatientSystem frame = new PatientSystem();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,7 +62,7 @@ public class PatientsSystem extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PatientsSystem() {
+	public PatientSystem() {
 		setTitle("\u9884\u7EA6\u6302\u53F7");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 716, 498);
