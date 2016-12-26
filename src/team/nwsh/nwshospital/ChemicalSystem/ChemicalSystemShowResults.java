@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -38,6 +39,7 @@ public class ChemicalSystemShowResults extends JFrame implements ActionListener 
 	private JPanel contentPane;
     JTable jt=null;
     JScrollPane jsp=null;
+    private JTextField PatientField;
 
 	
 	public static void main(String[] args) {
@@ -58,21 +60,24 @@ public class ChemicalSystemShowResults extends JFrame implements ActionListener 
 	 */
 	public ChemicalSystemShowResults() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 225, 560);
+		setBounds(100, 100, 451, 560);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		contentPane.add(panel_1, BorderLayout.SOUTH);
+		panel_1.setBounds(5, 484, 354, 33);
+		contentPane.add(panel_1);
 		JButton btnNewButton_2 = new JButton("\u67E5\u8BE2\u836F\u54C1\u4FE1\u606F");
+		btnNewButton_2.setBounds(227, 0, 117, 23);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ChemicalSystemMedicineInfo newframe = new ChemicalSystemMedicineInfo();
 				newframe.setVisible(true);
 			}
 		});
+		panel_1.setLayout(null);
 		panel_1.add(btnNewButton_2);
 		
 		
@@ -85,7 +90,36 @@ public class ChemicalSystemShowResults extends JFrame implements ActionListener 
         ResultsModel rm=new ResultsModel();
 		jt=new JTable(rm);
 		jsp=new JScrollPane(jt);
+		jsp.setBounds(5, 56, 354, 428);
 		getContentPane().add(jsp);
+		
+		PatientField = new JTextField();
+		PatientField.setBounds(114, 10, 82, 21);
+		contentPane.add(PatientField);
+		PatientField.setColumns(10);
+		
+		JButton Dispending = new JButton("\u53D1\u836F");
+		Dispending.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String sql="DELETE FROM STATE WHERE STATE.PAT_ID=(SELECT PAT_ID FROM PATIENTS WHERE PATIENTS.PAT_NAME=('"+PatientField.getText()+"'))";
+				MySQLConnect con=new MySQLConnect(sql);	
+				int key=1;//定义一个中间变量，来判断输入信息的窗口，如果成功 则 保存成功
+				try{
+					if(PatientField.getText().equals("")){
+						JOptionPane.showMessageDialog(null, "用户不存在或已发药"); key=0;}
+					if(key==1){ con.pst.executeUpdate();   JOptionPane.showMessageDialog(null, "发药成功");}
+					con.pst.executeUpdate();
+				}catch(SQLException e1){
+					e1.printStackTrace();
+				}
+			}
+		});
+		Dispending.setBounds(219, 9, 93, 23);
+		contentPane.add(Dispending);
+		
+		JLabel lblNewLabel = new JLabel("\u9009\u62E9\u75C5\u4EBA");
+		lblNewLabel.setBounds(44, 10, 60, 21);
+		contentPane.add(lblNewLabel);
 		this.setBounds(12, 76, 380, 560);
 		this.setVisible(true);
 

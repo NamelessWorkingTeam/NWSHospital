@@ -176,7 +176,7 @@ public class PatientSystem extends JFrame {
 		contentPane.add(Submitting);
 		Submitting.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(IDField.getText().length()==0||DateField.getText().length()!=10){
+				if(IDField.getText().length()<15||DateField.getText().length()!=10){
 					Warning newframe = new Warning();
 					newframe.setVisible(true);
 				}

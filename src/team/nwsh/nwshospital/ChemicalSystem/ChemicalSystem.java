@@ -72,14 +72,14 @@ public class ChemicalSystem extends JFrame {
 		lblNewLabel.setBounds(195, 10, 138, 31);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("\u67E5\u770B\u5C31\u8BCA\u4FE1\u606F");
+		JButton btnNewButton = new JButton("\u67E5\u770B\u5DF2\u4EA4\u8D39\u7684\u7528\u6237");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ChemicalSystemShowResults newframe = new ChemicalSystemShowResults();
 				newframe.setVisible(true);
 			}
 		});
-		btnNewButton.setBounds(422, 367, 119, 31);
+		btnNewButton.setBounds(422, 367, 138, 31);
 		contentPane.add(btnNewButton);
 		
 		JScrollPane scrollPane = new JScrollPane();

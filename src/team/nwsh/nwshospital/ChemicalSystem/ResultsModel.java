@@ -64,7 +64,7 @@ public class ResultsModel extends AbstractTableModel {
 		
 		
 		RowData=new Vector(); 
-		sql = "SELECT (SELECT PAT_NAME FROM PATIENTS WHERE PATIENTS.PAT_ID=RESULTS.PAT_ID),RES_MED FROM RESULTS ";						// 此处填写要执行的语句
+		sql = "SELECT PAT_NAME,RES_MED FROM PATIENTS JOIN RESULTS ON PATIENTS.PAT_ID = RESULTS.PAT_ID JOIN STATE ON PATIENTS.PAT_ID = STATE.PAT_ID WHERE STATE.STA_TUS = 5";						// 此处填写要执行的语句
 	    db = new MySQLConnect(sql);							// 新建一个数据库连接
 	    try {
 			ret = db.pst.executeQuery();// 执行sql语句，得到结果集
