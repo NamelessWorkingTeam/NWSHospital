@@ -178,7 +178,7 @@ public class DirectorSystem extends JFrame {
 	}
 	
 	
-	//构造一个函数通过对数据库检查药品数量进行警告
+	//构造一个函数通过对数据库检查药品数量进行警告!
 	static private void MedicineAlarm(){
 	    String String_CheckStorgesql = null;   
 	    MySQLConnect db = null;  

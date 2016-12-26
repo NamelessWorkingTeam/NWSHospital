@@ -64,7 +64,7 @@ public class AsianTest {
           Table TM=new Table(2);
           //设置边框
           TM.setBorder(1);
-          //创建表头
+          //创建表头 
 
           Cell cellTM1=new Cell(new Phrase("药品名",bold_fontChinese));
           cellTM1.setHorizontalAlignment(Element.ALIGN_CENTER);
