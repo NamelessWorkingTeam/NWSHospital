@@ -8,7 +8,7 @@ import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.Font;  
 import java.awt.Color;  
 
-public class AsianTest {  
+public class AsianTest {      
 
   public static void AT(String[] args) {  
 
