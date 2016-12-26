@@ -1,6 +1,7 @@
-//一个SECTIONS表的模型,即科室表
+/**
+ * 这是我的一个MEDICINE表的模型
+ */
 package team.nwsh.nwshospital.AdminSystem;
-
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,17 +20,16 @@ public class SECTIONSModel extends AbstractTableModel {
     static String sql = null;  
     static MySQLConnect db = null;  
     static ResultSet ret = null; 
-
+ 
     //通过传递的sql语句来获得数据模型
     public SECTIONSModel(String sql)
     {
-    	//建立表头
+    	//建立表头  
     	ColumnNames= new Vector();
 		ColumnNames.add("科室ID");
 		ColumnNames.add("科室名");
 		ColumnNames.add("科室人数");
-		
-		
+		//ColumnNames.add("库存");
 		RowData=new Vector(); 						// 此处填写要执行的语句
 	    db = new MySQLConnect(sql);							// 新建一个数据库连接
 	    try {
@@ -39,8 +39,7 @@ public class SECTIONSModel extends AbstractTableModel {
 	        	hang.add(ret.getString(1));
 	        	hang.add(ret.getString(2));
 	        	hang.add(ret.getInt(3));
-	        	
-	        	
+	        	//hang.add(ret.getInt(4));
 	        	RowData.add(hang);
 	        }
 	        ret.close();		// 关闭执行的语句连接
@@ -54,24 +53,27 @@ public class SECTIONSModel extends AbstractTableModel {
     //建立构造函数初始化数据模型
     public SECTIONSModel()
     {
-    	ColumnNames= new Vector();
+		ColumnNames= new Vector();
 		ColumnNames.add("科室ID");
 		ColumnNames.add("科室名");
 		ColumnNames.add("科室人数");
-		
+		//ColumnNames.add("库存");
 		//建立表头
+		
+		
+		
 		RowData=new Vector(); 
 		sql = "SELECT * FROM SECTIONS";						// 此处填写要执行的语句
 	    db = new MySQLConnect(sql);							// 新建一个数据库连接
 	    try {
 			ret = db.pst.executeQuery();					// 执行sql语句，得到结果集
 			while (ret.next()) {
-	            Vector line=new Vector();
-	        	line.add(ret.getString(1));
-	        	line.add(ret.getString(2));
-	        	line.add(ret.getInt(3));
-	        	
-	        	RowData.add(line);
+	            Vector hang=new Vector();
+	            hang.add(ret.getString(1));
+	        	hang.add(ret.getString(2));
+	        	hang.add(ret.getInt(3));
+	        	//hang.add(ret.getInt(4));
+	        	RowData.add(hang);
 	        }
 	        ret.close();		// 关闭执行的语句连接
 	        db.close();			// 关闭数据库连接
@@ -80,23 +82,19 @@ public class SECTIONSModel extends AbstractTableModel {
 			e.printStackTrace();
 		}
     }
+    
 
-	@Override
-	public int getRowCount() {
-		// TODO Auto-generated method stub
-		return this.RowData.size();
-	}
-
-	@Override
+	//得到共有多少列
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
+		
+		// TODO 自动生成的方法存根
 		return this.ColumnNames.size();
 	}
 
-	@Override
-	public Object getValueAt(int row, int column) {
+	//得到共有多少行
+	public int getRowCount() {
 		// TODO 自动生成的方法存根
-		return ((Vector)this.RowData.get(row)).get(column);
+		return this.RowData.size();
 	}
 
 	@Override
@@ -105,7 +103,11 @@ public class SECTIONSModel extends AbstractTableModel {
 		return (String)this.ColumnNames.get(arg0);
 	}
 
-    
 
+	//得到某行某列的数据
+	public Object getValueAt(int row, int column) {
+		// TODO 自动生成的方法存根
+		return ((Vector)this.RowData.get(row)).get(column);
+	}
 
 }

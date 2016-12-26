@@ -21,7 +21,6 @@ import java.awt.Font;
 public class AdminSystemInsertItems extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 
@@ -53,11 +52,6 @@ public class AdminSystemInsertItems extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		Label label = new Label("\u6536\u8D39\u9879\u76EE ID(\u9ED8\u8BA4null)\uFF1A");
-		label.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		label.setBounds(8, 51, 150, 25);
-		contentPane.add(label);
-		
 		Label label_1 = new Label("\u6536\u8D39\u9879\u76EE\u540D\u79F0\uFF1A");
 		label_1.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		label_1.setBounds(47, 87, 111, 25);
@@ -67,11 +61,11 @@ public class AdminSystemInsertItems extends JFrame {
 		btnNewButton.setFont(new Font("微软雅黑", Font.BOLD, 15));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String sql="INSERT INTO ITEMS VALUES ("+textField.getText()+",'"+textField_1.getText()+"','"+textField_2.getText()+"')";
+				String sql="INSERT INTO ITEMS VALUES (null,'"+textField_1.getText()+"','"+textField_2.getText()+"')";
 				   MySQLConnect con=new MySQLConnect(sql);
 				   int key=1;//定义一个中间变量，来判断输入信息的窗口，如果成功 则 保存成功
 				   try{
-					   if(textField.getText().equals("")||textField_1.getText().equals("")||textField_2.getText().equals("")) 
+					   if(textField_1.getText().equals("")||textField_2.getText().equals("")) 
 					   {JOptionPane.showMessageDialog(null, "内容不能为空"); key=0;}	
 					 if(key==1) { con.pst.executeUpdate();   JOptionPane.showMessageDialog(null, "保存成功");}
 				   }catch(SQLException e1){
@@ -88,11 +82,6 @@ public class AdminSystemInsertItems extends JFrame {
 		label_2.setFont(new Font("微软雅黑", Font.BOLD, 20));
 		label_2.setBounds(147, 10, 150, 25);
 		contentPane.add(label_2);
-		
-		textField = new JTextField();
-		textField.setBounds(184, 51, 162, 24);
-		contentPane.add(textField);
-		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setBounds(184, 88, 162, 24);

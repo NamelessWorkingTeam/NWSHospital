@@ -10,23 +10,24 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Font;
 import java.sql.*;
 import javax.swing.*;
+import team.nwsh.nwshospital.MySQLConnect;
 import team.nwsh.nwshospital.AdminSystem.SECTIONSModel;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import team.nwsh.nwshospital.MySQLConnect;
 
-import javax.swing.table.DefaultTableModel;
-
 public class AdminSystemShowSECTIONInfo extends JFrame implements ActionListener  {
 	/**
 	 * 
 	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
-    JTable Adjt=null;
-    JScrollPane Adjsp=null;
-	JButton BtnNewButton = new JButton("\u67E5\u8BE2");
+    JTable jt=null;
+    JScrollPane jsp=null;
+	JButton BtnNewButton = new JButton("查询");
 
 	/**
 	 * Launch the application.
@@ -58,7 +59,7 @@ public class AdminSystemShowSECTIONInfo extends JFrame implements ActionListener
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.NORTH);
 		
-		JLabel lblNewLabel = new JLabel("\u8BF7\u8F93\u5165\u79D1\u5BA4\u540D\uFF1A");
+		JLabel lblNewLabel = new JLabel("请输入账户名");
 		lblNewLabel.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		panel.add(lblNewLabel);
 		
@@ -76,6 +77,10 @@ public class AdminSystemShowSECTIONInfo extends JFrame implements ActionListener
 		JButton btnNewButton_3 = new JButton("修改");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				AdminSystemSectionChange newframe = new AdminSystemSectionChange();
+				newframe.setVisible(true);
+				dispose();
 			}
 		});
 		btnNewButton_3.setFont(new Font("微软雅黑", Font.PLAIN, 15));
@@ -113,37 +118,12 @@ public class AdminSystemShowSECTIONInfo extends JFrame implements ActionListener
 
 		
 		
-		setTitle("科室管理系统");
+		setTitle("\u79D1\u5BA4\u60C5\u51B5\u67E5\u8BE2");
 
-		SECTIONSModel am=new SECTIONSModel();
-		Adjt=new JTable(new DefaultTableModel(
-			new Object[][] {
-				{"1000", "\u9662\u957F\u5BA4", new Integer(2)},
-				{"2000", "\u4FE1\u606F\u79D1", new Integer(0)},
-				{"3000", "\u6302\u53F7\u5904", new Integer(0)},
-				{"4000", "\u897F\u836F\u623F", new Integer(0)},
-				{"4001", "\u4E2D\u836F\u623F", new Integer(0)},
-				{"4002", "\u7EFC\u5408\u836F\u623F", new Integer(0)},
-				{"5000", "\u666E\u901A\u5916\u79D1", new Integer(10)},
-				{"5001", "\u666E\u901A\u5185\u79D1", new Integer(10)},
-				{"5002", "\u4E94\u5B98\u79D1", new Integer(10)},
-				{"5003", "\u68C0\u9A8C\u79D1", new Integer(10)},
-				{"5004", "\u795E\u7ECF\u79D1", new Integer(0)},
-			},
-			new String[] {
-				"\u79D1\u5BA4ID", "\u79D1\u5BA4\u540D", "\u79D1\u5BA4\u4EBA\u6570"
-			}
-		) {
-			boolean[] columnEditables = new boolean[] {
-				false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		
-		Adjsp=new JScrollPane(Adjt);
-		getContentPane().add(Adjsp);
+        SECTIONSModel mm=new SECTIONSModel();
+        jt=new JTable(mm);
+		jsp=new JScrollPane(jt);
+		getContentPane().add(jsp);
 		this.setBounds(12, 76, 380, 560);
 		this.setVisible(true);
 
@@ -155,10 +135,10 @@ public class AdminSystemShowSECTIONInfo extends JFrame implements ActionListener
 		if(arg0.getSource()==BtnNewButton)//检查
 		{
 			String name=this.textField.getText().trim();//获取textfield信息
-			//String sql="select * from A where MED_NAME='"+name+"'";//实现模糊查询
+			//String sql="select * from MEDICINE where MED_NAME='"+name+"'";//实现模糊查询
 			String sql="select * from SECTIONS where SEC_NAME like'%"+name+"%'";
-			ACCOUNTSModel am=new ACCOUNTSModel(sql);
-			Adjt.setModel(am);
+			SECTIONSModel mm=new SECTIONSModel(sql);
+			jt.setModel(mm);
 		}
 	}
 }

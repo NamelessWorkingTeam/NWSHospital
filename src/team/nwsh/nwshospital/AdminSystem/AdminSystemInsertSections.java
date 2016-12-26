@@ -23,7 +23,6 @@ public class AdminSystemInsertSections extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
 
 	/**
 	 * Launch the application.
@@ -81,11 +80,11 @@ public class AdminSystemInsertSections extends JFrame {
 		JButton btnNewButton = new JButton("\u4FDD\u5B58");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String sql="INSERT INTO SECTIONS VALUES ('"+textField.getText()+"','"+textField_1.getText()+"','"+textField_2.getText()+"')";
+				String sql="INSERT INTO SECTIONS VALUES ('"+textField.getText()+"','"+textField_1.getText()+"',0)";
 				   MySQLConnect con=new MySQLConnect(sql);
 				   int key=1;//定义一个中间变量，来判断输入信息的窗口，如果成功 则 保存成功
 				   try{
-					   if(textField.getText().equals("")||textField_1.getText().equals("")||textField_2.getText().equals("")) 
+					   if(textField.getText().equals("")||textField_1.getText().equals("")) 
 					   {JOptionPane.showMessageDialog(null, "内容不能为空"); key=0;}	
 					 if(key==1) { con.pst.executeUpdate();   JOptionPane.showMessageDialog(null, "保存成功");}
 				   }catch(SQLException e1){
@@ -108,15 +107,5 @@ public class AdminSystemInsertSections extends JFrame {
 		btnNewButton_1.setFont(new Font("微软雅黑", Font.BOLD, 15));
 		btnNewButton_1.setBounds(305, 214, 113, 27);
 		contentPane.add(btnNewButton_1);
-		
-		Label label_3 = new Label("\u79D1\u5BA4\u4EBA\u6570(\u9ED8\u8BA4\u4E3A0):");
-		label_3.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-		label_3.setBounds(22, 148, 152, 25);
-		contentPane.add(label_3);
-		
-		textField_2 = new JTextField();
-		textField_2.setBounds(194, 149, 86, 24);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
 	}
 }

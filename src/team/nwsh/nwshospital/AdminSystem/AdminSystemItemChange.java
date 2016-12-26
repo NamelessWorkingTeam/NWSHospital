@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class AdminSystemItemChange extends JFrame {
 
@@ -53,36 +54,40 @@ public class AdminSystemItemChange extends JFrame {
 		contentPane.setLayout(null);
 		
 		Label label = new Label("\u9879\u76EE\u540D\u79F0\uFF1A");
-		label.setBounds(27, 40, 77, 25);
+		label.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+		label.setBounds(27, 85, 77, 25);
 		contentPane.add(label);
 		
 		Label label_1 = new Label("\u9879\u76EE\u4EF7\u683C\uFF1A");
-		label_1.setBounds(28, 85, 77, 25);
+		label_1.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+		label_1.setBounds(27, 129, 77, 25);
 		contentPane.add(label_1);
 		
-		Label label_2 = new Label("\u9879\u76EEID\uFF1A");
-		label_2.setBounds(29, 130, 77, 25);
+		Label label_2 = new Label("\u9879\u76EEID(\u9ED8\u8BA4\u4E0D\u53D8)\uFF1A");
+		label_2.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+		label_2.setBounds(27, 41, 130, 25);
 		contentPane.add(label_2);
 		
 		textField = new JTextField();
-		textField.setBounds(129, 41, 86, 24);
+		textField.setBounds(199, 42, 86, 24);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(129, 86, 86, 24);
+		textField_1.setBounds(199, 86, 86, 24);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(129, 130, 86, 24);
+		textField_2.setBounds(199, 129, 86, 24);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
 		JButton btnNewButton = new JButton("保存");
+		btnNewButton.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String sql="UPDATE ITEMS SET ITEM_NAME=('"+textField.getText()+"') ,ITEM_PRICE = ('"+textField_1.getText()+"') WHERE ITEM_ID =('"+textField_2.getText()+"')";
+				String sql="UPDATE ITEMS SET ITEM_NAME=('"+textField_1.getText()+"') ,ITEM_PRICE = ('"+textField_2.getText()+"') WHERE ITEM_ID =('"+textField.getText()+"')";
 				   MySQLConnect con=new MySQLConnect(sql);
 				   int key=1;//定义一个中间变量，来判断输入信息的窗口，如果成功 则 保存成功
 				   try{
@@ -98,6 +103,7 @@ public class AdminSystemItemChange extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("\u8FD4\u56DE");
+		btnNewButton_1.setFont(new Font("微软雅黑", Font.PLAIN, 15));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AdminSystemShowITEMInfo newframe = new AdminSystemShowITEMInfo();

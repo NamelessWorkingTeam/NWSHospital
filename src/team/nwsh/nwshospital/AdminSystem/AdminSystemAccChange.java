@@ -53,19 +53,19 @@ public class AdminSystemAccChange extends JFrame {
 		contentPane.setLayout(null);
 		
 		Label label = new Label("\u7528\u6237\u540D\uFF1A");
-		label.setBounds(32, 38, 77, 25);
+		label.setBounds(32, 75, 77, 25);
 		contentPane.add(label);
 		
 		Label label_1 = new Label("\u5BC6\u7801\uFF1A");
-		label_1.setBounds(32, 76, 77, 25);
+		label_1.setBounds(32, 113, 77, 25);
 		contentPane.add(label_1);
 		
 		Label label_2 = new Label("\u6240\u5C5E\u79D1\u5BA4\uFF1A");
-		label_2.setBounds(32, 113, 77, 25);
+		label_2.setBounds(32, 149, 77, 25);
 		contentPane.add(label_2);
 		
 		Label label_3 = new Label("\u7528\u6237ID\uFF1A");
-		label_3.setBounds(32, 150, 77, 25);
+		label_3.setBounds(32, 39, 77, 25);
 		contentPane.add(label_3);
 		
 		textField = new JTextField();
@@ -92,7 +92,7 @@ public class AdminSystemAccChange extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String sql="UPDATE ACCOUNTS SET ACC_NAME=('"+textField.getText()+"') ,ACC_PASSWORD = ('"+textField_1.getText()+"'),SEC_ID = ('"+textField_2.getText()+"') WHERE ACC_ID =('"+textField_3.getText()+"')";
+				String sql="UPDATE ACCOUNTS SET ACC_NAME=('"+textField_1.getText()+"') ,ACC_PASSWORD = ('"+textField_2.getText()+"'),SEC_ID = ('"+textField_3.getText()+"') WHERE ACC_ID =('"+textField.getText()+"')";
 				   MySQLConnect con=new MySQLConnect(sql);
 				   int key=1;//定义一个中间变量，来判断输入信息的窗口，如果成功 则 保存成功
 				   try{
@@ -104,7 +104,7 @@ public class AdminSystemAccChange extends JFrame {
 				   }
 			}
 		});
-		btnNewButton.setBounds(305, 187, 81, 27);
+		btnNewButton.setBounds(337, 174, 81, 27);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("\u8FD4\u56DE");
@@ -115,7 +115,7 @@ public class AdminSystemAccChange extends JFrame {
 				 dispose();
 			}
 		});
-		btnNewButton_1.setBounds(305, 221, 80, 27);
+		btnNewButton_1.setBounds(338, 213, 80, 27);
 		contentPane.add(btnNewButton_1);
 	}
 
