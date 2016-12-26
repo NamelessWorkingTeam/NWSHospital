@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import team.nwsh.nwshospital.MySQLConnect;
+import team.nwsh.nwshospital.RegisterSystem.Register.NwshClient;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -17,6 +18,11 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
@@ -34,6 +40,64 @@ public class Register_Alter extends JFrame {
 	
 	private JPanel contentPane;
 
+	
+public class NwshClient {
+		
+		public String incoming = null;
+		
+		public String outgoing;
+
+		private PrintWriter writer;
+
+		private Socket socket;
+
+		/**
+		 * @author Liu Yummy
+		 * @create 2016/12/26 11:14
+		 * 负责客户端的启动,包括的功能:
+		 * 1. 初始化网络;
+		 * 2. 从服务端读取消息,动态刷新本地内容;
+		 * 另外，原本想将本类写成模块独立开来，
+		 * 但是发现IncomingReader在调用的时候无法独立调用，
+		 * 所以暂且用此方法进行使用！
+		 */
+		public void startUp() {
+	        setupNetwork();
+		}
+
+		private void setupNetwork() {
+			try {
+				// 进行网络初始化: 创建socket连接,获取socket的输入输出流
+				socket = new Socket("127.0.0.1", 5000);
+				
+				InputStreamReader stream = new InputStreamReader(socket.getInputStream());
+				
+				writer = new PrintWriter(socket.getOutputStream());
+				
+				System.out.println("网络初始化已经完成,服务端已连接!");
+			} catch (UnknownHostException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		public void SendMessage() {
+			try {
+				// 向socket中写入消息
+				outgoing = "newpatient";
+				writer.println(outgoing);
+				writer.flush();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			} finally {
+				// 发生数据流，刷新
+				writer.flush();
+			}
+		}
+	}
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -232,6 +296,11 @@ public class Register_Alter extends JFrame {
 		button_2.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		button_2.setBounds(314, 398, 93, 23);
 		contentPane.add(button_2);
+		
+		// 新建客户端与网络端的连接
+		NwshClient RegisterClient_Alter = new NwshClient();
+		RegisterClient_Alter.startUp();
+		
 		//按钮“确认修改并收费”
 		JButton button_1 = new JButton("\u786E\u8BA4\u9884\u7EA6\u5E76\u6536\u8D39");
 		button_1.addActionListener(new ActionListener() {
@@ -247,6 +316,7 @@ public class Register_Alter extends JFrame {
 				MySQLConnect con = new MySQLConnect(sql);
 				try {
 					con.pst.executeUpdate();
+					RegisterClient_Alter.SendMessage();
 					JOptionPane.showMessageDialog(null, "数据库写入成功！", "提示",JOptionPane.INFORMATION_MESSAGE);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block

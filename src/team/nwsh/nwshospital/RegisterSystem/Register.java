@@ -195,6 +195,7 @@ public class Register extends JFrame {
 		comboBox_SEC.setBounds(202, 223, 136, 30);
 		panel_1.add(comboBox_SEC);
 		
+		// 新建客户端与网络端的连接
 		NwshClient RegisterClient = new NwshClient();
 		RegisterClient.startUp();
 		
