@@ -39,9 +39,8 @@ public class Register_Alter extends JFrame {
 	static String P_TEL;
 	
 	private JPanel contentPane;
-
 	
-public class NwshClient {
+	public class NwshClient {
 		
 		public String incoming = null;
 		
@@ -310,7 +309,7 @@ public class NwshClient {
 				if(comboBox_KESHI.getSelectedItem().toString().compareTo("五官科") == 0)	sec="5002";
 				if(comboBox_KESHI.getSelectedItem().toString().compareTo("检验科") == 0)	sec="5003";
 				if(comboBox_KESHI.getSelectedItem().toString().compareTo("神经科") == 0)	sec="5004";
-//修改科室信息，并把状态STA_TUS置为1				
+				//修改科室信息，并把状态STA_TUS置为1				
 				String sql = " UPDATE STATE SET SEC_ID='"+sec+"',STA_TUS=1 WHERE PAT_ID='"+P_ID+"' ";
 
 				MySQLConnect con = new MySQLConnect(sql);
