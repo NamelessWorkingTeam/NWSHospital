@@ -1,6 +1,7 @@
 package team.nwsh.nwshospital.DirectorSystem;
 
 import java.awt.Font;
+import java.io.FileOutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;  
@@ -9,7 +10,8 @@ import java.text.NumberFormat;
 import javax.swing.JPanel;  
   
 import org.jfree.chart.ChartFactory;  
-import org.jfree.chart.ChartPanel;  
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;  
 import org.jfree.chart.labels.StandardPieSectionLabelGenerator;  
 import org.jfree.chart.plot.PiePlot;  
@@ -45,6 +47,19 @@ public class SectorChart {
           PiePlot piePlot= (PiePlot) chart.getPlot();//获取图表区域对象  
           piePlot.setLabelFont(new Font("宋体",Font.BOLD,10));//解决乱码  
           chart.getLegend().setItemFont(new Font("黑体",Font.BOLD,10));  
+          
+          FileOutputStream fos_jpg=null;  
+          try {  
+              fos_jpg=new FileOutputStream("D:\\SectorChart.jpg");  
+              //下面的参数分别是输出流、质量、图表数据、宽度、高度、备注信息  
+              ChartUtilities.writeChartAsJPEG(fos_jpg, 1.0f, chart,400, 300,null);  
+          }catch (Exception e) {  
+              e.printStackTrace();  
+          }finally{  
+              try {  
+                  fos_jpg.close();  
+              } catch (Exception e) {  
+                  e.printStackTrace();  }}
     }  
     private static DefaultPieDataset getDataSet() {  
         DefaultPieDataset dataset = new DefaultPieDataset();  

@@ -1,11 +1,13 @@
 package team.nwsh.nwshospital.DirectorSystem;
 import java.awt.Font;
+import java.io.FileOutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
 import org.jfree.chart.ChartFactory;  
-import org.jfree.chart.ChartPanel;  
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;  
 import org.jfree.chart.axis.CategoryAxis;  
 import org.jfree.chart.axis.ValueAxis;  
@@ -34,6 +36,20 @@ public class BarChart {
                             false,          // 是否生成工具  
                             false           // 是否生成URL链接  
                             );  
+        
+        FileOutputStream fos_jpg=null;  
+        try {  
+            fos_jpg=new FileOutputStream("D:\\BarChart.jpg");  
+            //下面的参数分别是输出流、质量、图表数据、宽度、高度、备注信息  
+            ChartUtilities.writeChartAsJPEG(fos_jpg, 1.0f, chart,400, 300,null);  
+        }catch (Exception e) {  
+            e.printStackTrace();  
+        }finally{  
+            try {  
+                fos_jpg.close();  
+            } catch (Exception e) {  
+                e.printStackTrace();  
+            }  
           
         //从这里开始  
         CategoryPlot plot=chart.getCategoryPlot();//获取图表区域对象  
@@ -47,7 +63,7 @@ public class BarChart {
             
           //到这里结束，虽然代码有点多，但只为一个目的，解决汉字乱码问题  
             
-         frame1=new ChartPanel(chart,true);        //这里也可以用chartFrame,可以直接生成一个独立的Frame  
+         frame1=new ChartPanel(chart,true);      }  //这里也可以用chartFrame,可以直接生成一个独立的Frame  
            
     }  
        private static CategoryDataset getDataSet() {  

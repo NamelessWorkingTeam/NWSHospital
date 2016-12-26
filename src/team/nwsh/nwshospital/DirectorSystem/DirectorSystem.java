@@ -110,7 +110,7 @@ public class DirectorSystem extends JFrame {
 		MedicineAlarm.setBounds(284, 31, 443, 78);
 		panel.add(MedicineAlarm);
 		
-		JButton CreatReport = new JButton("\u751F\u6210\u62A5\u544A");
+		JButton CreatReport = new JButton("\u5BFC\u51FA\u62A5\u544A");
 		CreatReport.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -120,7 +120,7 @@ public class DirectorSystem extends JFrame {
 		CreatReport.setBounds(113, 417, 115,25);
 		panel.add(CreatReport);
 		
-		JButton PublishReport = new JButton("\u5BFC\u51FA\u62A5\u544A");
+		JButton PublishReport = new JButton("\u751F\u6210\u62A5\u544A");
 		PublishReport.setFont(new Font("ËÎÌו", Font.PLAIN, 12));
 		PublishReport.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

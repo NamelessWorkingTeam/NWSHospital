@@ -38,7 +38,7 @@ public class MedicineModel extends AbstractTableModel {
 	            Vector hang=new Vector();
 	        	hang.add(ret.getInt(1));
 	        	hang.add(ret.getString(2));
-	        	hang.add(ret.getInt(3));
+	        	hang.add(ret.getDouble(3));
 	        	hang.add(ret.getInt(4));
 	        	RowData.add(hang);
 	        }
@@ -71,7 +71,7 @@ public class MedicineModel extends AbstractTableModel {
 	            Vector hang=new Vector();
 	        	hang.add(ret.getInt(1));
 	        	hang.add(ret.getString(2));
-	        	hang.add(ret.getInt(3));
+	        	hang.add(ret.getDouble(3));
 	        	hang.add(ret.getInt(4));
 	        	RowData.add(hang);
 	        }

@@ -1,11 +1,13 @@
 package team.nwsh.nwshospital.DirectorSystem;
 import java.awt.Font;
+import java.io.FileOutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
 import org.jfree.chart.ChartFactory;  
-import org.jfree.chart.ChartPanel;  
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;  
 import org.jfree.chart.axis.CategoryAxis;  
 import org.jfree.chart.axis.ValueAxis;  
@@ -34,6 +36,18 @@ public class HistogramChart {
                             false,          // 是否生成工具  
                             false           // 是否生成URL链接  
                             );  
+        FileOutputStream fos_jpg=null;  
+        try {  
+            fos_jpg=new FileOutputStream("D:\\HistogramChart.jpg");  
+            //下面的参数分别是输出流、质量、图表数据、宽度、高度、备注信息  
+            ChartUtilities.writeChartAsJPEG(fos_jpg, 1.0f, chart,400, 300,null);  
+        }catch (Exception e) {  
+            e.printStackTrace();  
+        }finally{  
+            try {  
+                fos_jpg.close();  
+            } catch (Exception e) {  
+                e.printStackTrace();  }}
           
         //从这里开始  
         CategoryPlot plot=chart.getCategoryPlot();//获取图表区域对象  
