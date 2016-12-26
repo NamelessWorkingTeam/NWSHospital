@@ -10,5 +10,9 @@
 	<classpathentry kind="lib" path="jfreechart-1.0.10.jar"/>
 	<classpathentry kind="lib" path="log4j-1.2.15.jar"/>
 	<classpathentry kind="lib" path="jcommon-1.0.15.jar"/>
+	<classpathentry kind="lib" path="jxl.jar"/>
+	<classpathentry kind="lib" path="com.lowagie.text-2.1.7.jar"/>
+	<classpathentry kind="lib" path="iText-5.0.6.jar"/>
+	<classpathentry kind="lib" path="iTextAsian_1.5.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

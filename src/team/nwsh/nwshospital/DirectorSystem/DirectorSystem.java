@@ -113,17 +113,30 @@ public class DirectorSystem extends JFrame {
 		JButton CreatReport = new JButton("\u5BFC\u51FA\u62A5\u544A");
 		CreatReport.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			
+				AsianTest Report = new AsianTest();
+				Report.AT(null);
 			}
 		});
 		CreatReport.setFont(new Font("宋体", Font.PLAIN, 12));
 		CreatReport.setBounds(113, 417, 115,25);
 		panel.add(CreatReport);
-		
+		/*
+		 * 因为生成PDF前提需要有各个科室的业绩业务量的数据库
+		 * 而此功能是在DirectorSystem中转到DirectorSectionSystem中是生成图表动作中
+		 * 而如果用户没有先使用该动作
+		 * 便无法生成PDF
+		 * 所以为了解决这个问题添加了生成PDF的按钮
+		 * 而其实际本质是形成了数据图
+		 * 真正形成PDF的语句通过导出PDF按钮实现
+		 */
 		JButton PublishReport = new JButton("\u751F\u6210\u62A5\u544A");
 		PublishReport.setFont(new Font("宋体", Font.PLAIN, 12));
 		PublishReport.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				    new BarChart().getChartPanel();         //添加柱形图  
+				    new HistogramChart().getChartPanel();   //添加柱形图  
+				    new PieChart().getChartPanel();         //添加饼状图
+				    new SectorChart().getChartPanel();      //添加饼状图
 			}
 		});
 		PublishReport.setBounds(113, 367, 115,25);
