@@ -1,3 +1,4 @@
+//修改账户信息。
 package team.nwsh.nwshospital.AdminSystem;
 
 import java.awt.BorderLayout;
@@ -45,6 +46,7 @@ public class AdminSystemAccChange extends JFrame {
 	 * Create the frame.
 	 */
 	public AdminSystemAccChange() {
+		setTitle("\u8D26\u6237\u4FEE\u6539");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -53,38 +55,38 @@ public class AdminSystemAccChange extends JFrame {
 		contentPane.setLayout(null);
 		
 		Label label = new Label("\u7528\u6237\u540D\uFF1A");
-		label.setBounds(32, 75, 77, 25);
+		label.setBounds(98, 76, 77, 25);
 		contentPane.add(label);
 		
 		Label label_1 = new Label("\u5BC6\u7801\uFF1A");
-		label_1.setBounds(32, 113, 77, 25);
+		label_1.setBounds(112, 113, 52, 25);
 		contentPane.add(label_1);
 		
 		Label label_2 = new Label("\u6240\u5C5E\u79D1\u5BA4\uFF1A");
-		label_2.setBounds(32, 149, 77, 25);
+		label_2.setBounds(80, 149, 77, 25);
 		contentPane.add(label_2);
 		
-		Label label_3 = new Label("\u7528\u6237ID\uFF1A");
-		label_3.setBounds(32, 39, 77, 25);
+		Label label_3 = new Label("\u7528\u6237ID(\u9ED8\u8BA4\u4E0D\u53D8)\uFF1A");
+		label_3.setBounds(32, 39, 129, 25);
 		contentPane.add(label_3);
 		
 		textField = new JTextField();
-		textField.setBounds(162, 39, 100, 24);
+		textField.setBounds(199, 40, 100, 24);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(162, 76, 100, 24);
+		textField_1.setBounds(199, 76, 100, 24);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(162, 113, 100, 24);
+		textField_2.setBounds(199, 114, 100, 24);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(162, 150, 100, 24);
+		textField_3.setBounds(199, 150, 100, 24);
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
 		
@@ -107,11 +109,10 @@ public class AdminSystemAccChange extends JFrame {
 		btnNewButton.setBounds(337, 174, 81, 27);
 		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("\u8FD4\u56DE");
+		JButton btnNewButton_1 = new JButton("\u5173\u95ED");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminSystemShowACCInfo newframe = new AdminSystemShowACCInfo();
-				newframe.setVisible(true);
+				
 				 dispose();
 			}
 		});

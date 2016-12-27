@@ -80,7 +80,7 @@ public class AdminSystemShowSECTIONInfo extends JFrame implements ActionListener
 				
 				AdminSystemSectionChange newframe = new AdminSystemSectionChange();
 				newframe.setVisible(true);
-				dispose();
+				
 			}
 		});
 		btnNewButton_3.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));

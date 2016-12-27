@@ -114,12 +114,11 @@ public class AdminSystemMEDChange extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("\u8FD4\u56DE");
+		JButton btnNewButton = new JButton("\u5173\u95ED");
 		btnNewButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminSystemShowMEDInfo newframe = new AdminSystemShowMEDInfo();
-				newframe.setVisible(true);
+				
 				dispose();
 			}
 		});

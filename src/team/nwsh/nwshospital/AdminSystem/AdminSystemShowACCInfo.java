@@ -1,3 +1,4 @@
+//查询账户信息，删除需要精确搜索
 package team.nwsh.nwshospital.AdminSystem;
 
 import java.awt.BorderLayout;
@@ -80,7 +81,7 @@ public class AdminSystemShowACCInfo extends JFrame implements ActionListener  {
 				
 				AdminSystemAccChange newframe = new AdminSystemAccChange();
 				newframe.setVisible(true);
-				dispose();
+				
 			}
 		});
 		btnNewButton_3.setFont(new Font("微软雅黑", Font.PLAIN, 15));

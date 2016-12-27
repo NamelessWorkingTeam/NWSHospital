@@ -102,12 +102,11 @@ public class AdminSystemSectionChange extends JFrame {
 		btnNewButton.setBounds(321, 172, 80, 27);
 		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("\u8FD4\u56DE");
+		JButton btnNewButton_1 = new JButton("\u5173\u95ED");
 		btnNewButton_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminSystemShowSECTIONInfo newframe = new AdminSystemShowSECTIONInfo();
-				newframe.setVisible(true);
+				
 				dispose();
 			}
 		});

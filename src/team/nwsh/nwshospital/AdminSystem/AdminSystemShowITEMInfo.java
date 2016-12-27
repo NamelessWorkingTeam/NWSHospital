@@ -80,7 +80,7 @@ public class AdminSystemShowITEMInfo extends JFrame implements ActionListener  {
 				
 				AdminSystemItemChange newframe = new AdminSystemItemChange();
 				newframe.setVisible(true);
-				dispose();
+				
 			}
 		});
 		btnNewButton_3.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));

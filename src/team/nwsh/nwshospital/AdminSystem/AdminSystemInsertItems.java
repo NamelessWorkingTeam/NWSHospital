@@ -54,7 +54,7 @@ public class AdminSystemInsertItems extends JFrame {
 		
 		Label label_1 = new Label("\u6536\u8D39\u9879\u76EE\u540D\u79F0\uFF1A");
 		label_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
-		label_1.setBounds(47, 87, 111, 25);
+		label_1.setBounds(39, 88, 111, 25);
 		contentPane.add(label_1);
 		
 		JButton btnNewButton = new JButton("\u4FDD\u5B58");
@@ -90,7 +90,7 @@ public class AdminSystemInsertItems extends JFrame {
 		
 		Label label_3 = new Label("\u9879\u76EE\u8D39\u7528\uFF1A");
 		label_3.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
-		label_3.setBounds(81, 124, 77, 25);
+		label_3.setBounds(69, 124, 89, 25);
 		contentPane.add(label_3);
 		
 		textField_2 = new JTextField();
