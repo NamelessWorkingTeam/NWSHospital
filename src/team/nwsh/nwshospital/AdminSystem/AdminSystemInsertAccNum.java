@@ -57,7 +57,7 @@ public class AdminSystemInsertAccNum extends JFrame {
 		
 		Label label = new Label("\u7528\u6237\u540D\uFF1A");
 		label.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
-		label.setBounds(83, 84, 65, 25);
+		label.setBounds(75, 84, 65, 25);
 		contentPane.add(label);
 		
 		Label label_1 = new Label("\u8BF7\u8F93\u5165\u8D26\u53F7\u4FE1\u606F");
@@ -72,16 +72,16 @@ public class AdminSystemInsertAccNum extends JFrame {
 		
 		Label label_2 = new Label("\u5BC6\u7801\uFF1A");
 		label_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
-		label_2.setBounds(94, 121, 44, 25);
+		label_2.setBounds(90, 121, 44, 25);
 		contentPane.add(label_2);
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(188, 122, 147, 24);
 		contentPane.add(passwordField);
 		
-		Label label_3 = new Label("\u7528\u6237 ID(\u9ED8\u8BA4\u4E0D\u53D8)\uFF1A");
+		Label label_3 = new Label("\u7528\u6237 ID\uFF1A");
 		label_3.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
-		label_3.setBounds(10, 53, 138, 25);
+		label_3.setBounds(71, 53, 65, 25);
 		contentPane.add(label_3);
 		
 		textField_1 = new JTextField();
@@ -91,7 +91,7 @@ public class AdminSystemInsertAccNum extends JFrame {
 		
 		Label label_4 = new Label("\u6240\u5C5E\u79D1\u5BA4\uFF1A");
 		label_4.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
-		label_4.setBounds(65, 151, 77, 25);
+		label_4.setBounds(60, 152, 77, 25);
 		contentPane.add(label_4);
 		
 		textField_2 = new JTextField();

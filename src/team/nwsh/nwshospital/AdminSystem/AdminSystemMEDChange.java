@@ -56,31 +56,31 @@ public class AdminSystemMEDChange extends JFrame {
 		
 		Label label_1 = new Label("\u836F\u54C1\u540D\uFF1A");
 		label_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
-		label_1.setBounds(34, 85, 77, 25);
+		label_1.setBounds(100, 86, 64, 25);
 		contentPane.add(label_1);
 		
 		Label label_2 = new Label("\u836F\u54C1\u4EF7\u683C\uFF1A");
 		label_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
-		label_2.setBounds(34, 121, 77, 25);
+		label_2.setBounds(87, 121, 77, 25);
 		contentPane.add(label_2);
 		
 		Label label_3 = new Label("\u836F\u54C1\u6570\u91CF\uFF1A");
 		label_3.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
-		label_3.setBounds(34, 162, 77, 25);
+		label_3.setBounds(87, 162, 77, 25);
 		contentPane.add(label_3);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(150, 48, 113, 24);
+		textField_1.setBounds(201, 48, 113, 24);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(150, 85, 113, 24);
+		textField_2.setBounds(201, 86, 113, 24);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(150, 122, 113, 24);
+		textField_3.setBounds(201, 122, 113, 24);
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
 		
@@ -104,13 +104,13 @@ public class AdminSystemMEDChange extends JFrame {
 		button.setBounds(331, 177, 87, 27);
 		contentPane.add(button);
 		
-		Label label = new Label("\u836F\u54C1ID:");
+		Label label = new Label("\u836F\u54C1ID(\u9ED8\u8BA4\u4E0D\u53D8)\uFF1A");
 		label.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15));
-		label.setBounds(34, 48, 77, 25);
+		label.setBounds(31, 49, 132, 25);
 		contentPane.add(label);
 		
 		textField = new JTextField();
-		textField.setBounds(150, 163, 113, 24);
+		textField.setBounds(201, 163, 113, 24);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
